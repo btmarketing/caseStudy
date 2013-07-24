@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="js/coordinates.js"></script>
+		<script type="text/javascript" src="js/contentBox.js"></script>
+		<script type="text/javascript" src="js/bucket.js"></script>
+		<script type="text/javascript" src="js/canvasStuff.js"></script>
+		<style>
+			body{
+				margin:0px 0px 0px 0px;
+				padding:0px 0px 0px 0px;
+			}
+			canvas{
+				margin:0px 0px 0px 0px;
+				padding:0px 0px 0px 0px;
+				position:absolute;
+				left:0px;
+				top:0px;
+				z-index: -1;
+			}
+			.bucket{
+			}
+			#header{
+				position:absolute;
+			}
+			.navLink{
+				margin-left:0px;
+				margin-right:10px;
+				padding:5px 10px 5px 10px;
+				border-radius: 5px;
+			}
+			.navSelected{
+				font-weight: bold;
+				text-decoration: underline;
+			}
+			.navLink:hover{
+				cursor:pointer;
+				background-color: #dddddd;
+			}
+			.contentBox{
+				position:absolute;
+				margin:0px 0px 0px 0px;
+				padding:0px 0px 0px 0px;
+				opacity:1;
+			}
+			#whiteScreen{
+				background-color:white;
+				position:absolute;
+				left:0px;
+				top:0px;
+				width:100%;
+				height:100%;
+			}
+			.fillBox{
+				width:100%;
+				height:100%;
+			}
+			.title{
+				text-align: center;
+			}
+			h1{
+				color:white;
+			}
+			h2{
+				color:blue;
+				font-weight: normal;
+				margin-left:10px;
+			}
+			h2 strong{
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+
+		<canvas id="canvas"></canvas>
+
+		<div id="content">
+
+			<!-- start Bucket -->
+			<div class="bucket">
+				<div class="title">
+					<h1>Bucket_0</h1>
+				</div>
+				<div class="square_1">
+					<img class="fillBox" src="img/coverArt.png" />
+				</div>
+				<div class="square_2">
+					<p>Some ish goes here</p>
+				</div>
+				<div class="tall">
+					<p>Hey!!! BitTorrent is Super Cool!!!</p>
+				</div>
+				<div class="fat">
+					<img class="fillBox" src="img/test.png" />
+				</div>
+			</div> <!-- end Bucket -->
+
+			<!-- start Bucket -->
+			<div class="bucket">
+				<div class="title">
+					<h1>Bucket_1</h1>
+				</div>
+				<div class="square_2">
+					<p>Some ish goes here.Whateva whateva whateva whateva</p>
+				</div>
+				<div class="tall">
+					<img class="fillBox" src="img/image_0.png" />
+				</div>
+				<div class="square_1">
+					<img class="fillBox" src="img/coverArt.png" />
+				</div>
+				<div class="fat">
+					<img class="fillBox" src="img/test.png" />
+				</div>
+			</div> <!-- end Bucket -->
+
+			<!-- start Bucket -->
+			<div class="bucket">
+				<div class="title">
+					<h1>Bucket_2</h1>
+				</div>
+				<div class="square_1">
+					<img class="fillBox" src="img/image_3.png" />
+				</div>
+				<div class="tall">
+					<p>Some ish goes here</p>
+				</div>
+				<div class="square_2">
+					<img class="fillBox" src="img/coverArt.png" />
+				</div>
+				<div class="fat">
+					<img class="fillBox" src="img/test.png" />
+				</div>
+			</div> <!-- end Bucket -->
+
+		</div><!-- end content storage -->
+
+		<!-- title and navigation bar -->
+		<div id="header">
+			<div id="title">
+				<h2>The <strong>BitTorrent</strong>&reg; Report</h2>
+			</div>
+			<div id="navigation"></div>
+		</div>
+
+		<div id="whiteScreen"></div>
+
+		<script type="text/javascript">
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+			//GLOBAL VARIABLES
+
+			var theWidth;
+			var theHeight;
+			var center;
+
+			var unitSize = 120;
+
+			var currentCoords = 0;
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+			window.onload = function(){
+				resized();
+				createBuckets();
+				document.body.removeChild(document.getElementById('whiteScreen'));
+				masterLoop();
+			}
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+			var buckets = [];
+
+			//loop through the content divs, creating a new Bucket object for each section
+
+			function createBuckets(){
+				var domBuckets = document.getElementById('content').children;
+				for(var i=0;i<domBuckets.length;i++){
+					if(domBuckets[i].className==='bucket'){
+						var b = new Bucket(domBuckets[i],i);
+						buckets.push(b);
+					}
+					if(i!==domBuckets.length-1){
+						//add a dash to the nav bar
+						var tempDash = document.createElement('span');
+						tempDash.innerHTML = '/&nbsp;';
+						document.getElementById('navigation').appendChild(tempDash);
+					}
+				}
+			}
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+			function masterLoop(){
+				for(var i=0;i<buckets.length;i++){
+					buckets[i].updateTitleBox();
+					buckets[i].updateContentBoxes();
+				}
+				drawSeeding();
+				requestAnimFrame(masterLoop);
+			}
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+			//called from within the selected nav link
+			//this function resets the global currentNavBox variable
+
+			var currentNavigation = -1;
+			var currentCoords = 0;
+
+			function changeNavigation(index){
+				if(currentNavigation!==index){
+					currentCoords = (currentCoords+1)%coordinates.length;
+					if(buckets[currentNavigation]){
+						buckets[currentNavigation].deselect();
+						currentNavigation=index;
+						buckets[currentNavigation].select(false);
+					}
+					else{
+						currentNavigation=index;
+						buckets[currentNavigation].select(true);
+					}
+				}
+			}
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+			var leftOffset;
+			var topOffset = 40;
+			var minimumOffset = 20;
+
+			function resized(){
+
+				theWidth = window.innerWidth;
+				theHeight = window.innerHeight;
+
+				leftOffset = theWidth*.1-50;
+				if(leftOffset<minimumOffset) leftOffset = minimumOffset;
+
+				center = {
+					'x': leftOffset+unitSize*4,
+					'y': topOffset+unitSize*3
+				};
+
+				document.getElementById('header').style.left = leftOffset+'px';
+				document.getElementById('header').style.top = topOffset+'px';
+				initCanvas();
+			}
+
+			window.onresize = resized;
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+			window.requestAnimFrame = (function(){
+				return  window.requestAnimationFrame||window.webkitRequestAnimationFrame ||
+					window.mozRequestAnimationFrame||function(callback){
+						window.setTimeout(callback, 1000 / 60);
+					};
+			})();
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+		</script>
+	</body>
+</html>
