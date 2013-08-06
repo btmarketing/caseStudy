@@ -54,10 +54,6 @@ function drawSeeding(){
 			}
 		}
 	}
-	context.save();
-	context.fillStyle = '#000000';
-	context.fillRect(center.x-3,center.y-3,6,6);
-	context.restore();
 	frameCount++;
 	updateCurrentPackets();
 }
