@@ -12,8 +12,8 @@ var context;
 function initCanvas(){
 	canvas = document.getElementById('canvas');
 	context = canvas.getContext('2d');
-	canvas.width = unitSize*8;
-	canvas.height = unitSize*4;
+	canvas.width = unitSize*10;
+	canvas.height = unitSize*5;
 }
 
 ////////////////////////////////////////////////
