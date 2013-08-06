@@ -72,7 +72,7 @@ Bucket.prototype.updateTitleBox = function(){
 
 		this.titleBox.updateSize();
 
-		if(prevGrowing!=this.titleBox.growing){
+		if(prevGrowing && this.titleBox.growing){
 			//trigger something for when the title full size ??
 			for(var i=0;i<this.contentBoxes.length;i++){
 				this.contentBoxes[i].changePosition();

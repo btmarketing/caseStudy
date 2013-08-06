@@ -8,11 +8,13 @@ function ContentBox(el){
 	this.x;
 	this.y;
 
+	console.log(el.parentNode.className+' -- '+el.className);
+
 	this.width = this.type.width*unitSize;
 	this.height = this.type.height*unitSize;
 
 	this.sinCount = -Math.PI*.5;
-	this.sinStepUp = Math.random()*0.04+0.03;
+	this.sinStepUp = Math.random()*0.02+0.02;
 	this.sinStepDown = 0.2;
 
 	if(this.type.name==='title') this.sinStepUp = 0.2;
@@ -128,29 +130,49 @@ ContentBox.prototype.updateDOM = function(){
 ////////////////////////////////////////////////
 
 var dimensions = {
-	'tall': {
-		'name':'tall',
-		'width':2,
-		'height':4
-	},
-	'fat': {
-		'name':'fat',
-		'width':4,
-		'height':2
-	},
-	'square_1': {
-		'name':'square_1',
-		'width':2,
-		'height':2
-	},
-	'square_2': {
-		'name':'square_2',
-		'width':2,
-		'height':2
-	},
 	'title': {
 		'name':'title',
 		'width':2,
+		'height':1
+	},
+	'big': {
+		'name':'big',
+		'width':4,
+		'height':3
+	},
+	'rect_1': {
+		'name':'rect_1',
+		'width':4,
+		'height':2
+	},
+	'rect_2': {
+		'name':'rect_2',
+		'width':4,
+		'height':2
+	},
+	'unit_1': {
+		'name':'unit_1',
+		'width':1,
+		'height':1
+	},
+	'unit_2': {
+		'name':'unit_2',
+		'width':1,
+		'height':1
+	},
+	'double_1': {
+		'name':'double_1',
+		'width':2,
+		'height':1
+	},
+	'double_2': {
+		'name':'double_2',
+		'width':2,
+		'height':1
+	},
+	'long': {
+		'name':'long',
+		'width':3,
 		'height':1
 	}
 };

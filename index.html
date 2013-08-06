@@ -82,17 +82,21 @@
 				<div class="title">
 					<h1>Bucket_0</h1>
 				</div>
-				<div class="square_1">
-					<img class="fillBox" src="img/coverArt.png" />
+				<div class="rect_1">
 				</div>
-				<div class="square_2">
-					<p>Some ish goes here</p>
+				<div class="rect_2">
 				</div>
-				<div class="tall">
-					<p>Hey!!! BitTorrent is Super Cool!!!</p>
+				<div class="double_1">
 				</div>
-				<div class="fat">
-					<img class="fillBox" src="img/test.png" />
+				<div class="double_2">
+				</div>
+				<div class="big">
+				</div>
+				<div class="unit_1">
+				</div>
+				<div class="unit_2">
+				</div>
+				<div class="long">
 				</div>
 			</div> <!-- end Bucket -->
 
@@ -101,36 +105,21 @@
 				<div class="title">
 					<h1>Bucket_1</h1>
 				</div>
-				<div class="square_2">
-					<p>Some ish goes here.Whateva whateva whateva whateva</p>
+				<div class="rect_1">
 				</div>
-				<div class="tall">
-					<img class="fillBox" src="img/image_0.png" />
+				<div class="rect_2">
 				</div>
-				<div class="square_1">
-					<img class="fillBox" src="img/coverArt.png" />
+				<div class="double_1">
 				</div>
-				<div class="fat">
-					<img class="fillBox" src="img/test.png" />
+				<div class="double_2">
 				</div>
-			</div> <!-- end Bucket -->
-
-			<!-- start Bucket -->
-			<div class="bucket">
-				<div class="title">
-					<h1>Bucket_2</h1>
+				<div class="big">
 				</div>
-				<div class="square_1">
-					<img class="fillBox" src="img/image_3.png" />
+				<div class="unit_1">
 				</div>
-				<div class="tall">
-					<p>Some ish goes here</p>
+				<div class="unit_2">
 				</div>
-				<div class="square_2">
-					<img class="fillBox" src="img/coverArt.png" />
-				</div>
-				<div class="fat">
-					<img class="fillBox" src="img/test.png" />
+				<div class="long">
 				</div>
 			</div> <!-- end Bucket -->
 
@@ -158,7 +147,7 @@
 			var theHeight;
 			var center;
 
-			var unitSize = 120;
+			var unitSize = 95;
 
 			var currentCoords = 0;
 
@@ -167,6 +156,7 @@
 			////////////////////////////////////////////////
 
 			window.onload = function(){
+				initCanvas();
 				resized();
 				createBuckets();
 				document.body.removeChild(document.getElementById('whiteScreen'));
@@ -241,27 +231,32 @@
 
 			var leftOffset;
 			var topOffset = 40;
-			var minimumOffset = 20;
+			var canvasTopOffset = topOffset+100;
+			var minimumOffset = 10;
 
 			function resized(){
 
 				theWidth = window.innerWidth;
 				theHeight = window.innerHeight;
 
-				leftOffset = theWidth*.1-50;
+				leftOffset = theWidth*.2-100;
 				if(leftOffset<minimumOffset) leftOffset = minimumOffset;
 
 				center = {
-					'x': leftOffset+unitSize*4,
-					'y': topOffset+unitSize*3
+					'x': leftOffset+unitSize*3,
+					'y': topOffset+unitSize*2
 				};
 
 				document.getElementById('header').style.left = leftOffset+'px';
 				document.getElementById('header').style.top = topOffset+'px';
-				initCanvas();
+
+				canvas.style.left = leftOffset+'px';
+				canvas.style.top = canvasTopOffset+'px';
 			}
 
-			window.onresize = resized;
+			window.onresize = function(){
+				resized();
+			};
 
 			////////////////////////////////////////////////
 			////////////////////////////////////////////////

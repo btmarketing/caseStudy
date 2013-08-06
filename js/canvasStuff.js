@@ -12,9 +12,8 @@ var context;
 function initCanvas(){
 	canvas = document.getElementById('canvas');
 	context = canvas.getContext('2d');
-	canvas.width = theWidth;
-	canvas.height = theHeight;
-	//drawGridLines();
+	canvas.width = unitSize*8;
+	canvas.height = unitSize*4;
 }
 
 ////////////////////////////////////////////////
@@ -32,29 +31,33 @@ function drawSeeding(){
 
 		var b = buckets[currentNavigation];
 
-		var startX = b.titleBox.x;
-		var startY = b.titleBox.y;
+		var startX = b.titleBox.x-leftOffset;
+		var startY = b.titleBox.y-canvasTopOffset;
 
 		for(var c=0;c<b.contentBoxes.length;c++){
 
-			var endX = b.contentBoxes[c].x;
-			var endY = b.contentBoxes[c].y;
+			var endX = b.contentBoxes[c].x-leftOffset;
+			var endY = b.contentBoxes[c].y-canvasTopOffset;
 			var p = new Packet(startX,startY,endX,endY);
 			packets.push(p);
 
-			if(b.contentBoxes[c].sinCount>-Math.PI*.25){
+			if(b.contentBoxes[c].sinCount>-Math.PI*.25 && b.contentBoxes[c].sinCount<Math.PI*.25){
 
 				for(var i=0;i<b.contentBoxes.length;i++){
 					if(c!==i){
-						var endX_inter = b.contentBoxes[i].x;
-						var endY_inter = b.contentBoxes[i].y;
-						var p_inter = new Packet(endX,endY,endX_inter,endY_inter);
+						var endX_inter = b.contentBoxes[i].x-leftOffset;
+						var endY_inter = b.contentBoxes[i].y-canvasTopOffset;
+						var p_inter = new Packet(endX,endY,endX_inter,endY_inter,c);
 						packets.push(p_inter);
 					}
 				}
 			}
 		}
 	}
+	context.save();
+	context.fillStyle = '#000000';
+	context.fillRect(center.x-3,center.y-3,6,6);
+	context.restore();
 	frameCount++;
 	updateCurrentPackets();
 }
@@ -63,13 +66,10 @@ function drawSeeding(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var clearIt = false;
-
 function updateCurrentPackets(){
+	context.globalAlpha = 1;
 	if(packets.length>0){
-		clearIt=true;
-		context.fillStyle = 'rgba(255,255,255,1)';
-		context.fillRect(0,0,canvas.width,canvas.height);
+		context.clearRect(0,0,canvas.width,canvas.height);
 		for(var i=0;i<packets.length;i++){
 			packets[i].step();
 			packets[i].paint();
@@ -79,28 +79,68 @@ function updateCurrentPackets(){
 			}
 		}
 	}
-	else if(clearIt){
-		clearIt = false;
-		context.fillStyle = 'rgba(255,255,255,1)';
-		context.fillRect(0,0,canvas.width,canvas.height);
-	}
 }
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function Packet(sx,sy,dx,dy){
-	this.stepAmount = Math.floor(Math.random()*20)+30;
-	this.currentStep = 0;
+function findAngle(startX,startY,endX,endY){
+
+	var finalAngle = 0;
+
+	var xDiff = endX-startX;
+	var yDiff = endY-startY;
+	var totalDiff = Math.sqrt(Math.pow(xDiff,2)+Math.pow(yDiff,2));
+	var rightSine = Math.sin(Math.PI*.5);
+
+	var useDiff;
+	var radOffset;
+
+	if(xDiff>=0 && yDiff<=0){
+		useDiff = Math.abs(xDiff);
+		radOffset = 0;
+	}
+	else if(xDiff>=0 && yDiff>=0){
+		useDiff = Math.abs(yDiff);
+		radOffset = Math.PI*.5;
+	}
+	else if(xDiff<=0 && yDiff>=0){
+		useDiff = Math.abs(xDiff);
+		radOffset = Math.PI;
+	}
+	else if(xDiff<=0 && yDiff<=0){
+		useDiff = Math.abs(yDiff);
+		radOffset = Math.PI*1.5;
+	}
+	var numerator = rightSine*useDiff;
+	finalAngle = Math.asin(numerator/totalDiff)+radOffset;
+
+	if(!finalAngle) finalAngle=0;
+
+	return finalAngle;
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function Packet(sx,sy,dx,dy,colorIndex){
 	this.x = sx;
 	this.y = sy;
-	this.size = Math.floor(Math.pow(Math.random()*2,2)+1);
-	this.targetX = dx;
-	this.targetY = dy;
-	this.xStep = (dx-sx)/this.stepAmount;
-	this.yStep = (dy-sy)/this.stepAmount;
+	this.totalDiff = Math.sqrt(Math.pow(dx-sx,2)+Math.pow(dy-sy,2));
+	this.rot = findAngle(sx,sy,dx,dy)+Math.PI;
+
+	this.waves = Math.floor(Math.random()*7)+3;
+
+	this.stepAmount = Math.floor(Math.random()*20)+60;
+	this.currentStep = 0;
+
+	this.waveHeight = this.totalDiff*(Math.pow(Math.random()*.3,2));
+
 	this.arrived = false;
+	this.size = Math.floor(Math.pow(Math.random()*2,2)+3);
+	this.colorIndex = colorIndex;
 }
 
 ////////////////////////////////////////////////
@@ -108,8 +148,6 @@ function Packet(sx,sy,dx,dy){
 ////////////////////////////////////////////////
 
 Packet.prototype.step = function(){
-	this.x+=this.xStep;
-	this.y+=this.yStep;
 	this.currentStep++;
 	if(this.currentStep===this.stepAmount){
 		this.arrived = true;
@@ -120,43 +158,22 @@ Packet.prototype.step = function(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+var colors = ['red','green','yellow','purple','orange','blue','green','yellow','purple','orange','blue'];
+
 Packet.prototype.paint = function(){
-	context.fillStyle = 'rgba(100,100,200,.7)';
+	var amount = (this.currentStep/this.stepAmount)*this.waves;
+	var location = (Math.sin(((this.currentStep/this.stepAmount)*2-1)*Math.PI*.5)*.5+.5)*this.totalDiff;
+	var offset = Math.sin(amount)*this.waveHeight;
+	var thisFill = Math.sin((this.currentStep/this.stepAmount)*Math.PI)*.6;
+	context.translate(this.x,this.y);
+	context.rotate(this.rot);
+	context.globalAlpha = thisFill;
+	context.fillStyle = colors[this.colorIndex];
 	context.beginPath();
-	context.arc(this.x,this.y,this.size,0,2*Math.PI,false);
+	context.arc(offset,location,this.size,0,2*Math.PI,false);
 	context.fill();
-}
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
-function drawGridLines(){
-	context.clearRect(0,0,canvas.width,canvas.height);
-	for(var x=center.x;x<theWidth;x+=unitSize){
-		context.beginPath();
-		context.moveTo(x,0);
-		context.lineTo(x,theHeight);
-		context.stroke();
-	}
-	for(x=center.x-unitSize;x>0;x-=unitSize){
-		context.beginPath();
-		context.moveTo(x,0);
-		context.lineTo(x,theHeight);
-		context.stroke();
-	}
-	for(var y=center.y;y<theHeight;y+=unitSize){
-		context.beginPath();
-		context.moveTo(0,y);
-		context.lineTo(theWidth,y);
-		context.stroke();
-	}
-	for(var y=center.y-unitSize;y>0;y-=unitSize){
-		context.beginPath();
-		context.moveTo(0,y);
-		context.lineTo(theWidth,y);
-		context.stroke();
-	}
+	context.rotate(-this.rot);
+	context.translate(-this.x,-this.y);
 }
 
 ////////////////////////////////////////////////
