@@ -27,6 +27,7 @@ var packets = [];
 var addPackets = false;
 
 function drawSeeding(){
+  console.log(packets.length)
 	if(frameCount%packetInterval===0 && addPackets){
 
 		var b = buckets[currentNavigation];

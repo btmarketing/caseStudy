@@ -792,9 +792,6 @@ canvas {
   z-index: -1;
   border: solid 1px black;
 }
-#canvas {
-  position: absolute;
-}
 #header {
   position: absolute;
 }
@@ -832,4 +829,7 @@ canvas {
 }
 .title {
   text-align: center;
+}
+#canvas {
+  position: absolute;
 }
