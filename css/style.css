@@ -765,6 +765,17 @@ body {
 .nav li.last:after {
   content: '';
 }
+.nav span:hover {
+  color: #7665ac;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.navActive {
+  text-decoration: underline;
+  color: #7665ac;
+  font-weight: 700;
+}
 #main {
   background: #ffffff;
   min-height: 765px;
@@ -772,11 +783,48 @@ body {
 footer {
   min-height: 100px;
 }
+canvas {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  border: solid 1px black;
+}
+#canvas {
+  position: absolute;
+}
+#header {
+  position: absolute;
+}
+.navLink {
+  margin-left: 0px;
+  margin-right: 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+}
+.navSelected {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.navLink:hover {
+  cursor: pointer;
+  background-color: #dddddd;
+}
 .contentBox {
   position: absolute;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
   opacity: 1;
+}
+#whiteScreen {
+  background-color: white;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
 }
 .fillBox {
   width: 100%;
@@ -784,9 +832,4 @@ footer {
 }
 .title {
   text-align: center;
-}
-  position:absolute;
-}
-.navActive{
-  color:#ff99ff;
 }
