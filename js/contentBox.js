@@ -8,6 +8,8 @@ function ContentBox(el){
 	this.x;
 	this.y;
 
+	console.log(el.parentNode.className+' -- '+el.className);
+
 	this.width = this.type.width*unitSize;
 	this.height = this.type.height*unitSize;
 

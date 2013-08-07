@@ -32,13 +32,13 @@ function drawSeeding(){
 
 		var b = buckets[currentNavigation];
 
-		var startX = b.titleBox.x-center.left;
-		var startY = b.titleBox.y-center.top;
+		var startX = b.titleBox.x-leftOffset;
+		var startY = b.titleBox.y-canvasTopOffset;
 
 		for(var c=0;c<b.contentBoxes.length;c++){
 
-			var endX = b.contentBoxes[c].x-center.left;
-			var endY = b.contentBoxes[c].y-center.top;
+			var endX = b.contentBoxes[c].x-leftOffset;
+			var endY = b.contentBoxes[c].y-canvasTopOffset;
 			var p = new Packet(startX,startY,endX,endY);
 			packets.push(p);
 
@@ -46,8 +46,8 @@ function drawSeeding(){
 
 				for(var i=0;i<b.contentBoxes.length;i++){
 					if(c!==i){
-						var endX_inter = b.contentBoxes[i].x-center.left;
-						var endY_inter = b.contentBoxes[i].y-center.top;
+						var endX_inter = b.contentBoxes[i].x-leftOffset;
+						var endY_inter = b.contentBoxes[i].y-canvasTopOffset;
 						var p_inter = new Packet(endX,endY,endX_inter,endY_inter,c);
 						packets.push(p_inter);
 					}
@@ -155,6 +155,8 @@ Packet.prototype.step = function(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+var colors = ['red','green','yellow','purple','orange','blue','green','yellow','purple','orange','blue'];
+
 Packet.prototype.paint = function(){
 	var amount = (this.currentStep/this.stepAmount)*this.waves;
 	var location = (Math.sin(((this.currentStep/this.stepAmount)*2-1)*Math.PI*.5)*.5+.5)*this.totalDiff;
@@ -163,7 +165,7 @@ Packet.prototype.paint = function(){
 	context.translate(this.x,this.y);
 	context.rotate(this.rot);
 	context.globalAlpha = thisFill;
-	context.fillStyle = 'purple';
+	context.fillStyle = colors[this.colorIndex];
 	context.beginPath();
 	context.arc(offset,location,this.size,0,2*Math.PI,false);
 	context.fill();

@@ -2,7 +2,7 @@
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function Bucket(bucket,_index,isLast){
+function Bucket(bucket,_index){
 	this.el = bucket;
 	//find the title div
 	this.title = this.el.getElementsByClassName('title')[0].children[0].innerHTML;
@@ -10,8 +10,6 @@ function Bucket(bucket,_index,isLast){
 
 	this.totalGrown = 0;
 	this.totalShrunk = 0;
-
-	this.isLast = isLast;
 
 	//make the navigation link for the top
 	this.makeNavLink();
@@ -46,9 +44,8 @@ Bucket.prototype.makeContentBoxes = function(){
 
 Bucket.prototype.makeNavLink = function(){
 
-	var li = document.createElement('li');
 	this.navLink = document.createElement('span');
-	if(this.isLast) li.className = 'last';
+	this.navLink.className = 'navLink';
 	this.navLink.id = 'nav_'+this.index;
 	this.navLink.innerHTML = this.title;
 
@@ -61,9 +58,7 @@ Bucket.prototype.makeNavLink = function(){
 		changeNavigation(i); //function inside index.html
 	}
 
-	li.appendChild(this.navLink);
-
-	document.getElementById('navigation').appendChild(li);
+	document.getElementById('navigation').appendChild(this.navLink);
 }
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -136,7 +131,7 @@ Bucket.prototype.updateContentBoxes = function(){
 
 Bucket.prototype.select = function(isFirstSelected){
 
-	this.navLink.className = 'navActive';
+	this.navLink.className += ' navSelected';
 
 	if(isFirstSelected){
 		this.titleBox.changePosition();
@@ -151,7 +146,7 @@ Bucket.prototype.select = function(isFirstSelected){
 
 Bucket.prototype.deselect = function(){
 
-	this.navLink.className = '';
+	this.navLink.className = 'navLink';
 
 	this.titleBox.hideKids();
 	this.titleBox.shrinking=true;
