@@ -1,0 +1,73 @@
+/*
+ * CUSTOM CSS/LES
+ */
+
+body {
+  background: @graybg;
+  font-family: @sansFontFamily
+}
+
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0px auto -100px;
+  padding: 20px 30px 0 30px;
+}
+
+.logo {
+float:left;
+}
+
+.logotext {
+  color: @btpurple;
+  text-decoration: none;
+  h1 {
+    font-weight: 400;
+    font-size: 24px;
+    display: inline;
+  }
+  margin-left: 12px;
+  strong {
+    font-weight: 700;
+  }
+}
+
+
+.nav { 
+  li {
+    display: inline;
+    margin: 0px;
+    font-size: 12px;
+    color: #808080;
+  }
+  padding:0 0 0 46px;
+  li:after {
+    content: '\00a0\00a0/\00a0';
+  }
+  li.last:after {
+    content: '';
+  }
+  span:hover {
+    color: @btpurple;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  margin: 0px 0 20px;
+  width: 900px;
+}
+
+.navActive {
+  text-decoration: underline;
+  color: @btpurple;
+  font-weight: 700;
+}
+#main {
+  background: @whitebg;
+  min-height: 765px;
+}
+
+footer {
+  min-height: 100px;
+}
