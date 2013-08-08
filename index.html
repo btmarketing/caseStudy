@@ -31,7 +31,6 @@
                 </nav>
             </header>
             <div id="main">
-                <canvas id="canvas"></canvas>
                 <div id="content">
                     <!-- start Bucket -->
                     <div class="bucket">
@@ -89,7 +88,6 @@
             <script type="text/javascript" src="js/coordinates.js"></script>
             <script type="text/javascript" src="js/contentBox.js"></script>
             <script type="text/javascript" src="js/bucket.js"></script>
-            <script type="text/javascript" src="js/canvasStuff.js"></script>
             <script type="text/javascript" src="js/main.js"></script>
 
             <script type="text/javascript">
@@ -98,12 +96,7 @@
             ////////////////////////////////////////////////
             ////////////////////////////////////////////////
 
-            window.onload = function(){
-                initCanvas();
-                resized();
-                createBuckets();
-                masterLoop();
-            }
+            window.onload = initCaseStudy;
 
             ////////////////////////////////////////////////
             ////////////////////////////////////////////////

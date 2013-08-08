@@ -65,52 +65,6 @@ Bucket.prototype.makeNavLink = function(){
 
 	document.getElementById('navigation').appendChild(li);
 }
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
-Bucket.prototype.updateTitleBox = function(){
-	var prevMoving = this.titleBox.moving;
-
-	if(prevMoving){
-
-		this.titleBox.updateAnimation();
-
-		if(prevMoving && !this.titleBox.moving){
-			//trigger something for when the title full size ??
-			for(var i=0;i<this.contentBoxes.length;i++){
-				this.contentBoxes[i].changePosition();
-				this.contentBoxes[i].moving=true;
-			}
-		}
-	}
-}
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
-Bucket.prototype.updateContentBoxes = function(){
-
-	for(var i=0;i<this.contentBoxes.length;i++){
-
-		var prevMoving = this.contentBoxes[i].moving;
-
-		if(prevMoving){
-
-			this.contentBoxes[i].updateAnimation();
-
-			if(prevMoving!=this.contentBoxes[i].moving){
-				this.contentBoxes[i].show();
-				this.totalGrown++;
-				if(this.totalGrown===this.contentBoxes.length){
-					this.totalGrown = 0;
-					//trigger something for when they're all full size ??
-				}
-			}
-		}
-	}
-}
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -120,13 +74,12 @@ Bucket.prototype.select = function(oldBucketIndex){
 
 	this.navLink.className = 'navActive';
 
+	this.titleBox.changePosition();
 	this.titleBox.show();
 
-	this.titleBox.changePosition();
-	this.titleBox.moving=true;
-
-	if(oldBucketIndex>=0){
-		//
+	for(var i=0;i<this.contentBoxes.length;i++){
+		this.contentBoxes[i].changePosition();
+		this.contentBoxes[i].show();
 	}
 }
 

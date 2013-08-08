@@ -2,15 +2,11 @@
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-//GLOBAL VARIABLES
-
-var theWidth;
-var theHeight;
-var center;
-
-var unitSize = 95;
-
-var currentCoords = 0;
+function initCaseStudy(){
+    resized();
+    createBuckets();
+    masterLoop();
+}
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -38,11 +34,6 @@ function createBuckets(){
 
 function masterLoop(){
     resizeTest();
-    for(var i=0;i<buckets.length;i++){
-        buckets[i].updateTitleBox();
-        buckets[i].updateContentBoxes();
-    }
-    //drawSeeding();
     requestAnimFrame(masterLoop);
 }
 
@@ -81,26 +72,24 @@ function resizeTest(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+var gutter = 5; // the space between each box
+var unitSize = 95; // the size each checker box
+var center; // object holding main container div's screen coordinates
+
 function resized(main){
 
     if(!main) main = document.getElementById('main').getBoundingClientRect();
 
-    theWidth = window.innerWidth;
-    theHeight = window.innerHeight;
-
     var padding = 20;
 
     center = {
-        'x': main.left+unitSize*3+padding,
-        'y': main.top+unitSize*2+padding,
-        'left': main.left+padding,
-        'top': main.top+padding,
+        'l': main.left+padding,
+        't': main.top+padding,
+        'b': main.bottom-padding,
+        'r': main.right-padding,
         'oldLeft': main.left,
         'oldTop': main.top
     };
-
-    canvas.style.left = center.left+'px';
-    canvas.style.top = center.top+'px';
 }
 
 ////////////////////////////////////////////////
