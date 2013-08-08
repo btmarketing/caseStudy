@@ -70,24 +70,18 @@ Bucket.prototype.makeNavLink = function(){
 ////////////////////////////////////////////////
 
 Bucket.prototype.updateTitleBox = function(){
-	var prevGrowing = this.titleBox.growing;
-	var prevShrinking = this.titleBox.shrinking;
+	var prevMoving = this.titleBox.moving;
 
-	if(prevGrowing || prevShrinking){
+	if(prevMoving){
 
-		this.titleBox.updateSize();
+		this.titleBox.updateAnimation();
 
-		if(prevGrowing && this.titleBox.growing){
+		if(prevMoving && !this.titleBox.moving){
 			//trigger something for when the title full size ??
 			for(var i=0;i<this.contentBoxes.length;i++){
 				this.contentBoxes[i].changePosition();
-				this.contentBoxes[i].shrinking=false;
-				this.contentBoxes[i].growing=true;
-				addPackets = true;
+				this.contentBoxes[i].moving=true;
 			}
-		}
-		else if(prevShrinking!=this.titleBox.shrinking){
-			//trigger something for when the title is shrunk ??
 		}
 	}
 }
@@ -100,30 +94,18 @@ Bucket.prototype.updateContentBoxes = function(){
 
 	for(var i=0;i<this.contentBoxes.length;i++){
 
-		var prevGrowing = this.contentBoxes[i].growing;
-		var prevShrinking = this.contentBoxes[i].shrinking;
+		var prevMoving = this.contentBoxes[i].moving;
 
-		if(prevGrowing || prevShrinking){
+		if(prevMoving){
 
-			this.contentBoxes[i].updateSize();
+			this.contentBoxes[i].updateAnimation();
 
-			if(prevGrowing!=this.contentBoxes[i].growing){
+			if(prevMoving!=this.contentBoxes[i].moving){
+				this.contentBoxes[i].show();
 				this.totalGrown++;
 				if(this.totalGrown===this.contentBoxes.length){
 					this.totalGrown = 0;
 					//trigger something for when they're all full size ??
-					addPackets = false;
-				}
-			}
-			else if(prevShrinking!=this.contentBoxes[i].shrinking){
-				this.totalShrunk++;
-				if(this.totalShrunk===this.contentBoxes.length){
-					this.totalShrunk = 0;
-					//trigger something for when they're all shrunk ??
-					var b = buckets[currentNavigation];
-					b.titleBox.changePosition();
-					b.titleBox.shrinking=false;
-					b.titleBox.growing=true;
 				}
 			}
 		}
@@ -134,14 +116,17 @@ Bucket.prototype.updateContentBoxes = function(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-Bucket.prototype.select = function(isFirstSelected){
+Bucket.prototype.select = function(oldBucketIndex){
 
 	this.navLink.className = 'navActive';
 
-	if(isFirstSelected){
-		this.titleBox.changePosition();
-		this.titleBox.shrinking=false;
-		this.titleBox.growing=true;
+	this.titleBox.show();
+
+	this.titleBox.changePosition();
+	this.titleBox.moving=true;
+
+	if(oldBucketIndex>=0){
+		//
 	}
 }
 
@@ -153,14 +138,10 @@ Bucket.prototype.deselect = function(){
 
 	this.navLink.className = '';
 
-	this.titleBox.hideKids();
-	this.titleBox.shrinking=true;
-	this.titleBox.growing=false;
+	this.titleBox.hide();
 
 	for(var i=0;i<this.contentBoxes.length;i++){
-		this.contentBoxes[i].hideKids();
-		this.contentBoxes[i].shrinking=true;
-		this.contentBoxes[i].growing=false;
+		this.contentBoxes[i].hide();
 	}
 }
 

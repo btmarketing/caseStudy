@@ -11,14 +11,7 @@ function ContentBox(el){
 	this.width = this.type.width*unitSize;
 	this.height = this.type.height*unitSize;
 
-	this.sinCount = -Math.PI*.5;
-	this.sinStepUp = Math.random()*0.02+0.02;
-	this.sinStepDown = 0.2;
-
-	if(this.type.name==='title') this.sinStepUp = 0.2;
-
-	this.growing = false;
-	this.shrinking = false;
+	this.moving = false;
 
 	var shade = Math.floor(Math.random()*150);
 
@@ -32,59 +25,33 @@ function ContentBox(el){
 	if(this.type.name==='title') this.el.style.lineHeight = this.width/2-gutter+'px';
 
 	this.changePosition();
+	//this.updateDOM();
+	this.hide();
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+ContentBox.prototype.updateAnimation = function(){
+	this.moving=false;
 	this.updateDOM();
-	this.hideKids();
 }
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-ContentBox.prototype.updateSize = function(){
-
-	//if it's growing, increase the size until full size
-	//then turn growing off
-	if(this.growing){
-		this.sinCount+=this.sinStepUp;
-		if(this.sinCount>=Math.PI*.5){
-			this.sinCount = Math.PI*.5;
-			this.growing = false;
-			this.showKids();
-		}
-		this.updateDOM();
-	}
-
-	//if shrinking, decrease the size until nothing
-	else if(this.shrinking){
-		this.sinCount-=this.sinStepDown;
-		if(this.sinCount<=-Math.PI*.5){
-			this.sinCount = -Math.PI*.5;
-			this.shrinking = false;
-		}
-		this.updateDOM();
-	}
+ContentBox.prototype.hide = function(){
+	this.el.style.display = 'none';
 }
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-ContentBox.prototype.hideKids = function(){
-	var kids = this.el.children;
-	for(var i=0;i<kids.length;i++){
-		kids[i].style.display = 'none';
-	}
-}
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
-ContentBox.prototype.showKids = function(){
-	var kids = this.el.children;
-	for(var i=0;i<kids.length;i++){
-		kids[i].style.display = 'inline';
-	}
+ContentBox.prototype.show = function(){
+	this.el.style.display = 'inline';
 }
 
 ////////////////////////////////////////////////
@@ -106,21 +73,10 @@ ContentBox.prototype.changePosition = function(pos){
 var gutter = 5; // the space between each box
 
 ContentBox.prototype.updateDOM = function(){
-	var tempSize = Math.sin(this.sinCount)*.5+.5;
-	var tempWidth = Math.floor(this.width*tempSize);
-	var tempHeight = Math.floor(this.height*tempSize);
-
-	this.el.style.left = this.x-tempWidth/2+gutter+'px';
-	this.el.style.top = this.y-tempHeight/2+gutter+'px';
-	this.el.style.width = tempWidth-gutter*2+'px';
-	this.el.style.height = tempHeight-gutter*2+'px';
-
-	if(tempSize>0){
-		this.el.style.display = 'inline';
-	}
-	else{
-		this.el.style.display = 'none';
-	}
+	this.el.style.left = this.x-this.width/2+gutter+'px';
+	this.el.style.top = this.y-this.height/2+gutter+'px';
+	this.el.style.width = this.width-gutter*2+'px';
+	this.el.style.height = this.height-gutter*2+'px';
 }
 
 ////////////////////////////////////////////////
