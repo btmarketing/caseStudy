@@ -11,8 +11,8 @@ function ContentBox(el){
 	this.width = this.type.width*unitSize;
 	this.height = this.type.height*unitSize;
 
-	var shade = Math.floor(Math.random()*150);
-	this.color = 'rgba('+shade+','+shade+','+shade+',0.5)';
+	var shade = 150;
+	this.color = 'rgb('+shade+','+shade+','+shade+')';
 
 	this.el = el;
 	this.el.style.backgroundColor = this.color;

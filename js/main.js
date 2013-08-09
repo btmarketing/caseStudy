@@ -4,6 +4,7 @@
 
 function initCaseStudy(){
     resized();
+    makeCheckerBoard();
     createBuckets();
     masterLoop();
 }
@@ -34,6 +35,7 @@ function createBuckets(){
 
 function masterLoop(){
     resizeTest();
+    moveCheckers();
     requestAnimFrame(masterLoop);
 }
 
@@ -44,16 +46,22 @@ function masterLoop(){
 var currentNavigation = -1;
 var currentCoords = 0;
 
+var clicked = false;
+
 function changeNavigation(index){
     if(currentNavigation!==index){
+        clicked = true;
         currentCoords = (currentCoords+1)%coordinates.length;
 
-        if(buckets[currentNavigation]) buckets[currentNavigation].deselect();
+        if(buckets[currentNavigation]){
+            buckets[currentNavigation].deselect();
+        }
 
-        var prevIndex = currentNavigation;
         currentNavigation=index;
 
-        buckets[currentNavigation].select(prevIndex);
+        buckets[currentNavigation].select();
+
+        makeTargetCheckerLayout();
     }
 }
 
@@ -90,6 +98,7 @@ function resized(main){
         'oldLeft': main.left,
         'oldTop': main.top
     };
+    updateCheckerPositions();
 }
 
 ////////////////////////////////////////////////

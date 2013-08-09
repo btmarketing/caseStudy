@@ -41,8 +41,6 @@ Bucket.prototype.makeContentBoxes = function(){
 }
 
 ////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
 
 Bucket.prototype.makeNavLink = function(){
 
@@ -70,15 +68,24 @@ Bucket.prototype.makeNavLink = function(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-Bucket.prototype.select = function(oldBucketIndex){
+Bucket.prototype.select = function(){
 
 	this.navLink.className = 'navActive';
 
 	this.titleBox.changePosition();
-	this.titleBox.show();
 
 	for(var i=0;i<this.contentBoxes.length;i++){
 		this.contentBoxes[i].changePosition();
+	}
+}
+
+////////////////////////////////////////////////
+
+Bucket.prototype.show = function(){
+
+	this.titleBox.show();
+
+	for(var i=0;i<this.contentBoxes.length;i++){
 		this.contentBoxes[i].show();
 	}
 }
@@ -88,8 +95,13 @@ Bucket.prototype.select = function(oldBucketIndex){
 ////////////////////////////////////////////////
 
 Bucket.prototype.deselect = function(){
-
 	this.navLink.className = '';
+	this.hide();
+}
+
+////////////////////////////////////////////////
+
+Bucket.prototype.hide = function(){
 
 	this.titleBox.hide();
 
