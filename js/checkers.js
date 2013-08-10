@@ -9,40 +9,390 @@ function Checker(startIndex,isFull){
 	this.el;
 	this.targetIndex = this.index;
 	this.prevExchange = undefined;
+
+	this.stepCount = 0;
+	this.stepAmount = 2.5;
+
+	this.seemStep = 1;
+
+	this.shrunk = true;
+	this.grown = false;
+
+	this.mouse = {
+		'x':undefined,
+		'y':undefined
+	};
+
+	this.adder = {
+		'l':0,
+		'r':0,
+		't':0,
+		'b':0,
+		'total':0
+	};
+
+	this.touched = false;
+
+	this.neighborSpace;
+
 	if(this.full) {
+		var that = this;
 		this.el = document.createElement('div');
 		this.el.style.position = 'absolute';
 		this.el.style.backgroundColor = 'rgb(150,150,150)';
+		this.el.onmousedown = function(e){
+			if(!buckets[currentNavigation]){
+				endRandomSorting();
+				that.initMouseDrag(e);
+			}
+		};
 		document.getElementById('checkerBoard').appendChild(this.el);
 	}
 
 	this.updateCorners();
+
+	this.prevCorners;
 }
 
-Checker.prototype.updateCorners = function(){
+Checker.prototype.initMouseDrag = function(e){
+	this.touched = true;
+	if(e.x){
+		this.mouse.x = e.x;
+		this.mouse.y = e.y;
+	}
+	else if(e.clientX){
+		this.mouse.x = e.clientX;
+		this.mouse.y = e.clientY;
+	}
+	//see if there's an empty space next to it
+	this.findNeighboringSpaces();
+}
+
+Checker.prototype.slideCorners = function(){
+
+	var tempAmount = this.stepAmount;
+	if(!buckets[currentNavigation]) tempAmount = Math.round(tempAmount*2.5);
+
+	var divider = tempAmount-this.stepCount;
+
+	var targetX = this.index%xDim;
+	var targetY = Math.floor(this.index/xDim);
+	var targetCorners = {
+		'l':(targetX*unitSize)+gutter+center.l,
+		'r':((targetX*unitSize)+unitSize)-gutter+center.l,
+		't':(targetY*unitSize)+gutter+center.t,
+		'b':((targetY*unitSize)+unitSize)-gutter+center.t,
+	};
+	this.corners.l += (targetCorners.l-this.corners.l)/divider;
+	this.corners.r += (targetCorners.r-this.corners.r)/divider;
+	this.corners.t += (targetCorners.t-this.corners.t)/divider;
+	this.corners.b += (targetCorners.b-this.corners.b)/divider;
+	
+	this.updateDOM();
+
+	this.prevCorners = this.corners;
+	this.stepCount++;
+	if(this.stepCount>=tempAmount){
+		this.stepCount=0;
+		this.updateCorners();
+		selectCurrentChecker();
+	}
+}
+
+Checker.prototype.updateCorners = function(dontUpdateDom){
 	var xPos = this.index%xDim;
 	var yPos = Math.floor(this.index/xDim);
 	this.corners = {
-		'l':(xPos*unitSize)+gutter+center.l,
-		'r':((xPos*unitSize)+unitSize)-gutter+center.l,
-		't':(yPos*unitSize)+gutter+center.t,
-		'b':((yPos*unitSize)+unitSize)-gutter+center.t,
+		'l':(xPos*unitSize)+gutter+center.l+this.adder.l,
+		'r':((xPos*unitSize)+unitSize)-gutter+center.l+this.adder.r,
+		't':(yPos*unitSize)+gutter+center.t+this.adder.t,
+		'b':((yPos*unitSize)+unitSize)-gutter+center.t+this.adder.b,
 	};
-	if(this.el) this.updateDOM();
+	if(this.el && this.prevCorners!==this.corners && !dontUpdateDom){
+		this.updateDOM();
+	}
+	this.prevCorners = this.corners;
 }
 
 Checker.prototype.updateDOM = function(){
-	this.el.style.width = Math.round(this.corners.r-this.corners.l)+'px';
-	this.el.style.height = Math.round(this.corners.b-this.corners.t)+'px';
-	this.el.style.left = Math.round(this.corners.l)+'px';
-	this.el.style.top = Math.round(this.corners.t)+'px';
+	var thisLeft = this.corners.l;
+	var thisTop = this.corners.t;
+	var thisWidth = this.corners.r-thisLeft;
+	var thisHeight = this.corners.b-thisTop;
+
+	if(thisWidth!==this.el.offsetWidth){
+		this.el.style.width = Math.round(thisWidth)+'px';
+	}
+	if(thisHeight!==this.el.offsetHeight){
+		this.el.style.height = Math.round(thisHeight)+'px';
+	}
+	if(thisLeft!==this.el.offsetLeft){
+		this.el.style.left = Math.round(thisLeft)+'px';
+	}
+	if(thisTop!==this.el.offsetTop){
+		this.el.style.top = Math.round(thisTop)+'px';
+	}
+}
+
+Checker.prototype.slideThisChecker = function(){
+	var xDist = (this.targetIndex%xDim)-(this.index%xDim);
+	var yDist = Math.floor(this.targetIndex/xDim)-Math.floor(this.index/xDim);
+
+	if(xDist || yDist){
+
+		var step = yDist/Math.abs(yDist);
+		var newIndex = this.index+(step*xDim);
+
+		if(Math.abs(xDist)>Math.abs(yDist)){
+			var step = xDist/Math.abs(xDist);
+			var newIndex = this.index+step;
+		}
+
+		for(var n=0;n<checkers.length;n++){
+			if(checkers[n].index===newIndex){
+				checkers[n].index = this.index;
+				this.index = newIndex;
+				if(!checkers[n].full){
+					this.slideThisChecker();
+				}
+				else{
+					movingChecker = n;
+				}
+				break;
+			}
+		}
+	}
+	else{
+		selectCurrentChecker();
+	}
+}
+
+Checker.prototype.grow = function(){
+	this.grown = false;
+	this.shrunk = false;
+	var instr = targetLayout[this.index];
+	if(instr!=='empty'){
+		if(instr.l) this.adder.l-=this.seemStep;
+		if(instr.r) this.adder.r+=this.seemStep;
+		if(instr.t) this.adder.t-=this.seemStep;
+		if(instr.b) this.adder.b+=this.seemStep;
+	}
+	this.adder.total+=this.seemStep;
+	if(this.adder.total>=gutter){
+		this.adder.total=gutter;
+		if(instr.l) this.adder.l=-gutter;
+		if(instr.r) this.adder.r=gutter;
+		if(instr.t) this.adder.t=-gutter;
+		if(instr.b) this.adder.b=gutter;
+		this.grown = true;
+	}
+	this.updateCorners();
+}
+
+Checker.prototype.shrink = function(){
+	this.shrunk = false;
+	this.grown = false;
+	var instr = targetLayout[this.index];
+	if(instr!=='empty'){
+		if(instr.l) this.adder.l+=this.seemStep;
+		if(instr.r) this.adder.r-=this.seemStep;
+		if(instr.t) this.adder.t+=this.seemStep;
+		if(instr.b) this.adder.b-=this.seemStep;
+	}
+	this.adder.total-=this.seemStep;
+	if(this.adder.total<=0){
+		this.adder.total = 0;
+		this.adder.r = 0;
+		this.adder.l = 0;
+		this.adder.t = 0;
+		this.adder.b = 0;
+		this.shrunk = true;
+	}
+	this.updateCorners();
+}
+
+Checker.prototype.findNeighboringSpaces = function(){
+	this.neighborSpace = {
+		'l':false,
+		'r':false,
+		't':false,
+		'b':false
+	};
+	for(var i=0;i<checkers.length;i++){
+		if(!checkers[i].full){
+			if(checkers[i].index===this.index-1 && checkers[i].index%xDim!==-1){
+				this.neighborSpace.l = true;
+			}
+			else if(checkers[i].index===this.index+1 && checkers[i].index%xDim!==xDim){
+				this.neighborSpace.r = true;
+			}
+			else if(checkers[i].index===this.index-xDim && Math.floor(checkers[i].index/xDim)!==-1){
+				this.neighborSpace.t = true;
+			}
+			else if(checkers[i].index===this.index+xDim && Math.floor(checkers[i].index/xDim)!==yDim){
+				this.neighborSpace.b = true;
+			}
+		}
+	}
+}
+
+Checker.prototype.mouseSlide = function(xShift,yShift){
+	this.updateCorners(true);
+	var wentHorizontal = false;
+	if(Math.abs(xShift)>Math.abs(yShift)){
+		var yPos = Math.floor(this.index/xDim);
+		var idealYPos = (yPos*unitSize)+gutter+center.t+this.adder.t;
+		if(this.corners.t===idealYPos){
+			if(xShift<0 && this.neighborSpace.l){
+				//shift to left by xShift amount
+				this.corners.l+=xShift;
+				this.corners.r+=xShift;
+				if(this.corners.l<center.l+gutter){
+					this.corners.l = center.l+gutter;
+					this.corners.r = (unitSize-(gutter*2))+this.corners.l;
+				}
+				wentHorizontal = true;
+				this.updateDOM();
+			}
+			else if(xShift>0 && this.neighborSpace.r){
+				//shift to right by xShift amount
+				this.corners.l+=xShift;
+				this.corners.r+=xShift;
+				if(this.corners.r>((xDim*unitSize)+center.l)-gutter){
+					this.corners.r = ((xDim*unitSize)+center.l)-gutter;
+					this.corners.l = this.corners.r-(unitSize-(gutter*2));
+				}
+				wentHorizontal = true;
+				this.updateDOM();
+			}
+		}
+	}
+	if(!wentHorizontal && Math.abs(yShift)>0){
+		var xPos = this.index%xDim;;
+		var idealXPos = (xPos*unitSize)+gutter+center.l+this.adder.l;
+		if(this.corners.l===idealXPos){
+			if(yShift<0 && this.neighborSpace.t){
+				//shift up by xShift amount
+				this.corners.t+=yShift;
+				this.corners.b+=yShift;
+				if(this.corners.t<center.t+gutter){
+					this.corners.t = center.t+gutter;
+					this.corners.b = this.corners.t+(unitSize-(gutter*2));
+				}
+				this.updateDOM();
+			}
+			else if(yShift>0 && this.neighborSpace.b){
+				//shift to down by xShift amount
+				this.corners.t+=yShift;
+				this.corners.b+=yShift;
+				if(this.corners.b>((yDim*unitSize)+center.t)-gutter){
+					this.corners.b = ((yDim*unitSize)+center.t)-gutter;
+					this.corners.t = this.corners.b-(unitSize-(gutter*2));
+				}
+				this.updateDOM();
+			}
+		}
+	}
+	if(Math.abs(xShift)>unitSize*.6){
+		if(xShift<0){
+			//shift if left
+		}
+		else{
+			//shift it right
+		}
+	}
+	else if(Math.abs(yShift)>unitSize*.6){
+		if(yShift<0){
+			//shift if up
+		}
+		else{
+			//shift it down
+		}
+	}
 }
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function updateCheckerPositions(){
+var shrinking = false;
+
+function shrinkCheckers(){
+	shrinking = true;
+	var test = false;
+
+	for(var i=0;i<checkers.length;i++){
+		if(!checkers[i].shrunk){
+			checkers[i].shrink();
+			test = true;
+		}
+	}
+
+	if(!test){
+		shrinking = false;
+		makeTargetCheckerLayout();
+		selectCurrentChecker();
+	}
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+var growing = false;
+
+function growCheckers(){
+	growing = true;
+	var test = false;
+
+	for(var i=0;i<checkers.length;i++){
+		if(!checkers[i].grown){
+			checkers[i].grow();
+			test = true;
+		}
+	}
+
+	if(!test){
+		growing = false;
+		currentEmptyChecker = -1;
+		movingChecker = -1;
+		buckets[currentNavigation].show();
+		document.getElementById('checkerBoard').style.display = 'none';
+	}
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function selectCurrentChecker(){
+	movingChecker = -1;
+	var offset = Math.floor(Math.random()*checkers.length);
+	var test = false;
+	for(var q=0;q<checkers.length;q++){
+		var i = (q+offset)%checkers.length;
+		if(!checkers[i].full && checkers[i].targetIndex!==checkers[i].index){
+			currentEmptyChecker = i;
+			test = true;
+			break;
+		}
+	}
+	if(!test){
+		if(buckets[currentNavigation]){
+			//we're done
+			growCheckers();
+		}
+		else{
+			triggerRandomSorting();
+		}
+	}
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function updateAllCheckerPositions(){
 	for(var i=0;i<checkers.length;i++){
 		checkers[i].updateCorners();
 	}
@@ -52,20 +402,14 @@ function updateCheckerPositions(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function moveCheckers(){
-	var count = 0;
-	var offset = Math.floor(Math.random()*checkers.length);
-	for(var q=0;q<checkers.length;q++){
-		var i = (q+offset)%checkers.length;
-		if(!checkers[i].full && checkers[i].index!==checkers[i].targetIndex){
-			count++;
-			slideThisChecker(i);
-		}
-	}
-	updateCheckerPositions();
-	if(count===0 && buckets[currentNavigation] && clicked){
-		clicked=false;
-		buckets[currentNavigation].show();
+var clicked = false;
+
+function endRandomSorting(){
+	if(!buckets[currentNavigation] && !clicked){
+		currentEmptyChecker = -1;
+		movingChecker = -1;
+		clicked = true;
+		updateAllCheckerPositions();
 	}
 }
 
@@ -73,32 +417,39 @@ function moveCheckers(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function slideThisChecker(i){
-	var xDist = (checkers[i].targetIndex%xDim)-(checkers[i].index%xDim);
-	var yDist = Math.floor(checkers[i].targetIndex/xDim)-Math.floor(checkers[i].index/xDim);
+function triggerRandomSorting(){
+	currentCoords = (currentCoords+1)%coordinates.length;
+	makeTargetCheckerLayout();
+	selectCurrentChecker();
+}
 
-	if(xDist || yDist){
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
 
-		var step = yDist/Math.abs(yDist);
-		var newIndex = checkers[i].index+(step*xDim);
+var currentEmptyChecker = -1;
+var movingChecker = -1;
 
-		if(Math.abs(xDist)>Math.abs(yDist)){
-			var step = xDist/Math.abs(xDist);
-			var newIndex = checkers[i].index+step;
-		}
+function updateCheckers(){
 
-		for(var n=0;n<checkers.length;n++){
-			if(checkers[n].index===newIndex){
-				checkers[n].index = checkers[i].index;
-				checkers[i].index = newIndex;
-				if(!checkers[n].full){
-					slideThisChecker(i);
-				}
-				break;
-			}
-		}
+	if(!buckets[currentNavigation] && !checkers[currentEmptyChecker] && !checkers[movingChecker] && !clicked){
+		triggerRandomSorting();
+	}
+
+	if(checkers[movingChecker]){
+		checkers[movingChecker].slideCorners();
+	}
+	else if(checkers[currentEmptyChecker]){
+		checkers[currentEmptyChecker].slideThisChecker();
+	}
+	else if(shrinking){
+		shrinkCheckers();
+	}
+	else if(growing){
+		growCheckers();
 	}
 }
+
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -109,8 +460,6 @@ var yDim = 5;
 var checkers = [];
 
 function makeCheckerBoard(){
-
-	//	document.getElementById('checkerBoard').style.display = 'none';
 
 	//count how many full checkers we need
 	var totalCheckers = 0;
@@ -144,6 +493,39 @@ function makeCheckerBoard(){
 
 		checkers[i] = new Checker(thisIndex,isFull);
 	}
+
+	document.body.onmousemove = function(e){
+		if(!buckets[currentNavigation]){
+			for(var i=0;i<checkers.length;i++){
+				if(checkers[i].touched){
+					if(e.x){
+						var xDiff = e.x-checkers[i].mouse.x;
+						var yDiff = e.y-checkers[i].mouse.y;
+					}
+					else if(e.clientX){
+						var xDiff = e.clientX-checkers[i].mouse.x;
+						var yDiff = e.clientY-checkers[i].mouse.y;
+					}
+					checkers[i].mouseSlide(xDiff,yDiff);
+					break;
+				}
+			}
+		}
+	};
+	document.body.onmouseup = function(e){
+		if(!buckets[currentNavigation]){
+			for(var i=0;i<checkers.length;i++){
+				if(checkers[i].touched){
+					checkers[i].touched = false;
+					checkers[i].mouse = {
+						'x':undefined,
+						'y':undefined
+					};
+					checkers[i].updateCorners();
+				}
+			}
+		}
+	};
 }
 
 ////////////////////////////////////////////////
