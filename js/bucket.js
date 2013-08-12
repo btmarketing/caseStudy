@@ -11,6 +11,11 @@ function Bucket(bucket,_index,isLast){
 	this.totalGrown = 0;
 	this.totalShrunk = 0;
 
+	this.fading = false;
+	this.fadeStep = .07;
+	this.fadeDirection = 1;
+	this.opacity = 0;
+
 	this.isLast = isLast;
 
 	//make the navigation link for the top
@@ -22,6 +27,30 @@ function Bucket(bucket,_index,isLast){
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+Bucket.prototype.fadeContents = function(){
+	this.opacity+=this.fadeStep*this.fadeDirection;
+	if(this.opacity>1){
+		this.opacity = 1;
+		this.fading = false;
+		document.getElementById('checkerBoard').style.display = 'none';
+	}
+	else if(this.opacity<0){
+		this.opacity = 0;
+		this.fading = false;
+		this.hide();
+		shrinkCheckers();
+	}
+
+	var opacityAmount = Math.pow(this.opacity,3);
+
+	this.titleBox.el.style.opacity = opacityAmount;
+	for(var i=0;i<this.contentBoxes.length;i++){
+		this.contentBoxes[i].el.style.opacity = opacityAmount;
+	}
+}
+
 ////////////////////////////////////////////////
 
 Bucket.prototype.makeContentBoxes = function(){
@@ -70,7 +99,10 @@ Bucket.prototype.makeNavLink = function(){
 
 Bucket.prototype.select = function(){
 
+	//this.opacity = 0;
+
 	this.navLink.className = 'navActive';
+	this.fadeDirection = 1;
 
 	this.titleBox.changePosition();
 
@@ -96,7 +128,13 @@ Bucket.prototype.show = function(){
 
 Bucket.prototype.deselect = function(){
 	this.navLink.className = '';
-	this.hide();
+	this.fadeDirection = -1;
+	if(this.opacity>0){
+		this.fading = true;
+	}
+	else{
+		shrinkCheckers(true);
+	}
 }
 
 ////////////////////////////////////////////////
@@ -107,6 +145,18 @@ Bucket.prototype.hide = function(){
 
 	for(var i=0;i<this.contentBoxes.length;i++){
 		this.contentBoxes[i].hide();
+	}
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function updateBuckets(){
+	for(var i=0;i<buckets.length;i++){
+		if(buckets[i].fading){
+			buckets[i].fadeContents();
+		}
 	}
 }
 

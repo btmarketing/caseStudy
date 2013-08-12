@@ -36,6 +36,7 @@ function createBuckets(){
 function masterLoop(){
     resizeTest();
     updateCheckers();
+    updateBuckets();
     requestAnimFrame(masterLoop);
 }
 
@@ -59,13 +60,12 @@ function changeNavigation(index){
         }
         else{
             makeTargetCheckerLayout();
+            shrinkCheckers();
         }
 
         currentNavigation=index;
 
         buckets[currentNavigation].select();
-
-        shrinkCheckers();
     }
 }
 

@@ -39,16 +39,20 @@ function Checker(startIndex,isFull){
 		var that = this;
 		this.el = document.createElement('div');
 		this.el.style.position = 'absolute';
+		this.el.style.cursor = 'move';
 		this.el.style.backgroundColor = 'rgb(150,150,150)';
 		this.el.onmousedown = function(e){
-			endRandomSorting();
-			var tempX = e.x;
-			var tempY = e.y;
-			if(!tempX){
-				tempX = e.clientX;
-				tempY = e.clientY;
+			if(that.shrunk && !that.grown){
+				that.el.style.opacity = .75;
+				endRandomSorting();
+				var tempX = e.x;
+				var tempY = e.y;
+				if(!tempX){
+					tempX = e.clientX;
+					tempY = e.clientY;
+				}
+				that.initMouseDrag(tempX,tempY);
 			}
-			that.initMouseDrag(tempX,tempY);
 		};
 		document.getElementById('checkerBoard').appendChild(this.el);
 	}
@@ -291,7 +295,7 @@ Checker.prototype.mouseSlide = function(xShift,yShift,realX,realY){
 		}
 	}
 	var newIndex = undefined;
-	if(Math.abs(xShift)>unitSize*.5 && Math.abs(xShift)<unitSize){
+	if(Math.abs(xShift)>unitSize*.5){
 		if(xShift<0 && this.index%xDim!==0 && this.neighborSpace.l){
 			//shift if left
 			newIndex = this.index-1;
@@ -301,7 +305,7 @@ Checker.prototype.mouseSlide = function(xShift,yShift,realX,realY){
 			newIndex = this.index+1;
 		}
 	}
-	else if(Math.abs(yShift)>unitSize*.5 && Math.abs(xShift)<unitSize){
+	else if(Math.abs(yShift)>unitSize*.5){
 		if(yShift<0 && Math.floor(this.index/xDim)!==0 && this.neighborSpace.t){
 			//shift if up
 			newIndex = this.index-xDim;
@@ -329,7 +333,7 @@ Checker.prototype.mouseSlide = function(xShift,yShift,realX,realY){
 
 var shrinking = false;
 
-function shrinkCheckers(){
+function shrinkCheckers(clicked){
 	shrinking = true;
 	var test = false;
 
@@ -343,7 +347,7 @@ function shrinkCheckers(){
 	if(!test){
 		shrinking = false;
 		makeTargetCheckerLayout();
-		selectCurrentChecker();
+		if(!clicked) selectCurrentChecker();
 	}
 }
 
@@ -368,8 +372,8 @@ function growCheckers(){
 		growing = false;
 		currentEmptyChecker = -1;
 		movingChecker = -1;
+		buckets[currentNavigation].fading=true;
 		buckets[currentNavigation].show();
-		document.getElementById('checkerBoard').style.display = 'none';
 	}
 }
 
@@ -420,8 +424,8 @@ function endRandomSorting(){
 	currentEmptyChecker = -1;
 	if(buckets[currentNavigation]){
 		buckets[currentNavigation].deselect();
-		currentNavigation = -1;
 	}
+	currentNavigation = -1;
 	movingChecker = -1;
 	clicked = true;
 	updateAllCheckerPositions();
@@ -534,6 +538,7 @@ function makeCheckerBoard(){
 					'y':undefined
 				};
 				checkers[i].updateCorners();
+				checkers[i].el.style.opacity = 1;
 			}
 		}
 	};
