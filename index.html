@@ -36,9 +36,10 @@
                     <!-- start Bucket -->
                     <div class="bucket">
                         <div class="title">
-                            <h1>Bucket_0</h1>
+                            <h1>Chuck Norris</h1>
                         </div>
                         <div class="rect_1">
+                            <p>Leading hand sanitizers claim they can kill 99.9 percent of germs. Chuck Norris can kill 100 percent of whatever the hell he wants.</p>
                         </div>
                         <div class="rect_2">
                         </div>
@@ -47,6 +48,7 @@
                         <div class="double_2">
                         </div>
                         <div class="big">
+                            <img src="https://si0.twimg.com/profile_images/2098661241/chuck_norris_pic.jpg" class="fillBox" />
                         </div>
                         <div class="unit_1">
                         </div>
@@ -58,17 +60,20 @@
                     <!-- start Bucket -->
                     <div class="bucket">
                         <div class="title">
-                            <h1>Bucket_1</h1>
+                            <h1>Babies</h1>
                         </div>
                         <div class="rect_1">
+                            <p>You can't unload a truck full of bowling balls with a pitchfork.</p>
                         </div>
                         <div class="rect_2">
+                            <p>What's the difference between a truck full of bowling balls and a truck full of dead babies?</p>
                         </div>
                         <div class="double_1">
                         </div>
                         <div class="double_2">
                         </div>
                         <div class="big">
+                            <img src="http://www.fun2video.com/wp-content/uploads/2013/03/funny-bath-cute-baby.jpg" class="fillBox" />
                         </div>
                         <div class="unit_1">
                         </div>
@@ -79,6 +84,8 @@
                     </div> <!-- end Bucket -->
                 </div><!-- end content storage -->
             </div><!-- END MAIN -->
+
+            <div id="whiteScreen"></div>
             <footer>
 
             </footer> 
@@ -98,7 +105,10 @@
             ////////////////////////////////////////////////
             ////////////////////////////////////////////////
 
-            window.onload = initCaseStudy;
+            window.onload = function(){
+                document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
+                initCaseStudy();
+            }
 
             ////////////////////////////////////////////////
             ////////////////////////////////////////////////
