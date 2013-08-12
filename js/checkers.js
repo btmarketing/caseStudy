@@ -13,7 +13,7 @@ function Checker(startIndex,isFull){
 	this.stepCount = 0;
 	this.stepAmount = 2.5;
 
-	this.seemStep = 1;
+	this.seemStep = .5;
 
 	this.shrunk = true;
 	this.grown = false;

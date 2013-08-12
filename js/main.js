@@ -2,11 +2,41 @@
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function initCaseStudy(){
+function initCaseStudy(img){
     resized();
     makeCheckerBoard();
+    splitImage(img)
     createBuckets();
     masterLoop();
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function splitImage(image){
+    var xStep = image.width/xDim;
+    var yStep = image.height/yDim;
+    for(var i=0;i<checkers.length;i++){
+
+        var xPos = i%xDim;
+        var yPos = Math.floor(i/xDim);
+        var tempX = xPos*xStep;
+        var tempY = yPos*yStep;
+
+        var temp = document.createElement('canvas');
+        temp.width = unitSize-gutter*2;
+        temp.height = unitSize-gutter*2;
+        temp.style.width = '100%';
+        temp.style.height = '100%';
+        var tempCtx = temp.getContext('2d');
+
+        tempCtx.drawImage(image,tempX,tempY,xStep,yStep,0,0,unitSize-gutter*2,unitSize-gutter*2);
+
+        if(checkers[i].full){
+            checkers[i].el.appendChild(temp);
+        }
+    }
 }
 
 ////////////////////////////////////////////////
@@ -84,7 +114,7 @@ function resizeTest(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var gutter = 5; // the space between each box
+var gutter = 1; // the space between each box
 var unitSize = 95; // the size each checker box
 var center; // object holding main container div's screen coordinates
 
