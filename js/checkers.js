@@ -38,6 +38,7 @@ function Checker(startIndex,isFull){
 	if(this.full) {
 		var that = this;
 		this.el = document.createElement('div');
+		this.el.style.overflow = 'hidden';
 		this.el.style.position = 'absolute';
 		this.el.style.cursor = 'move';
 		this.el.style.backgroundColor = 'rgb(150,150,150)';
@@ -174,9 +175,15 @@ Checker.prototype.grow = function(){
 	this.shrunk = false;
 	var instr = targetLayout[this.index];
 	if(instr!=='empty'){
-		if(instr.l) this.adder.l-=this.seemStep;
+		if(instr.l){
+			this.adder.l-=this.seemStep;
+			this.el.children[0].style.left = Math.round(gutter+this.adder.l)*-1+'px';
+		}
 		if(instr.r) this.adder.r+=this.seemStep;
-		if(instr.t) this.adder.t-=this.seemStep;
+		if(instr.t){
+			this.adder.t-=this.seemStep;
+			this.el.children[0].style.top = Math.round(gutter+this.adder.t)*-1+'px';
+		}
 		if(instr.b) this.adder.b+=this.seemStep;
 	}
 	this.adder.total+=this.seemStep;
@@ -196,9 +203,15 @@ Checker.prototype.shrink = function(){
 	this.grown = false;
 	var instr = targetLayout[this.index];
 	if(instr!=='empty'){
-		if(instr.l) this.adder.l+=this.seemStep;
+		if(instr.l){
+			this.adder.l+=this.seemStep;
+			this.el.children[0].style.left = Math.round(gutter+this.adder.l)*-1+'px';
+		}
 		if(instr.r) this.adder.r-=this.seemStep;
-		if(instr.t) this.adder.t+=this.seemStep;
+		if(instr.t){
+			this.adder.t+=this.seemStep;
+			this.el.children[0].style.top = Math.round(gutter+this.adder.t)*-1+'px';
+		}
 		if(instr.b) this.adder.b-=this.seemStep;
 	}
 	this.adder.total-=this.seemStep;

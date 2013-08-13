@@ -25,13 +25,16 @@ function splitImage(image){
         var tempY = yPos*yStep;
 
         var temp = document.createElement('canvas');
-        temp.width = unitSize-gutter*2;
-        temp.height = unitSize-gutter*2;
-        temp.style.width = '100%';
-        temp.style.height = '100%';
+        temp.width = unitSize;
+        temp.height = unitSize;
+        temp.style.width = unitSize+'px';
+        temp.style.height = unitSize+'px';
+        temp.style.position = 'absolute';
+        temp.style.left = -gutter+'px';
+        temp.style.top = -gutter+'px';
         var tempCtx = temp.getContext('2d');
 
-        tempCtx.drawImage(image,tempX,tempY,xStep,yStep,0,0,unitSize-gutter*2,unitSize-gutter*2);
+        tempCtx.drawImage(image,tempX,tempY,xStep,yStep,0,0,unitSize,unitSize);
 
         if(checkers[i].full){
             checkers[i].el.appendChild(temp);
@@ -114,7 +117,7 @@ function resizeTest(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var gutter = 1; // the space between each box
+var gutter = 2; // the space between each box
 var unitSize = 95; // the size each checker box
 var center; // object holding main container div's screen coordinates
 
