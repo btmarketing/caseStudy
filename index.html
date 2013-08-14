@@ -156,7 +156,9 @@
                 </div><!-- end content storage -->
             </div><!-- END MAIN -->
 
-            <div id="whiteScreen"></div>
+            <div id="whiteScreen">
+                <h1>Loading...</h1>
+            </div>
             <footer>
 
             </footer> 
@@ -178,7 +180,7 @@
 
             window.onload = function(){
                 var checkerLogo = document.createElement('img');
-                checkerLogo.src = 'img/sky.jpg';
+                checkerLogo.src = 'img/coverPhoto.png';
                 checkerLogo.onload = function(){
                     document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
                     initCaseStudy(checkerLogo);

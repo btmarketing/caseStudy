@@ -554,7 +554,26 @@ function makeCheckerBoard(){
 				checkers[i].el.style.opacity = 1;
 			}
 		}
+		checkCheckerPositions();
 	};
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function checkCheckerPositions(){
+	var count = 0;
+	for(var i=0;i<checkers.length;i++){
+		if(checkers[i].full){
+			if(checkers[i].index!==i){
+				count++;
+			}
+		}
+	}
+	if(count===0){
+		console.log('you won!');
+	}
 }
 
 ////////////////////////////////////////////////
