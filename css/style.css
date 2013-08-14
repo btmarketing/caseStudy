@@ -824,3 +824,12 @@ footer {
 .title {
   text-align: center;
 }
+/* ### BOXES ### */
+.u1_top {
+  background: #db4c47 !important;
+}
+.u1_bottom {
+  border-bottom: solid 4px #ad2521;
+  display: block !important;
+  height: 81px;
+}
