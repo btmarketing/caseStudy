@@ -7,6 +7,8 @@ function Checker(startIndex,isFull){
 	this.index = startIndex;
 	this.corners;
 	this.el;
+	this.canvas;
+	this.context;
 	this.targetIndex = this.index;
 	this.prevExchange = undefined;
 
@@ -55,6 +57,19 @@ function Checker(startIndex,isFull){
 				that.initMouseDrag(tempX,tempY);
 			}
 		};
+
+		this.canvas = document.createElement('canvas');
+        this.canvas.width = unitSize;
+        this.canvas.height = unitSize;
+        this.canvas.style.width = unitSize+'px';
+        this.canvas.style.height = unitSize+'px';
+        this.canvas.style.position = 'absolute';
+        this.canvas.style.left = -gutter+'px';
+        this.canvas.style.top = -gutter+'px';
+        this.context = this.canvas.getContext('2d');
+
+        this.el.appendChild(this.canvas);
+
 		document.getElementById('checkerBoard').appendChild(this.el);
 	}
 
@@ -73,10 +88,7 @@ Checker.prototype.initMouseDrag = function(x,y){
 
 Checker.prototype.slideCorners = function(){
 
-	var tempAmount = this.stepAmount;
-	if(!buckets[currentNavigation]) tempAmount = Math.round(tempAmount*2.5);
-
-	var divider = tempAmount-this.stepCount;
+	var divider = this.stepAmount-this.stepCount;
 
 	var targetX = this.index%xDim;
 	var targetY = Math.floor(this.index/xDim);
@@ -95,7 +107,7 @@ Checker.prototype.slideCorners = function(){
 
 	this.prevCorners = this.corners;
 	this.stepCount++;
-	if(this.stepCount>=tempAmount){
+	if(this.stepCount>=this.stepAmount){
 		this.stepCount=0;
 		this.updateCorners();
 		selectCurrentChecker();
@@ -464,7 +476,7 @@ var movingChecker = -1;
 function updateCheckers(){
 
 	if(!buckets[currentNavigation] && !checkers[currentEmptyChecker] && !checkers[movingChecker] && !clicked){
-		triggerRandomSorting();
+		//triggerRandomSorting();
 	}
 
 	if(checkers[movingChecker]){
@@ -516,6 +528,7 @@ function makeCheckerBoard(){
 		//with a random starting point
 		var rIndex = Math.floor(Math.random()*availableIndexes.length);
 		var thisIndex = availableIndexes[rIndex];
+		//var thisIndex = i;
 		availableIndexes.splice(rIndex,1);
 
 		//if we've already made all our full checkers, make empty ones
@@ -564,15 +577,19 @@ function makeCheckerBoard(){
 
 function checkCheckerPositions(){
 	var count = 0;
+	var offset = undefined;
 	for(var i=0;i<checkers.length;i++){
 		if(checkers[i].full){
-			if(checkers[i].index!==i){
+			if(offset===undefined){
+				offset = checkers[i].index;
+			}
+			if(checkers[i].index!==i+offset){
 				count++;
 			}
 		}
 	}
 	if(count===0){
-		console.log('you won!');
+		console.log('YOU WON!!!!!');
 	}
 }
 
@@ -607,7 +624,7 @@ function assignEmptyCheckers(){
 				emptySpaceArray[winner] = true;
 			}
 			else{
-				console.log('we fucked up on finding a space for checker '+i);
+				console.log('we messed up on finding a space for checker '+i);
 			}
 		}
 	}

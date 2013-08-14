@@ -15,7 +15,6 @@ function ContentBox(el){
 	this.color = 'rgb('+shade+','+shade+','+shade+')';
 
 	this.el = el;
-	this.el.style.backgroundColor = this.color;
 	this.el.className += ' contentBox';
 
 	this.hide();

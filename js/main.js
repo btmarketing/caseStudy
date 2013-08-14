@@ -5,9 +5,9 @@
 function initCaseStudy(img){
     resized();
     makeCheckerBoard();
-    splitImage(img)
+    splitImage(img);
     createBuckets();
-    masterLoop();
+    loadCoverPhotos(0);
 }
 
 ////////////////////////////////////////////////
@@ -24,20 +24,29 @@ function splitImage(image){
         var tempX = xPos*xStep;
         var tempY = yPos*yStep;
 
-        var temp = document.createElement('canvas');
-        temp.width = unitSize;
-        temp.height = unitSize;
-        temp.style.width = unitSize+'px';
-        temp.style.height = unitSize+'px';
-        temp.style.position = 'absolute';
-        temp.style.left = -gutter+'px';
-        temp.style.top = -gutter+'px';
-        var tempCtx = temp.getContext('2d');
-
-        tempCtx.drawImage(image,tempX,tempY,xStep,yStep,0,0,unitSize,unitSize);
-
         if(checkers[i].full){
-            checkers[i].el.appendChild(temp);
+            checkers[i].context.drawImage(image,tempX,tempY,xStep,yStep,0,0,unitSize,unitSize);
+        }
+    }
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+var coverPhotos = [];
+
+function loadCoverPhotos(i){
+    var temp = document.createElement('img');
+    temp.src = 'img/coverPhotos/'+i+'.png';
+    temp.onload = function(){
+        coverPhotos.push(temp);
+        var newIndex = i+1;
+        if(newIndex<buckets.length){
+            loadCoverPhotos(newIndex);
+        }
+        else{
+            masterLoop();
         }
     }
 }
@@ -97,6 +106,8 @@ function changeNavigation(index){
         }
 
         currentNavigation=index;
+
+        splitImage(coverPhotos[currentNavigation]);
 
         buckets[currentNavigation].select();
     }
