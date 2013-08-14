@@ -829,12 +829,12 @@ footer {
 .title h2 {
   font-size: 20px;
   color: #ffffff;
-  margin: 29px 0;
+  margin: 32px 0;
   font-weight: 300;
 }
 .u1_top {
   background-color: #db4e49;
-  height: 81px;
+  height: 86px;
   background-image: url('../img/preview-button.png');
 }
 .u1_bottom {
@@ -843,7 +843,7 @@ footer {
 }
 .u2_top {
   background-color: #66b3ff;
-  height: 81px;
+  height: 86px;
   background-image: url('../img/download-button.png');
 }
 .u2_bottom {
@@ -852,7 +852,7 @@ footer {
 }
 .d_top {
   background-color: #b4b4b4;
-  height: 65px;
+  height: 70px;
   color: #ffffff;
   text-align: center;
   font-size: 52px;
@@ -869,7 +869,7 @@ footer {
 }
 .r1_top {
   background-color: #7665ac;
-  height: 156px;
+  height: 166px;
   color: #ffffff;
   padding: 10px;
   font-size: 12px;
@@ -884,7 +884,7 @@ footer {
 .r2_top {
   background-color: #9184bd;
   background-image: url('../img/photo-public_enemy.png');
-  height: 140px;
+  height: 150px;
   color: #ffffff;
   padding: 10px;
   line-height: 28px;
