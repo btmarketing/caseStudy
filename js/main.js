@@ -129,7 +129,7 @@ function resizeTest(){
 ////////////////////////////////////////////////
 
 var gutter = 5; // the space between each box
-var unitSize = 95; // the size each checker box
+var unitSize = 100; // the size each checker box
 var center; // object holding main container div's screen coordinates
 
 function resized(main){
