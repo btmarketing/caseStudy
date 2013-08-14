@@ -47,6 +47,95 @@
   height:100%;
 }
 
+
+/*  ### INDIVIDUAL BOX CSS ### */
+
 .title {
   text-align: center;
+  background-color: @purpleLight !important;
+  h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin: 29px 0;
+    font-weight: 300;
+  }
 }
+
+.u1_top {
+  background-color: @orange;
+  height: (@boxHeight - @borderHeight);
+  background-image: url('../img/preview-button.png');
+}
+
+.u1_bottom {
+  background-color: @orangeBorder;
+  height: @borderHeight;
+}
+
+.u2_top {
+  background-color: @blue;
+  height: (@boxHeight - @borderHeight);
+  background-image: url('../img/download-button.png');
+}
+
+.u2_bottom {
+  background-color: @blueBorder;
+  height: @borderHeight;
+}
+
+.d_top {
+  background-color: @grayDark;
+  height: (@boxHeight - @grayBotSize);
+  color: #ffffff;
+  text-align: center;
+  font-size: 52px;
+  font-weight: 400;
+}
+
+.d_bottom {
+  background-color: @grayLight;
+  height: @grayBotSize;
+  color: white;
+  font-weight: 200;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+}
+
+.r1_top {
+  background-color: @btpurple;
+  height: ( ( (@boxHeight * 2) - (@borderHeight+(@boxPadding * 2)))+ 10px);
+  color: #ffffff;
+  padding: @boxPadding;
+  font-size: 12px;
+  p {margin:2px 0;}
+}
+
+.r1_bottom {
+  background-color: @purpleDark;
+  height: @borderHeight;
+}
+
+.r2_top {
+  background-color: @purpleLight;
+  background-image: url('../img/photo-public_enemy.png');
+  height: ( ( (@boxHeight * 2) - (@grayBotSize + (@boxPadding * 2)))+ 10px);
+  color: #ffffff;
+  padding: @boxPadding;
+  p {margin: 0;}
+  line-height: 28px;
+  font-size: 20px;
+
+}
+
+.r2_bottom {
+  background-color: @purpleLight;
+  height: @grayBotSize;
+  p {margin: 0;}
+  font-size: 13px;
+  line-height: 20px;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 0 10px;
+}
+
