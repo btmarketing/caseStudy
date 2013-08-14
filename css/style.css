@@ -778,7 +778,8 @@ body {
 }
 #main {
   background: #ffffff;
-  min-height: 765px;
+  height: 540px;
+  width: 1040px;
 }
 footer {
   min-height: 100px;
