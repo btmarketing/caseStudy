@@ -724,6 +724,7 @@ table {
 body {
   background: #efefef;
   font-family: 'Lekton', sans-serif;
+  min-height: 1000px;
 }
 #borderBottom {
   position: fixed;
@@ -787,8 +788,8 @@ body {
 }
 #main {
   background: #ffffff;
-  height: 2000px;
-  width: 100%;
+  height: 540px;
+  width: 1040px;
 }
 footer {
   min-height: 100px;
@@ -914,4 +915,14 @@ footer {
 }
 .r2_bottom p {
   margin: 0;
+}
+.b_top {
+  background-color: #594c81;
+  background-image: url('../img/graphic-public_enemy.png');
+  height: 170px;
+  padding: 10px;
+}
+.b_bottom {
+  background-color: #e6e6e6;
+  height: 100px;
 }
