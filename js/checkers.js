@@ -397,8 +397,8 @@ function growCheckers(){
 		growing = false;
 		currentEmptyChecker = -1;
 		movingChecker = -1;
-		buckets[currentNavigation].fading=true;
-		buckets[currentNavigation].show();
+		// buckets[currentNavigation].fading=true;
+		// buckets[currentNavigation].show();
 	}
 }
 
@@ -422,6 +422,8 @@ function selectCurrentChecker(){
 		if(buckets[currentNavigation]){
 			//we're done
 			growCheckers();
+			buckets[currentNavigation].fading=true;
+			buckets[currentNavigation].show();
 		}
 		else{
 			triggerRandomSorting();

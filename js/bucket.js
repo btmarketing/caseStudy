@@ -12,7 +12,7 @@ function Bucket(bucket,_index,isLast){
 	this.totalShrunk = 0;
 
 	this.fading = false;
-	this.fadeStep = .07;
+	this.fadeStep = .1;
 	this.fadeDirection = 1;
 	this.opacity = 0;
 
