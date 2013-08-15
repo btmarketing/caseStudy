@@ -19,8 +19,8 @@ function splitImage(image){
     var yStep = image.height/yDim;
     for(var i=0;i<checkers.length;i++){
 
-        var xPos = i%xDim;
-        var yPos = Math.floor(i/xDim);
+        var xPos = checkers[i].index%xDim;
+        var yPos = Math.floor(checkers[i].index/xDim);
         var tempX = xPos*xStep;
         var tempY = yPos*yStep;
 
