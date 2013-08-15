@@ -102,6 +102,8 @@ function changeNavigation(index){
         document.getElementById('checkerBoard').style.display = 'inline';
         currentCoords = (currentCoords+1)%coordinates.length;
 
+        console.log('coordinates '+currentCoords);
+
         if(buckets[currentNavigation]){
             buckets[currentNavigation].deselect();
         }

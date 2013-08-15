@@ -189,12 +189,12 @@ Checker.prototype.grow = function(){
 	if(instr!=='empty'){
 		if(instr.l){
 			this.adder.l-=this.seemStep;
-			this.el.children[0].style.left = Math.round(gutter+this.adder.l)*-1+'px';
+			this.canvas.style.left = Math.round(gutter+this.adder.l)*-1+'px';
 		}
 		if(instr.r) this.adder.r+=this.seemStep;
 		if(instr.t){
 			this.adder.t-=this.seemStep;
-			this.el.children[0].style.top = Math.round(gutter+this.adder.t)*-1+'px';
+			this.canvas.style.top = Math.round(gutter+this.adder.t)*-1+'px';
 		}
 		if(instr.b) this.adder.b+=this.seemStep;
 	}
@@ -217,12 +217,12 @@ Checker.prototype.shrink = function(){
 	if(instr!=='empty'){
 		if(instr.l){
 			this.adder.l+=this.seemStep;
-			this.el.children[0].style.left = Math.round(gutter+this.adder.l)*-1+'px';
+			this.canvas.style.left = Math.round(gutter+this.adder.l)*-1+'px';
 		}
 		if(instr.r) this.adder.r-=this.seemStep;
 		if(instr.t){
 			this.adder.t+=this.seemStep;
-			this.el.children[0].style.top = Math.round(gutter+this.adder.t)*-1+'px';
+			this.canvas.style.top = Math.round(gutter+this.adder.t)*-1+'px';
 		}
 		if(instr.b) this.adder.b-=this.seemStep;
 	}
@@ -619,7 +619,7 @@ function assignEmptyCheckers(){
 					}
 				}
 			}
-			if(winner){
+			if(winner!==undefined){
 				checkers[i].targetIndex = winner;
 				emptySpaceArray[winner] = true;
 			}
