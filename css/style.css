@@ -868,6 +868,7 @@ footer {
   text-align: center;
   font-size: 52px;
   font-weight: 400;
+  line-height: 80px;
 }
 .d_bottom {
   background-color: #cccccc;
@@ -880,10 +881,10 @@ footer {
 }
 .r1_top {
   background-color: #7665ac;
-  height: 166px;
+  height: 146px;
   color: #ffffff;
-  padding: 10px;
-  font-size: 12px;
+  padding: 20px;
+  font-size: 11px;
 }
 .r1_top p {
   margin: 2px 0;
@@ -895,11 +896,11 @@ footer {
 .r2_top {
   background-color: #9184bd;
   background-image: url('../img/photo-public_enemy.png');
-  height: 150px;
+  height: 130px;
   color: #ffffff;
-  padding: 10px;
-  line-height: 28px;
-  font-size: 20px;
+  padding: 20px;
+  line-height: 27px;
+  font-size: 19px;
 }
 .r2_top p {
   margin: 0;
@@ -911,7 +912,7 @@ footer {
   line-height: 20px;
   color: #ffffff;
   font-weight: 400;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 .r2_bottom p {
   margin: 0;
@@ -919,8 +920,18 @@ footer {
 .b_top {
   background-color: #594c81;
   background-image: url('../img/graphic-public_enemy.png');
-  height: 170px;
-  padding: 10px;
+  height: 150px;
+  padding: 20px;
+  color: #ffffff;
+}
+.b_top p {
+  font-size: 12px;
+  margin: 0;
+}
+.b_top h2 {
+  font-weight: 400;
+  color: #cccccc;
+  line-height: 20px;
 }
 .b_bottom {
   background-color: #e6e6e6;

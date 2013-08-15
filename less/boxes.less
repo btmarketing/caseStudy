@@ -90,6 +90,7 @@
   text-align: center;
   font-size: 52px;
   font-weight: 400;
+  line-height: 80px;
 }
 
 .d_bottom {
@@ -107,7 +108,7 @@
   height: ( ( (@boxHeight * 2) - (@borderHeight+(@boxPadding * 2)))+ 10px);
   color: #ffffff;
   padding: @boxPadding;
-  font-size: 12px;
+  font-size: 11px;
   p {margin:2px 0;}
 }
 
@@ -123,8 +124,8 @@
   color: #ffffff;
   padding: @boxPadding;
   p {margin: 0;}
-  line-height: 28px;
-  font-size: 20px;
+  line-height: 27px;
+  font-size: 19px;
 
 }
 
@@ -136,7 +137,7 @@
   line-height: 20px;
   color: #ffffff;
   font-weight: 400;
-  padding: 0 10px;
+  padding: 0 @boxPadding;
 }
 
 .b_top {
@@ -144,6 +145,16 @@
   background-image: url('../img/graphic-public_enemy.png');
   height: ( ( (@boxHeight * 3) - (@largeBotSize + (@boxPadding * 2)))+ 20px);;
   padding: @boxPadding;
+  color: #ffffff;
+  p {
+    font-size: 12px;
+    margin: 0;
+  }
+  h2 {
+    font-weight: 400;
+    color: #cccccc;
+    line-height: 20px;
+  }
 }
 
 .b_bottom {
