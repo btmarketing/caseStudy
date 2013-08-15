@@ -14,13 +14,18 @@ function initCaseStudy(img){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function splitImage(image){
+function splitImage(image,ordered){
     var xStep = image.width/xDim;
     var yStep = image.height/yDim;
     for(var i=0;i<checkers.length;i++){
 
-        var xPos = checkers[i].index%xDim;
-        var yPos = Math.floor(checkers[i].index/xDim);
+        var tempIndex = i;
+        if(ordered){
+            tempIndex = checkers[i].index;
+        }
+
+        var xPos = tempIndex%xDim;
+        var yPos = Math.floor(tempIndex/xDim);
         var tempX = xPos*xStep;
         var tempY = yPos*yStep;
 
@@ -107,7 +112,7 @@ function changeNavigation(index){
 
         currentNavigation=index;
 
-        splitImage(coverPhotos[currentNavigation]);
+        splitImage(coverPhotos[currentNavigation],true);
 
         buckets[currentNavigation].select();
     }
