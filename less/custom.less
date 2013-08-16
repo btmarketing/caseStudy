@@ -4,7 +4,25 @@
 
 body {
   background: @graybg;
-  font-family: @sansFontFamily
+  font-family: @sansFontFamily;
+  min-height: 1000px;
+}
+
+header {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1040px;
+  text-align: center;
+}
+
+#borderBottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #efefef;
+  z-index: 9999;
 }
 
 #wrapper {
@@ -27,7 +45,6 @@ float:left;
     font-size: 24px;
     display: inline;
   }
-  margin-left: 12px;
   strong {
     font-weight: 700;
   }
@@ -54,8 +71,8 @@ float:left;
     text-decoration: underline;
     cursor: pointer;
   }
-  margin: 0px 0 20px;
-  width: 900px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .navActive {
@@ -64,8 +81,13 @@ float:left;
   font-weight: 700;
 }
 #main {
-  background: @whitebg;
-  min-height: 765px;
+  background: #efefef;
+  height: 540px;
+  width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+
 }
 
 footer {

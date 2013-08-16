@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Lekton:400,700,400italic' rel='stylesheet' type='text/css'>
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -24,61 +25,544 @@
         <!-- Add your site or application content here -->
         <div id="wrapper">
             <header>
-                <img class="logo" src="img/logo.png"><a class="logotext" href=""><h1>The <strong>BitTorrent</strong>&reg; Report</h1></a>
+                <a class="logotext" href=""><h1>The <strong>BitTorrent</strong>&reg; Report</h1></a>
                 <nav>
                     <ul class="nav" id="navigation">
                     </ul>
                 </nav>
             </header>
             <div id="main">
-                <canvas id="canvas"></canvas>
+                <div id="checkerBoard"></div>
                 <div id="content">
-                    <!-- start Bucket -->
+                    <!-- ### START DEATH GRIPS ### -->
                     <div class="bucket">
                         <div class="title">
-                            <h1>Bucket_0</h1>
+                            <h2>Death Grips</h2>
                         </div>
                         <div class="rect_1">
+                          <div class="r1_top">
+                            <p><strong>BitTorrent X Death Grips</strong></p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi est ante, adipiscing sed eros et, congue luctus eros. Quisque condimentum ante ut nibh posuere, sit amet facilisis dolor interdum. Etiam vulputate accumsan pulvinar. Nunc suscipit nibh vel adipiscing mollis.</p>
+                          </div>
+                          <div class="r1_bottom">
+                          </div>
                         </div>
                         <div class="rect_2">
+                          <div class="r2_top death_grips">
+                            <p><em>We perceive Death Grips as an ever-progressing cycle that's in constant collaboration with our fanbase and the general public. This is totally open source.</em></p>
+                          </div>
+                          <div class="r2_bottom">
+                            <p><strong>-  Zach Hill</strong>, Death Grips</p>
+                          </div>
                         </div>
-                        <div class="double_1">
+                        <div class="double">
+                          <div class="d_top">
+                            275%
+                          </div>
+                          <div class="d_bottom">
+                            increase in social following
+                          </div>
                         </div>
-                        <div class="double_2">
+                        <div class="long_1">
+                          <div class="d_top">
+                            444%
+                          </div>
+                          <div class="d_bottom">
+                            increase in music played
+                          </div>
                         </div>
                         <div class="big">
+                          <div class="b_top">
+                          </div>
+                          <div class="b_bottom">
+                          </div>
                         </div>
                         <div class="unit_1">
+                          <div class="u1_top">
+                          </div>
+                          <div class="u1_bottom">
+                          </div>
                         </div>
                         <div class="unit_2">
+                          <div class="u2_top">
+                          </div>
+                          <div class="u2_bottom">
+                          </div>
                         </div>
-                        <div class="long">
+                        <div class="long_2">
+                          <div class="d_top">
+                            5,000,000
+                          </div>
+                          <div class="d_bottom">
+                            Bundles Downloaded
+                          </div>
                         </div>
-                    </div> <!-- end Bucket -->
-                    <!-- start Bucket -->
+                    </div> <!-- END DEATH GRIPS -->
+                    <!-- ### START BONES BRIGADE ### -->
                     <div class="bucket">
                         <div class="title">
-                            <h1>Bucket_1</h1>
+                            <h2>Bones Brigade</h2>
                         </div>
                         <div class="rect_1">
+                          <div class="r1_top">
+                            <p><strong>BitTorrent X Bones Brigade</strong></p>
+                            <p>An official selection of Sundance 2012, Stacy Peralta's Bones Brigade: An Autobiography documents modern skateboarding's coming of age. The ollies. The airs. The insecurities. And the impossible achievements. This is the true story of Tony Hawk, Rodney Mullen, Steve Caballero, Lance Mountain, Tommy Guerrero, Mike McGill, and the invention of modern skate culture. And this is the true story of how  an outside picture got picked up out of the skate park. </p>
+                          </div>
+                          <div class="r1_bottom">
+                          </div>
                         </div>
                         <div class="rect_2">
+                          <div class="r2_top bones_brigade">
+                            <p><em>We liked the approach instantly. Anytime you have a chance to connect millions of fans to an artist directly, we say go for it.</em></p>
+                          </div>
+                          <div class="r2_bottom">
+                            <p><strong>-  Bob Moczydlowsky</strong>, Topspin</p>
+                          </div>
                         </div>
-                        <div class="double_1">
+                        <div class="double">
+                          <div class="d_top">
+                            5x
+                          </div>
+                          <div class="d_bottom">
+                            trailer downloads over youtube views
+                          </div>
                         </div>
-                        <div class="double_2">
+                        <div class="long_1">
+                          <div class="d_top">
+                            500
+                          </div>
+                          <div class="d_bottom">
+                            emails collected per day
+                          </div>
                         </div>
                         <div class="big">
+                          <div class="b_top">
+                          </div>
+                          <div class="b_bottom">
+                          </div>
                         </div>
                         <div class="unit_1">
+                          <div class="u1_top">
+                          </div>
+                          <div class="u1_bottom">
+                          </div>
                         </div>
                         <div class="unit_2">
+                          <div class="u2_top">
+                          </div>
+                          <div class="u2_bottom">
+                          </div>
                         </div>
-                        <div class="long">
+                        <div class="long_2">
+                          <div class="d_top">
+                            505,393
+                          </div>
+                          <div class="d_bottom">
+                            Bundles Downloaded
+                          </div>
                         </div>
-                    </div> <!-- end Bucket -->
+                    </div> <!-- END BONES BRIGADE -->
+                    <!-- ### START TIM FERRISS ### -->
+                    <div class="bucket">
+                        <div class="title">
+                            <h2>Tim Ferriss</h2>
+                        </div>
+                        <div class="rect_1">
+                          <div class="r1_top">
+                            <p><strong>BitTorrent X Tim Ferriss</strong></p>
+                            <p>The average book holds a 1% chance of being stocked in a bookstore. If you’re Tim Ferriss, the odds are worse. The bestselling author of the 4-Hour series was boycotted by Barnes & Noble. His latest book, The 4-Hour Chef, was only available online, on Amazon. Our goal was to get people there - by seeding early drafts, interviews, personal photos, and part one of the book on BitTorrent. Here’s how Ferriss went from BitTorrent to the best-seller list.</p>
+                          </div>
+                          <div class="r1_bottom">
+                          </div>
+                        </div>
+                        <div class="rect_2">
+                          <div class="r2_top tim_ferriss">
+                            <p><em>The click-through rates from BitTorrent to Amazon were higher than anything I've ever seen through paid advertising.  Orders of magnitude higher.</em></p>
+                          </div>
+                          <div class="r2_bottom">
+                            <p><strong>-  Tim Ferriss</strong></p>
+                          </div>
+                        </div>
+                        <div class="double">
+                          <div class="d_top">
+                            880,009
+                          </div>
+                          <div class="d_bottom">
+                            fan visits to Amazon page
+                          </div>
+                        </div>
+                        <div class="long_1">
+                          <div class="d_top">
+                            250,000
+                          </div>
+                          <div class="d_bottom">
+                            books sold
+                          </div>
+                        </div>
+                        <div class="big">
+                          <div class="b_top">
+                          </div>
+                          <div class="b_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_1">
+                          <div class="u1_top">
+                          </div>
+                          <div class="u1_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_2">
+                          <div class="u2_top">
+                          </div>
+                          <div class="u2_bottom">
+                          </div>
+                        </div>
+                        <div class="long_2">
+                          <div class="d_top">
+                            2,000,000
+                          </div>
+                          <div class="d_bottom">
+                            Bundles Downloaded
+                          </div>
+                        </div>
+                    </div> <!-- END TIM FERRISS -->
+                    <!-- ### START EMT ### -->
+                    <div class="bucket">
+                        <div class="title">
+                            <h2>Epic Meal Time</h2>
+                        </div>
+                        <div class="rect_1">
+                          <div class="r1_top">
+                            <p><strong>BitTorrent X Epic Meal Time</strong></p>
+                            <p>Shots. Saws. Suitcases full of bacon. The guys from Epic Meal Time have pretty much revolutionized cooking; bringing booze plus breakfast nachos to more than 5 million Youtube subscribers. Could the Internet handle more meat? Fuck yes. We worked with Epic Meal Time to help feed a global conversation about their show, sharing two exclusive videos directly with BitTorrent fans.
+                            </p>
+                          </div>
+                          <div class="r1_bottom">
+                          </div>
+                        </div>
+                        <div class="rect_2">
+                          <div class="r2_top EMT">
+                            <p><em></em></p>
+                          </div>
+                          <div class="r2_bottom">
+                            <p><strong>-  Harley Morenstein</strong>, Epic Meal Time</p>
+                          </div>
+                        </div>
+                        <div class="double">
+                          <div class="d_top">
+                            62%
+                          </div>
+                          <div class="d_bottom">
+                            more people reached than via Youtube
+                          </div>
+                        </div>
+                        <div class="long_1">
+                          <div class="d_top">
+                            316k
+                          </div>
+                          <div class="d_bottom">
+                            new visits to EMT ecomm sites
+                          </div>
+                        </div>
+                        <div class="big">
+                          <div class="b_top">
+                          </div>
+                          <div class="b_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_1">
+                          <div class="u1_top">
+                          </div>
+                          <div class="u1_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_2">
+                          <div class="u2_top">
+                          </div>
+                          <div class="u2_bottom">
+                          </div>
+                        </div>
+                        <div class="long_2">
+                          <div class="d_top">
+                            8,626,987
+                          </div>
+                          <div class="d_bottom">
+                            Bundles Downloaded
+                          </div>
+                        </div>
+                    </div> <!-- END EMT -->
+                    <!-- ### START KASKADE ### -->
+                    <div class="bucket">
+                        <div class="title">
+                            <h2>Kaskade</h2>
+                        </div>
+                        <div class="rect_1">
+                          <div class="r1_top">
+                            <p><strong>BitTorrent X Kaskade X Ultra</strong></p>
+                            <p>For over ten years, Kaskade has been at the forefront of the electronic music revolution; laying the groundwork for massive change in post-rock sound. In 2012, he became the first artist to sell out Los Angeles’ Staples Center. In 2013, he brought that historical performance to the world, in exchange for an email: giving BitTorrent fans a behind-the-scenes look at the show to promote his tour DVD.
+                            </p>
+                          </div>
+                          <div class="r1_bottom">
+                          </div>
+                        </div>
+                        <div class="rect_2">
+                          <div class="r2_top kaskade">
+                            <p><em>Nada</em></p>
+                          </div>
+                          <div class="r2_bottom">
+                            <p><strong>-  Nobody</strong>, Nothing</p>
+                          </div>
+                        </div>
+                        <div class="double">
+                          <div class="d_top">
+                            175k
+                          </div>
+                          <div class="d_bottom">
+                            new email subscribers
+                          </div>
+                        </div>
+                        <div class="long_1">
+                          <div class="d_top">
+                            93k
+                          </div>
+                          <div class="d_bottom">
+                            Bundles shared in social media
+                          </div>
+                        </div>
+                        <div class="big">
+                          <div class="b_top">
+                            <div id="berkeleyGraph"></div>
+                          </div>
+                          <div class="b_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_1">
+                          <div class="u1_top">
+                          </div>
+                          <div class="u1_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_2">
+                          <div class="u2_top">
+                          </div>
+                          <div class="u2_bottom">
+                          </div>
+                        </div>
+                        <div class="long_2">
+                          <div class="d_top">
+                            3,500,000
+                          </div>
+                          <div class="d_bottom">
+                            Bundles Downloaded
+                          </div>
+                        </div>
+                    </div> <!-- END KASKADE -->
+                    <!-- ### START BERKLEE ### -->
+                    <div class="bucket">
+                        <div class="title">
+                            <h2>Berklee</h2>
+                        </div>
+                        <div class="rect_1">
+                          <div class="r1_top">
+                            <p><strong>BitTorrent X Berklee</strong></p>
+                            <p>Berklee Online is the award-winning online extension of Berklee College of Music. It’s designed to give students around the world access to Berklee’s acclaimed curriculum from anywhere. The school hosts the world’s largest collection of online music courses and certificate programs. So we partnered with them to build the Internet’s biggest classroom; distributing over 27 gigs of music guides, tutorials, and lessons to BitTorrent creators.
+                            </p>
+                          </div>
+                          <div class="r1_bottom">
+                          </div>
+                        </div>
+                        <div class="rect_2">
+                          <div class="r2_top berklee">
+                            <p><em>Part of our goal at Berklee Online is to expand the reach of the college. We've been teaching music online for over ten years, and we've always included a free component to what we do. The technology behind BitTorrent is impressive. It's one of the best tools out there to move data to a large community of engaged people.</em></p>
+                          </div>
+                          <div class="r2_bottom">
+                            <p><strong>-  Debbie Cavalier</strong>, VP for Online Learning, Berklee College of Music</p>
+                          </div>
+                        </div>
+                        <div class="double">
+                          <div class="d_top">
+                            175k
+                          </div>
+                          <div class="d_bottom">
+                            new email subscribers
+                          </div>
+                        </div>
+                        <div class="long_1">
+                          <div class="d_top">
+                            93k
+                          </div>
+                          <div class="d_bottom">
+                            Bundles shared in social media
+                          </div>
+                        </div>
+                        <div class="big">
+                          <div class="b_top">
+                          </div>
+                          <div class="b_bottom">
+                          </div>
+                          <div id="bonesGraph"></div>
+                        </div>
+                        <div class="unit_1">
+                          <div class="u1_top">
+                          </div>
+                          <div class="u1_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_2">
+                          <div class="u2_top">
+                          </div>
+                          <div class="u2_bottom">
+                          </div>
+                        </div>
+                        <div class="long_2">
+                          <div class="d_top">
+                            3,500,000
+                          </div>
+                          <div class="d_bottom">
+                            Bundles Downloaded
+                          </div>
+                        </div>
+                    </div> <!-- END BERKLEE -->
+                    <!-- ### START PUBLIC ENEMY ### -->
+                    <div class="bucket">
+                        <div class="title">
+                            <h2>Public Enemy</h2>
+                        </div>
+                        <div class="rect_1">
+                          <div class="r1_top">
+                            <p><strong>BitTorrent X Public Enemy</strong></p>
+                            <p>Public Enemy is one of rap’s most important artists; crazy inventionists who’ve changed (music) culture as we know it. For over 25 years, their goal has been to bring music to the people. Our goal? To help the group build the first people-powered record. We delivered the multitrack of Public Enemy’s March 2013 single, “Get Up Stand Up” to 170 million BitTorrent fans, giving listeners the ability to create their own remix, in exchange for an email. Here’s what happened next.
+                            </p>
+                          </div>
+                          <div class="r1_bottom">
+                          </div>
+                        </div>
+                        <div class="rect_2">
+                          <div class="r2_top public_enemy">
+                            <p><em>The ability to freely share an archive and have flexibility on how it can be used is an extremely powerful tool when it comes to making music and media available.</em></p>
+                          </div>
+                          <div class="r2_bottom">
+                            <p><strong>-  Gary Rinaldo</strong>, Manager, Public Enemy</p>
+                          </div>
+                        </div>
+                        <div class="double">
+                          <div class="d_top">
+                            6.5
+                          </div>
+                          <div class="d_bottom">
+                            hours of music created
+                          </div>
+                        </div>
+                        <div class="long_1">
+                          <div class="d_top">
+                            100
+                          </div>
+                          <div class="d_bottom">
+                            Remixes Submitted
+                          </div>
+                        </div>
+                        <div class="big">
+                          <div class="b_top public_enemy">
+                            <p>The World is Listening</p>
+                            <h2>8% Lift in Total<h2>
+                            <h2>Public Enemy Conversation</h2>
+                          </div>
+                          <div class="b_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_1">
+                          <div class="u1_top">
+                          </div>
+                          <div class="u1_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_2">
+                          <div class="u2_top">
+                          </div>
+                          <div class="u2_bottom">
+                          </div>
+                        </div>
+                        <div class="long_2">
+                          <div class="d_top">
+                            1,097,177
+                          </div>
+                          <div class="d_bottom">
+                            Bundles Downloaded
+                          </div>
+                        </div>
+                    </div> <!-- END PUBLIC ENEMY -->
+                    <!-- ### START PIXIES ### -->
+                    <div class="bucket">
+                        <div class="title">
+                            <h2>Pixies</h2>
+                        </div>
+                        <div class="rect_1">
+                          <div class="r1_top">
+                            <p><strong>BitTorrent X Pixies</strong></p>
+                            <p>Surf punk, screaming and subversive pop: the loud-quiet-loud sound of Pixies paved the way for alt music. They broke up. They got back together. And for the first time in 22 years, they had a new single. Their goal: embed it in audience culture. Pixies wanted to give their single to the Internet. Here’s how they put it in the hands of millions of listeners. 
+                            </p>
+                          </div>
+                          <div class="r1_bottom">
+                          </div>
+                        </div>
+                        <div class="rect_2">
+                          <div class="r2_top pixies">
+                            <p><em>NADA</em></p>
+                          </div>
+                          <div class="r2_bottom">
+                            <p><strong>-  Nothing</strong>, Bleh</p>
+                          </div>
+                        </div>
+                        <div class="double">
+                          <div class="d_top">
+                            23MM
+                          </div>
+                          <div class="d_bottom">
+                            page impressions
+                          </div>
+                        </div>
+                        <div class="long_1">
+                          <div class="d_top">
+                            90k
+                          </div>
+                          <div class="d_bottom">
+                            social shares
+                          </div>
+                        </div>
+                        <div class="big">
+                          <div class="b_top">
+                          </div>
+                          <div class="b_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_1">
+                          <div class="u1_top">
+                          </div>
+                          <div class="u1_bottom">
+                          </div>
+                        </div>
+                        <div class="unit_2">
+                          <div class="u2_top">
+                          </div>
+                          <div class="u2_bottom">
+                          </div>
+                        </div>
+                        <div class="long_2">
+                          <div class="d_top">
+                            3,000,000
+                          </div>
+                          <div class="d_bottom">
+                            Bundles Downloaded
+                          </div>
+                        </div>
+                    </div> <!-- END PUBLIC ENEMY -->
+                    
                 </div><!-- end content storage -->
             </div><!-- END MAIN -->
+
+            <div id="whiteScreen">
+                <h1>Loading...</h1>
+            </div>
             <footer>
 
             </footer> 
@@ -86,153 +570,39 @@
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
             <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
             <script src="js/plugins.js"></script>
-            <script src="js/main.js"></script>
             <script type="text/javascript" src="js/coordinates.js"></script>
             <script type="text/javascript" src="js/contentBox.js"></script>
             <script type="text/javascript" src="js/bucket.js"></script>
-            <script type="text/javascript" src="js/canvasStuff.js"></script>
+            <script type="text/javascript" src="js/checkers.js"></script>
+            <script type="text/javascript" src="js/main.js"></script>
+
+
+            <!-- code for individual js interctions, no tied in with the overall interaction/structure
+            example being js graphs -->
+            <script type="text/javascript" src="js/graphCode/berkeley.js"></script>
+            <script type="text/javascript" src="js/graphCode/kaskade.js"></script>
+            <script type="text/javascript" src="js/graphCode/bones.js"></script>
 
             <script type="text/javascript">
 
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
+                ////////////////////////////////////////////////
+                ////////////////////////////////////////////////
+                ////////////////////////////////////////////////
 
-            //GLOBAL VARIABLES
-
-            var theWidth;
-            var theHeight;
-            var center;
-
-            var unitSize = 95;
-
-            var currentCoords = 0;
-
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-
-            window.onload = function(){
-                initCanvas();
-                resized();
-                createBuckets();
-                masterLoop();
-            }
-
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-
-            var buckets = [];
-
-            //loop through the content divs, creating a new Bucket object for each section
-
-            function createBuckets(){
-                var domBuckets = document.getElementById('content').children;
-                for(var i=0;i<domBuckets.length;i++){
-                    if(domBuckets[i].className==='bucket'){
-                        var isLast = false;
-                        if(i===domBuckets.length-1) isLast = true;
-                        var b = new Bucket(domBuckets[i],i,isLast);
-                        buckets.push(b);
-                    }
-                }
-            }
-
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-
-            var count = 0;
-
-            function masterLoop(){
-                resizeText();
-                for(var i=0;i<buckets.length;i++){
-                    buckets[i].updateTitleBox();
-                    buckets[i].updateContentBoxes();
-                }
-                drawSeeding();
-                requestAnimFrame(masterLoop);
-            }
-
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-
-            //called from within the selected nav link
-            //this function resets the global currentNavBox variable
-
-            var currentNavigation = -1;
-            var currentCoords = 0;
-
-            function changeNavigation(index){
-                if(currentNavigation!==index){
-                    currentCoords = (currentCoords+1)%coordinates.length;
-                    if(buckets[currentNavigation]){
-                        buckets[currentNavigation].deselect();
-                        currentNavigation=index;
-                        buckets[currentNavigation].select(false);
-                    }
-                    else{
-                        currentNavigation=index;
-                        buckets[currentNavigation].select(true);
-                    }
-                }
-            }
-
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-
-            function resizeText(){
-                var main = document.getElementById('main').getBoundingClientRect();
-                if(center.oldLeft!==main.left || center.oldTop!==main.top){
-                    resized(main);
-                }
-            }
-
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-
-            function resized(main){
-
-                if(!main) main = document.getElementById('main').getBoundingClientRect();
-
-                theWidth = window.innerWidth;
-                theHeight = window.innerHeight;
-
-                var padding = 20;
-
-                center = {
-                    'x': main.left+unitSize*3+padding,
-                    'y': main.top+unitSize*2+padding,
-                    'left': main.left+padding,
-                    'top': main.top+padding,
-                    'oldLeft': main.left,
-                    'oldTop': main.top
-                };
-
-                canvas.style.left = center.left+'px';
-                canvas.style.top = center.top+'px';
-            }
-
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-
-            window.requestAnimFrame = (function(){
-                return  window.requestAnimationFrame||window.webkitRequestAnimationFrame ||
-                    window.mozRequestAnimationFrame||function(callback){
-                        window.setTimeout(callback, 1000 / 60);
+                window.onload = function(){
+                    var checkerLogo = document.createElement('img');
+                    checkerLogo.src = 'img/coverPhoto.png';
+                    checkerLogo.onload = function(){
+                        document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
+                        initCaseStudy(checkerLogo);
                     };
-            })();
+                }
 
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
-            ////////////////////////////////////////////////
+                ////////////////////////////////////////////////
+                ////////////////////////////////////////////////
+                ////////////////////////////////////////////////
 
-        </script>
+            </script>
             <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 
             <script>

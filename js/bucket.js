@@ -11,6 +11,11 @@ function Bucket(bucket,_index,isLast){
 	this.totalGrown = 0;
 	this.totalShrunk = 0;
 
+	this.fading = false;
+	this.fadeStep = 1/20;
+	this.fadeDirection = 1;
+	this.opacity = 0;
+
 	this.isLast = isLast;
 
 	//make the navigation link for the top
@@ -22,6 +27,30 @@ function Bucket(bucket,_index,isLast){
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+Bucket.prototype.fadeContents = function(){
+	this.opacity+=this.fadeStep*this.fadeDirection;
+	if(this.opacity>1){
+		this.opacity = 1;
+		this.fading = false;
+		document.getElementById('checkerBoard').style.display = 'none';
+	}
+	else if(this.opacity<0){
+		this.opacity = 0;
+		this.fading = false;
+		this.hide();
+		shrinkCheckers();
+	}
+
+	var opacityAmount = Math.pow(this.opacity,3);
+
+	this.titleBox.el.style.opacity = opacityAmount;
+	for(var i=0;i<this.contentBoxes.length;i++){
+		this.contentBoxes[i].el.style.opacity = opacityAmount;
+	}
+}
+
 ////////////////////////////////////////////////
 
 Bucket.prototype.makeContentBoxes = function(){
@@ -40,8 +69,6 @@ Bucket.prototype.makeContentBoxes = function(){
 	}
 }
 
-////////////////////////////////////////////////
-////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
 Bucket.prototype.makeNavLink = function(){
@@ -65,83 +92,33 @@ Bucket.prototype.makeNavLink = function(){
 
 	document.getElementById('navigation').appendChild(li);
 }
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
-Bucket.prototype.updateTitleBox = function(){
-	var prevGrowing = this.titleBox.growing;
-	var prevShrinking = this.titleBox.shrinking;
-
-	if(prevGrowing || prevShrinking){
-
-		this.titleBox.updateSize();
-
-		if(prevGrowing && this.titleBox.growing){
-			//trigger something for when the title full size ??
-			for(var i=0;i<this.contentBoxes.length;i++){
-				this.contentBoxes[i].changePosition();
-				this.contentBoxes[i].shrinking=false;
-				this.contentBoxes[i].growing=true;
-				addPackets = true;
-			}
-		}
-		else if(prevShrinking!=this.titleBox.shrinking){
-			//trigger something for when the title is shrunk ??
-		}
-	}
-}
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-Bucket.prototype.updateContentBoxes = function(){
+Bucket.prototype.select = function(){
 
-	for(var i=0;i<this.contentBoxes.length;i++){
-
-		var prevGrowing = this.contentBoxes[i].growing;
-		var prevShrinking = this.contentBoxes[i].shrinking;
-
-		if(prevGrowing || prevShrinking){
-
-			this.contentBoxes[i].updateSize();
-
-			if(prevGrowing!=this.contentBoxes[i].growing){
-				this.totalGrown++;
-				if(this.totalGrown===this.contentBoxes.length){
-					this.totalGrown = 0;
-					//trigger something for when they're all full size ??
-					addPackets = false;
-				}
-			}
-			else if(prevShrinking!=this.contentBoxes[i].shrinking){
-				this.totalShrunk++;
-				if(this.totalShrunk===this.contentBoxes.length){
-					this.totalShrunk = 0;
-					//trigger something for when they're all shrunk ??
-					var b = buckets[currentNavigation];
-					b.titleBox.changePosition();
-					b.titleBox.shrinking=false;
-					b.titleBox.growing=true;
-				}
-			}
-		}
-	}
-}
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
-Bucket.prototype.select = function(isFirstSelected){
+	//this.opacity = 0;
 
 	this.navLink.className = 'navActive';
+	this.fadeDirection = 1;
 
-	if(isFirstSelected){
-		this.titleBox.changePosition();
-		this.titleBox.shrinking=false;
-		this.titleBox.growing=true;
+	this.titleBox.changePosition();
+
+	for(var i=0;i<this.contentBoxes.length;i++){
+		this.contentBoxes[i].changePosition();
+	}
+}
+
+////////////////////////////////////////////////
+
+Bucket.prototype.show = function(){
+
+	this.titleBox.show();
+
+	for(var i=0;i<this.contentBoxes.length;i++){
+		this.contentBoxes[i].show();
 	}
 }
 
@@ -150,17 +127,36 @@ Bucket.prototype.select = function(isFirstSelected){
 ////////////////////////////////////////////////
 
 Bucket.prototype.deselect = function(){
-
 	this.navLink.className = '';
+	this.fadeDirection = -1;
+	if(this.opacity>0){
+		this.fading = true;
+	}
+	else{
+		shrinkCheckers(true);
+	}
+}
 
-	this.titleBox.hideKids();
-	this.titleBox.shrinking=true;
-	this.titleBox.growing=false;
+////////////////////////////////////////////////
+
+Bucket.prototype.hide = function(){
+
+	this.titleBox.hide();
 
 	for(var i=0;i<this.contentBoxes.length;i++){
-		this.contentBoxes[i].hideKids();
-		this.contentBoxes[i].shrinking=true;
-		this.contentBoxes[i].growing=false;
+		this.contentBoxes[i].hide();
+	}
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function updateBuckets(){
+	for(var i=0;i<buckets.length;i++){
+		if(buckets[i].fading){
+			buckets[i].fadeContents();
+		}
 	}
 }
 

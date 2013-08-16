@@ -724,6 +724,22 @@ table {
 body {
   background: #efefef;
   font-family: 'Lekton', sans-serif;
+  min-height: 1000px;
+}
+header {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1040px;
+  text-align: center;
+}
+#borderBottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #efefef;
+  z-index: 9999;
 }
 #wrapper {
   min-height: 100%;
@@ -738,7 +754,6 @@ body {
 .logotext {
   color: #7665ac;
   text-decoration: none;
-  margin-left: 12px;
 }
 .logotext h1 {
   font-weight: 400;
@@ -750,8 +765,8 @@ body {
 }
 .nav {
   padding: 0 0 0 46px;
-  margin: 0px 0 20px;
-  width: 900px;
+  margin: 0px;
+  padding: 0px;
 }
 .nav li {
   display: inline;
@@ -777,8 +792,12 @@ body {
   font-weight: 700;
 }
 #main {
-  background: #ffffff;
-  min-height: 765px;
+  background: #efefef;
+  height: 540px;
+  width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
 footer {
   min-height: 100px;
@@ -821,6 +840,130 @@ footer {
   width: 100%;
   height: 100%;
 }
+/*  ### INDIVIDUAL BOX CSS ### */
 .title {
   text-align: center;
+  background-color: #9184bd !important;
+}
+.title h2 {
+  font-size: 20px;
+  color: #ffffff;
+  margin: 32px 0;
+  font-weight: 300;
+}
+.u1_top {
+  background-color: #db4e49;
+  height: 89px;
+  background-image: url('../img/preview-button.png');
+}
+.u1_bottom {
+  background-color: #ad2521;
+  height: 4px;
+}
+.u2_top {
+  background-color: #66b3ff;
+  height: 89px;
+  background-image: url('../img/download-button.png');
+}
+.u2_bottom {
+  background-color: #1a8dff;
+  height: 4px;
+}
+.d_top {
+  background-color: #b4b4b4;
+  height: 73px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 80px;
+}
+.d_bottom {
+  background-color: #cccccc;
+  height: 20px;
+  color: white;
+  font-weight: 200;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+}
+.r1_top {
+  background-color: #7665ac;
+  height: 152px;
+  color: #ffffff;
+  padding: 20px;
+  font-size: 11px;
+}
+.r1_top p {
+  margin: 2px 0;
+}
+.r1_bottom {
+  background-color: #594c81;
+  height: 4px;
+}
+.r2_top {
+  background-color: #9184bd;
+  height: 136px;
+  color: #ffffff;
+  padding: 20px;
+  line-height: 27px;
+  font-size: 19px;
+}
+.r2_top p {
+  margin: 0;
+}
+.r2_bottom {
+  background-color: #9184bd;
+  height: 20px;
+  font-size: 13px;
+  line-height: 20px;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 0 20px;
+}
+.r2_bottom p {
+  margin: 0;
+}
+.b_top {
+  background-color: #594c81;
+  height: 159px;
+  padding: 20px;
+  color: #ffffff;
+}
+.b_top p {
+  font-size: 12px;
+  margin: 0;
+}
+.b_top h2 {
+  font-weight: 400;
+  color: #cccccc;
+  line-height: 20px;
+}
+.b_bottom {
+  background-color: #e6e6e6;
+  height: 100px;
+}
+.r2_top.public_enemy {
+  background-image: url('../img/quote-public-enemy.png');
+}
+.b_top.public_enemy {
+  background-image: url('../img/graphic-public_enemy.png');
+}
+.r2_top.death_grips {
+  background-image: url('../img/quote-death-grips.png');
+}
+.r2_top.berklee {
+  background-image: url('../img/quote-berklee.png');
+}
+.r2_top.EMT {
+  background-image: url('../img/quote-EMT.png');
+}
+.r2_top.bones_brigade {
+  background-image: url('../img/quote-bones-brigade.png');
+}
+.r2_top.kaskade {
+  background-image: url('../img/quote-kaskade.png');
+}
+.r2_top.tim_ferriss {
+  background-image: url('../img/quote-tim-ferriss.png');
 }

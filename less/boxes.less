@@ -47,6 +47,148 @@
   height:100%;
 }
 
+
+/*  ### INDIVIDUAL BOX CSS ### */
+
 .title {
   text-align: center;
+  background-color: @purpleLight !important;
+  h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin: 32px 0;
+    font-weight: 300;
+  }
 }
+
+.u1_top {
+  background-color: @orange;
+  height: (@boxHeight - @borderHeight);
+  background-image: url('../img/preview-button.png');
+}
+
+.u1_bottom {
+  background-color: @orangeBorder;
+  height: @borderHeight;
+}
+
+.u2_top {
+  background-color: @blue;
+  height: (@boxHeight - @borderHeight);
+  background-image: url('../img/download-button.png');
+}
+
+.u2_bottom {
+  background-color: @blueBorder;
+  height: @borderHeight;
+}
+
+.d_top {
+  background-color: @grayDark;
+  height: (@boxHeight - @grayBotSize);
+  color: #ffffff;
+  text-align: center;
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 80px;
+}
+
+.d_bottom {
+  background-color: @grayLight;
+  height: @grayBotSize;
+  color: white;
+  font-weight: 200;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+}
+
+.r1_top {
+  background-color: @btpurple;
+  height: ( ( (@boxHeight * 2) - (@borderHeight+(@boxPadding * 2)))+ 10px);
+  color: #ffffff;
+  padding: @boxPadding;
+  font-size: 11px;
+  p {margin:2px 0;}
+}
+
+.r1_bottom {
+  background-color: @purpleDark;
+  height: @borderHeight;
+}
+
+.r2_top {
+  background-color: @purpleLight;
+  height: ( ( (@boxHeight * 2) - (@grayBotSize + (@boxPadding * 2)))+ 10px);
+  color: #ffffff;
+  padding: @boxPadding;
+  p {margin: 0;}
+  line-height: 27px;
+  font-size: 19px;
+
+}
+
+.r2_bottom {
+  background-color: @purpleLight;
+  height: @grayBotSize;
+  p {margin: 0;}
+  font-size: 13px;
+  line-height: 20px;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 0 @boxPadding;
+}
+
+.b_top {
+  background-color: @purpleDark;
+  height: ( ( (@boxHeight * 3) - (@largeBotSize + (@boxPadding * 2)))+ 20px);;
+  padding: @boxPadding;
+  color: #ffffff;
+  p {
+    font-size: 12px;
+    margin: 0;
+  }
+  h2 {
+    font-weight: 400;
+    color: #cccccc;
+    line-height: 20px;
+  }
+}
+
+.b_bottom {
+  background-color: #e6e6e6;
+  height: @largeBotSize;
+}
+
+.r2_top.public_enemy {
+  background-image: url('../img/quote-public-enemy.png');
+}
+
+.b_top.public_enemy {
+  background-image: url('../img/graphic-public_enemy.png');
+}
+
+.r2_top.death_grips {
+  background-image: url('../img/quote-death-grips.png');
+}
+
+.r2_top.berklee {
+  background-image: url('../img/quote-berklee.png');
+}
+
+.r2_top.EMT {
+  background-image: url('../img/quote-EMT.png');
+}
+
+.r2_top.bones_brigade{
+  background-image: url('../img/quote-bones-brigade.png');
+}
+
+.r2_top.kaskade {
+  background-image: url('../img/quote-kaskade.png');
+}
+
+.r2_top.tim_ferriss {
+  background-image: url('../img/quote-tim-ferriss.png');
+}
+
