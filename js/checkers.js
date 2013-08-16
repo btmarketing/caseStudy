@@ -15,7 +15,7 @@ function Checker(startIndex,isFull){
 	this.stepCount = 0;
 	this.stepAmount = 2.5;
 
-	this.seemStep = 1;
+	this.seemStep = gutter/5;
 
 	this.shrunk = true;
 	this.grown = false;
@@ -44,6 +44,7 @@ function Checker(startIndex,isFull){
 		this.el.style.position = 'absolute';
 		this.el.style.cursor = 'move';
 		this.el.style.backgroundColor = 'rgb(150,150,150)';
+		//this.el.style.overflow = 'auto';
 		this.el.onmousedown = function(e){
 			if(that.shrunk && !that.grown){
 				that.el.style.opacity = .75;
@@ -397,8 +398,8 @@ function growCheckers(){
 		growing = false;
 		currentEmptyChecker = -1;
 		movingChecker = -1;
-		buckets[currentNavigation].fading=true;
-		buckets[currentNavigation].show();
+		// buckets[currentNavigation].fading=true;
+		// buckets[currentNavigation].show();
 	}
 }
 
@@ -422,6 +423,8 @@ function selectCurrentChecker(){
 		if(buckets[currentNavigation]){
 			//we're done
 			growCheckers();
+			buckets[currentNavigation].fading=true;
+			buckets[currentNavigation].show();
 		}
 		else{
 			triggerRandomSorting();

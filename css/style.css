@@ -792,6 +792,10 @@ header {
   font-weight: 700;
 }
 #main {
+<<<<<<< HEAD
+=======
+  background: #efefef;
+>>>>>>> 4cbb2757fa7191806b377b03184684720dbf90e2
   height: 540px;
   width: 1040px;
   margin-left: auto;
