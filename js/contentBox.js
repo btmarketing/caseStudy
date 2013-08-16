@@ -11,11 +11,12 @@ function ContentBox(el){
 	this.width = this.type.width*unitSize;
 	this.height = this.type.height*unitSize;
 
-	var shade = 150;
+	var shade = 200;
 	this.color = 'rgb('+shade+','+shade+','+shade+')';
 
 	this.el = el;
 	this.el.className += ' contentBox';
+	this.el.style.backgroundColor = this.color;
 
 	this.hide();
 }

@@ -67,7 +67,7 @@ var bones_arcBig = d3.svg.arc()
     .outerRadius(bones_r + 10);
 
 var bones_arcSmall = d3.svg.arc()
-    .outerRadius(bones_r - 20);
+    .outerRadius(bones_r - 5);
 
 var bones_arcStart = d3.svg.arc()
     .outerRadius(bones_r - bones_r);
