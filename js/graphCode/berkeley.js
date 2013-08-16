@@ -170,7 +170,16 @@ berkeley_vis.selectAll('.value')
 ////////////////////////////////////////////////
 
 function openBerkeleyBar(data,place){
-    d3.select('#berkeley_rect_'+place).transition()
+    d3.select('#berkeley_rect_'+place)
+         .attr('height',function(d){
+            var scaled = (d.value-berkeley_min)/berkeley_diff*1;
+            return scaled*berkeley_h;
+        })
+        .attr('y',function(d,i){
+            var scaled = (d.value-berkeley_min)/berkeley_diff*1;
+            return berkeley_h-(scaled*berkeley_h);
+        })
+        .transition()
         .duration(100)
         .attr('fill','rgb(165,149,220)')
         .attr('width',function(){
