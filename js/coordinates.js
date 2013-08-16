@@ -33,18 +33,18 @@ var dimensions = {
 		'width':1,
 		'height':1
 	},
-	'double_1': {
-		'name':'double_1',
+	'double': {
+		'name':'double',
 		'width':2,
 		'height':1
 	},
-	'double_2': {
-		'name':'double_2',
-		'width':2,
+	'long_1': {
+		'name':'long_1',
+		'width':3,
 		'height':1
 	},
-	'long': {
-		'name':'long',
+	'long_2': {
+		'name':'long_2',
 		'width':3,
 		'height':1
 	}
@@ -72,16 +72,16 @@ var coordinates = [
 			'l':6,
 			't':1
 		},
-		'long':{
+		'long_2':{
 			'l':6,
 			't':3
 		},
-		'double_1':{
+		'double':{
 			'l':7,
 			't':0
 		},
-		'double_2':{
-			'l':8,
+		'long_1':{
+			'l':7,
 			't':4
 		},
 		'unit_1':{
@@ -110,15 +110,15 @@ var coordinates = [
 			'l':4,
 			't':0
 		},
-		'long':{
+		'long_2':{
 			'l':0,
 			't':3
 		},
-		'double_1':{
+		'double':{
 			'l':4,
 			't':3
 		},
-		'double_2':{
+		'long_1':{
 			'l':2,
 			't':4
 		},
@@ -148,15 +148,15 @@ var coordinates = [
 			'l':0,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':4,
 			't':0
 		},
-		'double_1':{
+		'double':{
 			'l':4,
 			't':3
 		},
-		'double_2':{
+		'long_1':{
 			'l':7,
 			't':1
 		},
@@ -186,16 +186,16 @@ var coordinates = [
 			'l':6,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':0,
 			't':2
 		},
-		'double_1':{
+		'double':{
 			'l':1,
 			't':3
 		},
-		'double_2':{
-			'l':2,
+		'long_1':{
+			'l':1,
 			't':4
 		},
 		'unit_1':{
@@ -224,16 +224,16 @@ var coordinates = [
 			'l':0,
 			't':1
 		},
-		'long':{
+		'long_2':{
 			'l':0,
 			't':4
 		},
-		'double_1':{
+		'double':{
 			'l':0,
 			't':3
 		},
-		'double_2':{
-			'l':4,
+		'long_1':{
+			'l':3,
 			't':4
 		},
 		'unit_1':{
@@ -262,15 +262,15 @@ var coordinates = [
 			'l':6,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':6,
 			't':2
 		},
-		'double_1':{
+		'double':{
 			'l':6,
 			't':0
 		},
-		'double_2':{
+		'long_1':{
 			'l':6,
 			't':1
 		},
@@ -300,20 +300,20 @@ var coordinates = [
 			'l':6,
 			't':0
 		},
-		'long':{
+		'long_2':{
 			'l':1,
 			't':3
 		},
-		'double_1':{
+		'double':{
 			'l':4,
 			't':1
 		},
-		'double_2':{
-			'l':8,
+		'long_1':{
+			'l':0,
 			't':4
 		},
 		'unit_1':{
-			'l':2,
+			'l':8,
 			't':4
 		},
 		'unit_2':{
@@ -338,16 +338,16 @@ var coordinates = [
 			'l':6,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':3,
 			't':0
 		},
-		'double_1':{
+		'double':{
 			'l':4,
 			't':3
 		},
-		'double_2':{
-			'l':4,
+		'long_1':{
+			'l':2,
 			't':4
 		},
 		'unit_1':{
@@ -376,16 +376,16 @@ var coordinates = [
 			'l':2,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':7,
 			't':0
 		},
-		'double_1':{
+		'double':{
 			'l':4,
 			't':1
 		},
-		'double_2':{
-			'l':7,
+		'long_1':{
+			'l':6,
 			't':1
 		},
 		'unit_1':{
@@ -414,15 +414,15 @@ var coordinates = [
 			'l':6,
 			't':0
 		},
-		'long':{
+		'long_2':{
 			'l':7,
 			't':2
 		},
-		'double_1':{
+		'double':{
 			'l':8,
 			't':3
 		},
-		'double_2':{
+		'long_1':{
 			'l':7,
 			't':4
 		},
@@ -438,7 +438,7 @@ var coordinates = [
 	{
 		'title':{
 			'l':0,
-			't':1
+			't':0
 		},
 		'big':{
 			'l':4,
@@ -452,17 +452,17 @@ var coordinates = [
 			'l':6,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':1,
 			't':4
 		},
-		'double_1':{
+		'double':{
 			'l':8,
 			't':0
 		},
-		'double_2':{
-			'l':8,
-			't':2
+		'long_1':{
+			'l':0,
+			't':1
 		},
 		'unit_1':{
 			'l':3,
@@ -490,16 +490,16 @@ var coordinates = [
 			'l':6,
 			't':0
 		},
-		'long':{
+		'long_2':{
 			'l':0,
 			't':4
 		},
-		'double_1':{
+		'double':{
 			'l':2,
 			't':3
 		},
-		'double_2':{
-			'l':4,
+		'long_1':{
+			'l':3,
 			't':4
 		},
 		'unit_1':{
@@ -528,16 +528,16 @@ var coordinates = [
 			'l':2,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':7,
 			't':0
 		},
-		'double_1':{
+		'double':{
 			'l':4,
 			't':0
 		},
-		'double_2':{
-			'l':8,
+		'long_1':{
+			'l':7,
 			't':1
 		},
 		'unit_1':{
@@ -566,16 +566,16 @@ var coordinates = [
 			'l':0,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':7,
 			't':1
 		},
-		'double_1':{
+		'double':{
 			'l':5,
 			't':1
 		},
-		'double_2':{
-			'l':8,
+		'long_1':{
+			'l':3,
 			't':0
 		},
 		'unit_1':{
@@ -583,8 +583,8 @@ var coordinates = [
 			't':0
 		},
 		'unit_2':{
-			'l':7,
-			't':0
+			'l':4,
+			't':2
 		}
 	},
 	{
@@ -604,17 +604,17 @@ var coordinates = [
 			'l':6,
 			't':0
 		},
-		'long':{
+		'long_2':{
 			'l':3,
 			't':4
 		},
-		'double_1':{
+		'double':{
 			'l':0,
 			't':2
 		},
-		'double_2':{
-			'l':0,
-			't':4
+		'long_1':{
+			'l':2,
+			't':3
 		},
 		'unit_1':{
 			'l':0,
@@ -642,16 +642,16 @@ var coordinates = [
 			'l':1,
 			't':3
 		},
-		'long':{
+		'long_2':{
 			'l':4,
 			't':1
 		},
-		'double_1':{
+		'double':{
 			'l':8,
 			't':0
 		},
-		'double_2':{
-			'l':8,
+		'long_1':{
+			'l':7,
 			't':1
 		},
 		'unit_1':{
