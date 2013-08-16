@@ -848,12 +848,12 @@ footer {
 .title h2 {
   font-size: 20px;
   color: #ffffff;
-  margin: 32px 0;
+  margin: 39px 0;
   font-weight: 300;
 }
 .u1_top {
   background-color: #db4e49;
-  height: 89px;
+  height: 92px;
   background-image: url('../img/preview-button.png');
 }
 .u1_bottom {
@@ -862,7 +862,7 @@ footer {
 }
 .u2_top {
   background-color: #66b3ff;
-  height: 89px;
+  height: 92px;
   background-image: url('../img/download-button.png');
 }
 .u2_bottom {
@@ -871,12 +871,12 @@ footer {
 }
 .d_top {
   background-color: #b4b4b4;
-  height: 73px;
+  height: 76px;
   color: #ffffff;
   text-align: center;
   font-size: 52px;
   font-weight: 400;
-  line-height: 80px;
+  line-height: 88px;
 }
 .d_bottom {
   background-color: #cccccc;
@@ -892,7 +892,7 @@ footer {
   height: 152px;
   color: #ffffff;
   padding: 20px;
-  font-size: 11px;
+  font-size: 13px;
 }
 .r1_top p {
   margin: 2px 0;
@@ -926,7 +926,7 @@ footer {
 }
 .b_top {
   background-color: #594c81;
-  height: 159px;
+  height: 156px;
   padding: 20px;
   color: #ffffff;
 }
