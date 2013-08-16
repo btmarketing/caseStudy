@@ -41,14 +41,19 @@ function endBones(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var bones_w = unitSize*4-gutter*2;
-var bones_h = unitSize*2-gutter*2;
-var bones_r = 80;
+var bones_w = unitSize*4-gutter*2-40;
+var bones_h = unitSize*2-gutter*2-40;
+var bones_r = 65;
 var color = d3.scale.category20c();
 
 var vas = d3.select("#bonesGraph")
     .append("svg:svg")
     .attr('id','bonesSVG');
+
+var bonesSVG = document.getElementById('bonesGraph');
+bonesSVG.style.position = 'absolute';
+bonesSVG.style.left = '20px';
+bonesSVG.style.top = '20px';
 
 var bones_data = [{"label":"Other", "value":64}, 
             {"label":"BitTorrent", "value":36}];
@@ -58,7 +63,7 @@ var bones_vis = d3.select("#bonesSVG")
         .attr("width", bones_w)          
         .attr("height", bones_h)
     .append("svg:g")       
-        .attr("transform", "translate(" + bones_w/2 + "," + bones_h/2 + ")");
+        .attr("transform", "translate(" + bones_w/3 + "," + bones_h/2 + ")");
 
 var bones_arc = d3.svg.arc()
     .outerRadius(bones_r);
@@ -140,7 +145,14 @@ bones_arcs.append("svg:text")
     .attr("text-anchor", "middle")
     .attr('fontSize','12px')
     .attr('font-family','Helvetica')
-    .attr('x',-10)
+    .attr('x',function(d){
+        if(d.value===36){
+            return -20;
+        }
+        else{
+            return 10;
+        }
+    })
     .text(function(d, i) {return bones_data[i].label; });
 
 ////////////////////////////////////////////////
