@@ -726,6 +726,12 @@ body {
   font-family: 'Lekton', sans-serif;
   min-height: 1000px;
 }
+header {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1040px;
+  text-align: center;
+}
 #borderBottom {
   position: fixed;
   bottom: 0;
@@ -748,7 +754,6 @@ body {
 .logotext {
   color: #7665ac;
   text-decoration: none;
-  margin-left: 12px;
 }
 .logotext h1 {
   font-weight: 400;
@@ -760,8 +765,8 @@ body {
 }
 .nav {
   padding: 0 0 0 46px;
-  margin: 0px 0 20px;
-  width: 900px;
+  margin: 0px;
+  padding: 0px;
 }
 .nav li {
   display: inline;
@@ -787,9 +792,11 @@ body {
   font-weight: 700;
 }
 #main {
-  background: #ffffff;
   height: 540px;
   width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
 footer {
   min-height: 100px;
@@ -895,7 +902,6 @@ footer {
 }
 .r2_top {
   background-color: #9184bd;
-  background-image: url('../img/photo-public_enemy.png');
   height: 130px;
   color: #ffffff;
   padding: 20px;
@@ -919,7 +925,6 @@ footer {
 }
 .b_top {
   background-color: #594c81;
-  background-image: url('../img/graphic-public_enemy.png');
   height: 150px;
   padding: 20px;
   color: #ffffff;
@@ -936,4 +941,28 @@ footer {
 .b_bottom {
   background-color: #e6e6e6;
   height: 100px;
+}
+.r2_top.public_enemy {
+  background-image: url('../img/quote-public-enemy.png');
+}
+.b_top.public_enemy {
+  background-image: url('../img/graphic-public_enemy.png');
+}
+.r2_top.death_grips {
+  background-image: url('../img/quote-death-grips.png');
+}
+.r2_top.berklee {
+  background-image: url('../img/quote-berklee.png');
+}
+.r2_top.EMT {
+  background-image: url('../img/quote-EMT.png');
+}
+.r2_top.bones_brigade {
+  background-image: url('../img/quote-bones-brigade.png');
+}
+.r2_top.kaskade {
+  background-image: url('../img/quote-kaskade.png');
+}
+.r2_top.tim_ferriss {
+  background-image: url('../img/quote-tim-ferriss.png');
 }
