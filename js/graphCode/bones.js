@@ -140,6 +140,7 @@ bones_arcs.append("svg:text")
     .attr("text-anchor", "middle")
     .attr('fontSize','12px')
     .attr('font-family','Helvetica')
+    .attr('x',-10)
     .text(function(d, i) {return bones_data[i].label; });
 
 ////////////////////////////////////////////////
