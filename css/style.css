@@ -811,6 +811,14 @@ footer {
   min-height: 100px;
   text-align: center;
   font-size: 13px;
+  color: #808080;
+}
+footer a {
+  text-decoration: none;
+  color: #808080;
+}
+footer a:hover {
+  color: #909090;
 }
 #canvas {
   position: absolute;
@@ -937,8 +945,8 @@ footer {
 }
 .b_top {
   background-color: #594c81;
-  height: 156px;
-  padding: 20px;
+  height: 196px;
+  padding: 0;
   color: #ffffff;
 }
 .b_top p {
