@@ -69,6 +69,59 @@ document.getElementById('epicMap').style.position = 'absolute';
 document.getElementById('epicMap').style.left = '20px';
 document.getElementById('epicMap').style.top = '20px';
 
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+var epicDisplay = false;
+
+setInterval(function(){
+    if(document.getElementById('epicGraph').offsetWidth){
+        if(!epicDisplay){
+            epicDisplay=true;
+            startEpic();
+        }
+    }
+    else if (epicDisplay){
+        epicDisplay=false;
+        endEpic();
+    }
+},500);
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+
+function startEpic(){
+    epic_vis.selectAll('circle.outerCircle')
+	    .attr('r',function(d){
+			return epicOuterBig(d.percentage);
+		})
+        .transition()
+        .ease('circle')
+        .duration(1000)
+        .attr('r',0)
+        .each('end',function(){
+        	epic_vis.selectAll('circle.innerCircle')
+		    	.transition()
+		    	.duration(700)
+		        .attr('r',function(d){
+					return epicInnerSmall(d.percentage);
+				});
+        });
+}
+
+
+function endEpic(){
+    epic_vis.selectAll('circle.outerCircle')
+	    .attr('r',function(d){
+			return epicOuterBig(d.percentage);
+		});
+
+	epic_vis.selectAll('circle.innerCircle')
+	    .attr('r',0);
+}
+
 ////////////////////////////////////
 ////////////////////////////////////
 ////////////////////////////////////
@@ -130,11 +183,9 @@ epic_vis.selectAll('circle.innerCircle')
 		.attr('cy',function(d){
 			return d.y*epic_h;
 		})
-		.attr('opacity',.8)
-		.attr('fill','rgb(125,109,180)')
-		.attr('r',function(d){
-			return epicInnerSmall(d.percentage);
-		})
+		.attr('opacity',.6)
+		.attr('fill','white')
+		.attr('r',0)
 		.on('mouseover',function(d,i){
 			openEpicCircle(d,i);
 		})
@@ -151,7 +202,7 @@ epic_vis.selectAll('text.epic_text')
 			return 'epic_text_'+i;
 		})
 		.attr('opacity',0)
-		.attr('fill','white')
+		.attr('fill','rgb(125,109,180)')
 		.attr('font-size',function(d){
 			return Math.floor(epicInnerBig(d.percentage)*.9)+'px';
 		})
