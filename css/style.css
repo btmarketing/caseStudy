@@ -861,13 +861,22 @@ footer a:hover {
 /*  ### INDIVIDUAL BOX CSS ### */
 .title {
   text-align: center;
-  background-color: #9184bd !important;
 }
-.title h2 {
+.t_top {
+  background-color: #9184bd;
+  height: 59px;
+  margin-bottom: 4px;
+  text-align: center;
+  padding-top: 37px;
+}
+.t_top h2 {
   font-size: 20px;
   color: #ffffff;
-  margin: 39px 0;
+  margin: 0;
   font-weight: 300;
+}
+.t_bottom {
+  height: 96px;
 }
 .u1_top {
   background-color: #db4e49;
