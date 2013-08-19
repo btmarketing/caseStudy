@@ -748,6 +748,10 @@ header {
   margin: 0px auto -100px;
   padding: 30px 30px 0 30px;
 }
+#content {
+  height: 540px;
+  width: 1040px;
+}
 .logo {
   float: left;
 }
@@ -805,6 +809,8 @@ header {
 }
 footer {
   min-height: 100px;
+  text-align: center;
+  font-size: 13px;
 }
 #canvas {
   position: absolute;
@@ -895,8 +901,9 @@ footer {
   background-color: #7665ac;
   height: 150px;
   color: #ffffff;
-  padding: 20px;
+  padding: 20px 10px 20px 20px;
   font-size: 13px;
+  line-height: 17px;
 }
 .r1_top p {
   margin: 2px 0;
@@ -920,7 +927,7 @@ footer {
   background-color: #9184bd;
   height: 20px;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 21px;
   color: #ffffff;
   font-weight: 400;
   padding: 0 20px;
@@ -970,4 +977,420 @@ footer {
 }
 .r2_top.tim_ferriss {
   background-image: url('../img/quote-tim-ferriss.png');
+}
+.ferrisWrap {
+  width: 390px;
+  height: 190px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  background-color: #5a4c86;
+}
+.ferris_first {
+  width: 390px;
+  height: 190px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  -webkit-animation-duration: 6s;
+  -moz-animation-duration: 6s;
+  -o-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-name: first;
+  -moz-animation-name: first;
+  -o-animation-name: first;
+  animation-name: first;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes first {
+  from {
+    opacity: 0;
+    top: 0px;
+  }
+  12% {
+    opacity: 1;
+    top: 0px;
+  }
+  25% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@-moz-keyframes first {
+  from {
+    opacity: 0;
+    top: 0px;
+  }
+  12% {
+    opacity: 1;
+    top: 0px;
+  }
+  25% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@-o-keyframes first {
+  from {
+    opacity: 0;
+    top: 0px;
+  }
+  12% {
+    opacity: 1;
+    top: 0px;
+  }
+  25% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@keyframes first {
+  from {
+    opacity: 0;
+    top: 0px;
+  }
+  12% {
+    opacity: 1;
+    top: 0px;
+  }
+  25% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+.ferris_second {
+  width: 390px;
+  height: 190px;
+  position: absolute;
+  left: 0px;
+  top: 90px;
+  -webkit-animation-duration: 6s;
+  -moz-animation-duration: 6s;
+  -o-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-name: second;
+  -moz-animation-name: second;
+  -o-animation-name: second;
+  animation-name: second;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes second {
+  from {
+    top: 190px;
+  }
+  12% {
+    opacity: 1;
+    top: 190px;
+  }
+  25% {
+    top: 0px;
+  }
+  37% {
+    top: 0px;
+  }
+  50% {
+    top: -190px;
+  }
+  80% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@-moz-keyframes second {
+  from {
+    top: 190px;
+  }
+  12% {
+    opacity: 1;
+    top: 190px;
+  }
+  25% {
+    top: 0px;
+  }
+  37% {
+    top: 0px;
+  }
+  50% {
+    top: -190px;
+  }
+  80% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@-o-keyframes second {
+  from {
+    top: 190px;
+  }
+  12% {
+    opacity: 1;
+    top: 190px;
+  }
+  25% {
+    top: 0px;
+  }
+  37% {
+    top: 0px;
+  }
+  50% {
+    top: -190px;
+  }
+  80% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@keyframes second {
+  from {
+    top: 190px;
+  }
+  12% {
+    opacity: 1;
+    top: 190px;
+  }
+  25% {
+    top: 0px;
+  }
+  37% {
+    top: 0px;
+  }
+  50% {
+    top: -190px;
+  }
+  80% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+.ferris_third {
+  width: 390px;
+  height: 190px;
+  position: absolute;
+  left: 0px;
+  top: 180px;
+  -webkit-animation-duration: 6s;
+  -moz-animation-duration: 6s;
+  -o-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-name: third;
+  -moz-animation-name: third;
+  -o-animation-name: third;
+  animation-name: third;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes third {
+  from {
+    top: 190px;
+  }
+  37% {
+    top: 190px;
+  }
+  50% {
+    top: 0px;
+  }
+  63% {
+    top: 0px;
+  }
+  75% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@-moz-keyframes third {
+  from {
+    top: 190px;
+  }
+  37% {
+    top: 190px;
+  }
+  50% {
+    top: 0px;
+  }
+  63% {
+    top: 0px;
+  }
+  75% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@-o-keyframes third {
+  from {
+    top: 190px;
+  }
+  37% {
+    top: 190px;
+  }
+  50% {
+    top: 0px;
+  }
+  63% {
+    top: 0px;
+  }
+  75% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+@keyframes third {
+  from {
+    top: 190px;
+  }
+  37% {
+    top: 190px;
+  }
+  50% {
+    top: 0px;
+  }
+  63% {
+    top: 0px;
+  }
+  75% {
+    top: -190px;
+  }
+  to {
+    top: -190px;
+  }
+}
+.ferris_fourth {
+  width: 390px;
+  height: 190px;
+  position: absolute;
+  left: 0px;
+  -webkit-animation-duration: 6s;
+  -moz-animation-duration: 6s;
+  -o-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-name: fourth;
+  -moz-animation-name: fourth;
+  -o-animation-name: fourth;
+  animation-name: fourth;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes fourth {
+  from {
+    opacity: 0;
+    top: 190px;
+  }
+  10% {
+    opacity: 1;
+  }
+  63% {
+    top: 190px;
+  }
+  75% {
+    opacity: 1;
+    top: 0px;
+  }
+  88% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    top: 0px;
+  }
+}
+@-moz-keyframes fourth {
+  from {
+    opacity: 0;
+    top: 190px;
+  }
+  10% {
+    opacity: 1;
+  }
+  63% {
+    top: 190px;
+  }
+  75% {
+    opacity: 1;
+    top: 0px;
+  }
+  88% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    top: 0px;
+  }
+}
+@-o-keyframes fourth {
+  from {
+    opacity: 0;
+    top: 190px;
+  }
+  10% {
+    opacity: 1;
+  }
+  63% {
+    top: 190px;
+  }
+  75% {
+    opacity: 1;
+    top: 0px;
+  }
+  88% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    top: 0px;
+  }
+}
+@keyframes fourth {
+  from {
+    opacity: 0;
+    top: 190px;
+  }
+  10% {
+    opacity: 1;
+  }
+  63% {
+    top: 190px;
+  }
+  75% {
+    opacity: 1;
+    top: 0px;
+  }
+  88% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    top: 0px;
+  }
 }
