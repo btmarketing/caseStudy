@@ -81,7 +81,7 @@ function createBuckets(){
 ////////////////////////////////////////////////
 
 function masterLoop(){
-    //resizeTest();
+    resizeTest();
     updateCheckers();
     updateBuckets();
     requestAnimFrame(masterLoop);
@@ -123,9 +123,10 @@ function changeNavigation(index){
 ////////////////////////////////////////////////
 
 function resizeTest(){
-    var main = document.getElementById('main').getBoundingClientRect();
-    if(center.oldLeft!==main.left || center.oldTop!==main.top){
-        resized(main);
+    var newLeft = document.getElementById('main').offsetLeft;
+    var newTop = document.getElementById('main').offsetTop;
+    if(center.oldLeft!==newLeft || center.oldTop!==newTop){
+        resized();
     }
 }
 
@@ -137,19 +138,22 @@ var gutter = 2; // the space between each box
 var unitSize = 100; // the size each checker box
 var center; // object holding main container div's screen coordinates
 
-function resized(main){
-
-    if(!main) main = document.getElementById('main').getBoundingClientRect();
+function resized(){
 
     var padding = 20;
 
+    var newLeft = document.getElementById('main').offsetLeft;
+    var newTop = document.getElementById('main').offsetTop;
+    var newRight = newLeft+(unitSize*xDim);
+    var newBottom = newTop+(unitSize*yDim);
+
     center = {
-        'l': main.left+padding,
-        't': main.top+padding,
-        'b': main.bottom-padding,
-        'r': main.right-padding,
-        'oldLeft': main.left,
-        'oldTop': main.top
+        'l': newLeft+padding,
+        't': newTop+padding,
+        'b': newBottom-padding,
+        'r': newRight-padding,
+        'oldLeft': newLeft,
+        'oldTop': newTop
     };
     updateAllCheckerPositions();
 }
