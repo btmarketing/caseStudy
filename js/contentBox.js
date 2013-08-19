@@ -16,7 +16,6 @@ function ContentBox(el){
 
 	this.el = el;
 	this.el.className += ' contentBox';
-	this.el.style.backgroundColor = this.color;
 
 	this.hide();
 }
