@@ -16,6 +16,9 @@
         <link href='http://fonts.googleapis.com/css?family=Lekton:400,700,400italic' rel='stylesheet' type='text/css'>
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
         <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+
+        <!-- css animation's for the Tim Ferris page -->
+        <link rel="stylesheet" href="js/graphCode/timFerriss.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -73,6 +76,7 @@
                         </div>
                         <div class="big">
                           <div class="b_top">
+                            <div id="gripsGraph_div"></div>
                           </div>
                           <div class="b_bottom">
                           </div>
@@ -137,6 +141,7 @@
                         </div>
                         <div class="big">
                           <div class="b_top">
+                            <div id="bonesGraph"></div>
                           </div>
                           <div class="b_bottom">
                           </div>
@@ -201,6 +206,12 @@
                         </div>
                         <div class="big">
                           <div class="b_top">
+                            <div class="ferrisWrap">
+                              <img src="img/ferris_0.png" class="ferris_first"/><br />
+                              <img src="img/ferris_1.png" class="ferris_second"/><br />
+                              <img src="img/ferris_2.png" class="ferris_third"/><br />
+                              <img src="img/ferris_3.png" class="ferris_fourth"/><br />
+                            </div>
                           </div>
                           <div class="b_bottom">
                           </div>
@@ -266,6 +277,9 @@
                         </div>
                         <div class="big">
                           <div class="b_top">
+                            <div id="epicMeal_div">
+                              <img src="img/map.png" id="epicMap"/>
+                            </div>
                           </div>
                           <div class="b_bottom">
                           </div>
@@ -331,7 +345,6 @@
                         </div>
                         <div class="big">
                           <div class="b_top">
-                            <div id="berkeleyGraph"></div>
                           </div>
                           <div class="b_bottom">
                           </div>
@@ -397,10 +410,10 @@
                         </div>
                         <div class="big">
                           <div class="b_top">
+                            <div id="berkeleyGraph"></div>
                           </div>
                           <div class="b_bottom">
                           </div>
-                          <div id="bonesGraph"></div>
                         </div>
                         <div class="unit_1">
                           <div class="u1_top">
@@ -580,8 +593,10 @@
             <!-- code for individual js interctions, no tied in with the overall interaction/structure
             example being js graphs -->
             <script type="text/javascript" src="js/graphCode/berkeley.js"></script>
+            <script type="text/javascript" src="js/graphCode/epic.js"></script>
             <script type="text/javascript" src="js/graphCode/kaskade.js"></script>
             <script type="text/javascript" src="js/graphCode/bones.js"></script>
+            <script type="text/javascript" src="js/graphCode/grips.js"></script>
 
             <script type="text/javascript">
 
