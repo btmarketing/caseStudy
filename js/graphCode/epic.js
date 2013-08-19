@@ -73,7 +73,7 @@ document.getElementById('epicMap').style.top = '20px';
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var epicDisplay = false;
+var epicDisplay = true;
 
 setInterval(function(){
     if(document.getElementById('epicGraph').offsetWidth){
@@ -93,30 +93,58 @@ setInterval(function(){
 ////////////////////////////////////
 
 function startEpic(){
-    epic_vis.selectAll('circle.outerCircle')
+	var epic_fadeIn_time = 4000
+    epic_vis.selectAll('circle.innerCircle')
+		.transition()
+		.duration(epic_fadeIn_time)
 	    .attr('r',function(d){
-			return epicOuterBig(d.percentage);
-		})
-        .transition()
-        .ease('circle')
-        .duration(1000)
-        .attr('r',0)
-        .each('end',function(){
-        	epic_vis.selectAll('circle.innerCircle')
-		    	.transition()
-		    	.duration(700)
-		        .attr('r',function(d){
-					return epicInnerSmall(d.percentage);
+			return epicInnerSmall(d.percentage);
+		});
+
+	for(var i=0;i<epic_data.length;i++){
+		var startX = epic_data[i].x*epic_w;
+		var startY = epic_data[i].y*epic_h;
+		var totalPackets = (epic_data[i].percentage*2)+5;
+		for(var n=0;n<totalPackets;n++){
+			var rIndex = (i+(Math.floor(Math.random()*(epic_data.length-1))))%epic_data.length;
+			var endX = epic_data[rIndex].x*epic_w;
+			var endY = epic_data[rIndex].y*epic_h;
+			var halfX = ((endX-startX)/2)+startX;
+			var halfY = ((endY-startY)/2)+startY;
+			var delayTime = ((epic_fadeIn_time/2)/totalPackets)*Math.floor(Math.random()*totalPackets);
+			epic_vis.append('circle')
+				.attr('class','epic_packet')
+				.attr('fill','white')
+				.attr('cx',endX)
+				.attr('cy',endY)
+				.attr('opacity',.5)
+				.attr('r',0)
+				.transition()
+				.ease('cubic-in')
+				.delay(delayTime)
+				.duration(epic_fadeIn_time/4)
+				.attr('cx',halfX)
+				.attr('cy',halfY)
+				.attr('r',2)
+				.attr('opacity',1)
+				.transition()
+				.ease('cubic-out')
+				.duration(epic_fadeIn_time/4)
+				.attr('cx',startX)
+				.attr('cy',startY)
+				.attr('opacity',.5)
+				.attr('r',0)
+				.each('end',function(){
+					this.remove();
 				});
-        });
+		}
+	}
 }
 
 
 function endEpic(){
     epic_vis.selectAll('circle.outerCircle')
-	    .attr('r',function(d){
-			return epicOuterBig(d.percentage);
-		});
+	    .attr('r',0);
 
 	epic_vis.selectAll('circle.innerCircle')
 	    .attr('r',0);

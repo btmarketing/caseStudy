@@ -81,7 +81,7 @@ function createBuckets(){
 ////////////////////////////////////////////////
 
 function masterLoop(){
-    resizeTest();
+    //resizeTest();
     updateCheckers();
     updateBuckets();
     requestAnimFrame(masterLoop);
