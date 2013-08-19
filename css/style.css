@@ -746,7 +746,7 @@ header {
   height: auto !important;
   height: 100%;
   margin: 0px auto -100px;
-  padding: 20px 30px 0 30px;
+  padding: 30px 30px 0 30px;
 }
 .logo {
   float: left;
@@ -771,7 +771,7 @@ header {
 .nav li {
   display: inline;
   margin: 0px;
-  font-size: 12px;
+  font-size: 13px;
   color: #808080;
 }
 .nav li:after {
@@ -797,7 +797,11 @@ header {
   width: 1040px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30px;
+  margin-top: 25px;
+}
+#checkerBoard {
+  height: 540px;
+  width: 1040px;
 }
 footer {
   min-height: 100px;
@@ -853,21 +857,21 @@ footer {
 }
 .u1_top {
   background-color: #db4e49;
-  height: 92px;
+  height: 90px;
   background-image: url('../img/preview-button.png');
 }
 .u1_bottom {
   background-color: #ad2521;
-  height: 4px;
+  height: 6px;
 }
 .u2_top {
   background-color: #66b3ff;
-  height: 92px;
+  height: 90px;
   background-image: url('../img/download-button.png');
 }
 .u2_bottom {
   background-color: #1a8dff;
-  height: 4px;
+  height: 6px;
 }
 .d_top {
   background-color: #b4b4b4;
@@ -881,15 +885,15 @@ footer {
 .d_bottom {
   background-color: #cccccc;
   height: 20px;
-  color: white;
+  color: #606060;
   font-weight: 200;
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
   line-height: 20px;
 }
 .r1_top {
   background-color: #7665ac;
-  height: 152px;
+  height: 150px;
   color: #ffffff;
   padding: 20px;
   font-size: 13px;
@@ -899,7 +903,7 @@ footer {
 }
 .r1_bottom {
   background-color: #594c81;
-  height: 4px;
+  height: 6px;
 }
 .r2_top {
   background-color: #9184bd;
@@ -931,7 +935,7 @@ footer {
   color: #ffffff;
 }
 .b_top p {
-  font-size: 12px;
+  font-size: 13px;
   margin: 0;
 }
 .b_top h2 {
