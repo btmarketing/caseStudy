@@ -149,6 +149,19 @@ Bucket.prototype.hide = function(){
 }
 
 ////////////////////////////////////////////////
+
+Bucket.prototype.updateContentBoxPositions = function(){
+
+	this.titleBox.changePosition();
+	this.titleBox.updateDOM();
+
+	for(var i=0;i<this.contentBoxes.length;i++){
+		this.contentBoxes[i].changePosition();
+		this.contentBoxes[i].updateDOM();
+	}
+}
+
+////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 

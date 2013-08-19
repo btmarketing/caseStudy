@@ -156,6 +156,9 @@ function resized(){
         'oldTop': newTop
     };
     updateAllCheckerPositions();
+    if(buckets[currentNavigation]){
+        buckets[currentNavigation].updateContentBoxPositions();
+    }
 }
 
 ////////////////////////////////////////////////

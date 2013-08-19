@@ -42,7 +42,7 @@ ContentBox.prototype.show = function(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-ContentBox.prototype.changePosition = function(pos){
+ContentBox.prototype.changePosition = function(){
 	var unitOffsetX = coordinates[currentCoords][this.type.name].l;
 	var unitOffsetY = coordinates[currentCoords][this.type.name].t;
 
