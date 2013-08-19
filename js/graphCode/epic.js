@@ -143,11 +143,10 @@ function startEpic(){
 
 
 function endEpic(){
-    epic_vis.selectAll('circle.outerCircle')
-	    .attr('r',0);
-
-	epic_vis.selectAll('circle.innerCircle')
-	    .attr('r',0);
+	for(var i=0;i<epic_data.length;i++){
+		epic_vis.select('#epic_innerCircle_'+i)
+			.attr('r',0);
+	}
 }
 
 ////////////////////////////////////
