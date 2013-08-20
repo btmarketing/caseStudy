@@ -52,11 +52,12 @@
 
 .title {
   text-align: center;
+  background: @graybg;
 }
 
 .t_top {
   background-color: @purpleLight;
-  height: (@boxHeight - @titlePadding);
+  height: ((@boxHeight + (@boxHeight / 2) + (@padding / 2)) - @titlePadding);
   margin-bottom: @padding;
   text-align: center;
   padding-top: @titlePadding;
@@ -68,8 +69,25 @@
   }
 }
 
+.previous {
+  float:left;
+  background: @grayLight;
+  height: (((@boxHeight / 2) - (@padding / 2)) - @borderHeight);
+  width: @boxHeight;
+  border-bottom: solid @grayDark @borderHeight;
+}
+
+.next {
+  float:right;
+  background: @grayLight;
+  height: (((@boxHeight / 2) - (@padding / 2)) - @borderHeight);
+  width: @boxHeight;
+  border-bottom: solid @grayDark @borderHeight;
+}
+
 .t_bottom {
-  height: @boxHeight;
+  height: ((@boxHeight / 2) - (@padding / 2));
+  font-size: @bodyFontSize;
 }
 
 .u1_top {

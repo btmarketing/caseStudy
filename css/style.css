@@ -810,7 +810,7 @@ header {
 footer {
   min-height: 100px;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   color: #808080;
 }
 footer a {
@@ -861,13 +861,14 @@ footer a:hover {
 /*  ### INDIVIDUAL BOX CSS ### */
 .title {
   text-align: center;
+  background: #efefef;
 }
 .t_top {
   background-color: #9184bd;
-  height: 59px;
+  height: 81px;
   margin-bottom: 4px;
   text-align: center;
-  padding-top: 37px;
+  padding-top: 65px;
 }
 .t_top h2 {
   font-size: 20px;
@@ -875,8 +876,23 @@ footer a:hover {
   margin: 0;
   font-weight: 300;
 }
+.previous {
+  float: left;
+  background: #cccccc;
+  height: 40px;
+  width: 96px;
+  border-bottom: solid #b4b4b4 6px;
+}
+.next {
+  float: right;
+  background: #cccccc;
+  height: 40px;
+  width: 96px;
+  border-bottom: solid #b4b4b4 6px;
+}
 .t_bottom {
-  height: 96px;
+  height: 46px;
+  font-size: 13px;
 }
 .u1_top {
   background-color: #db4e49;
