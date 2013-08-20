@@ -28,11 +28,6 @@ var dimensions = {
 		'width':1,
 		'height':1
 	},
-	'unit_2': {
-		'name':'unit_2',
-		'width':1,
-		'height':1
-	},
 	'double': {
 		'name':'double',
 		'width':2,
@@ -87,10 +82,6 @@ var coordinates = [
 		'unit_1':{
 			'l':6,
 			't':0
-		},
-		'unit_2':{
-			'l':6,
-			't':4
 		}
 	},
 	{
@@ -125,10 +116,6 @@ var coordinates = [
 		'unit_1':{
 			'l':2,
 			't':4
-		},
-		'unit_2':{
-			'l':9,
-			't':1
 		}
 	},
 	{
@@ -162,10 +149,6 @@ var coordinates = [
 		},
 		'unit_1':{
 			'l':5,
-			't':0
-		},
-		'unit_2':{
-			'l':2,
 			't':0
 		}
 	}
