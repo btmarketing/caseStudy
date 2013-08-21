@@ -535,7 +535,7 @@ function initGripsGraph(){
 			.append('line')
 			.attr('class','grips_coordLine')
 			.attr('stroke','white')
-			.attr('x1',40)
+			.attr('x1',30)
 			.attr('x2',grips_w)
 			.attr('y1',function(d){
 				return ((grips_h/2)*d)+grips_h/2;
@@ -544,7 +544,7 @@ function initGripsGraph(){
 				return ((grips_h/2)*d)+grips_h/2;
 			})
 			.attr('stroke-width',1)
-			.attr('opacity',0);
+			.attr('opacity',.5);
 
 	gripsViz.selectAll('text.grips_coordLine_data')
 		.data(grips_coordLine_data)
@@ -553,7 +553,7 @@ function initGripsGraph(){
 			.attr('class','grips_coordLine_data')
 			.attr('text-anchor','left')
 			.attr('x',0)
-			.attr('fontSize',20)
+			.attr('font-size',14)
 			.attr('fill','white')
 			.attr('y',function(d){
 				if(d>0){
@@ -567,7 +567,7 @@ function initGripsGraph(){
 				var val = Math.abs(d)*(grips_h/2)*grips_divider;
 				return Math.floor(val/1000)+'k';
 			})
-			.attr('opacity',0);
+			.attr('opacity',.5);
 
 	gripsViz.selectAll('line.grips_line')
 		.data(grips_data)
@@ -595,7 +595,11 @@ function initGripsGraph(){
 			.attr('y2',function(){
 				return grips_h/2;
 			})
-			.attr('stroke-width',3);
+			.attr('stroke-width',3)
+			.attr('opacity',function(d,i){
+				var sinLookup = (i/grips_data.length)*Math.PI*.5;
+				return Math.sin(sinLookup);
+			});
 
 	gripsViz.selectAll('line.grips_btJoin')
 		.data([Math.floor(grips_data.length*.61)])
@@ -628,10 +632,10 @@ function initGripsGraph(){
 			.on('mouseover',function(){
 				if(grips_animating){
 					grips_animating = false;
-					cancelAllTransitions();
-					for(var n=0;n<grips_data.length;n++){
-						grips_goUp(grips_data[n],n,1,false);
-					}
+					// cancelAllTransitions();
+					// for(var n=0;n<grips_data.length;n++){
+					// 	grips_goUp(grips_data[n],n,1,false);
+					// }
 					gripsViz.selectAll('rect')
 						.transition()
 						.duration(500)
@@ -639,11 +643,11 @@ function initGripsGraph(){
 					gripsViz.selectAll('line.grips_coordLine')
 						.transition()
 						.duration(1000)
-						.attr('opacity',.2);
+						.attr('opacity',.5);
 					gripsViz.selectAll('text.grips_coordLine_data')
 						.transition()
 						.duration(1000)
-						.attr('opacity',.2);
+						.attr('opacity',.5);
 					gripsViz.select('#grips_btJoinLine')
 						.transition()
 						.duration(1000)
@@ -664,11 +668,11 @@ function initGripsGraph(){
 					gripsViz.selectAll('line.grips_coordLine')
 						.transition()
 						.duration(500)
-						.attr('opacity',0);
+						.attr('opacity',.5);
 					gripsViz.selectAll('text.grips_coordLine_data')
 						.transition()
 						.duration(1000)
-						.attr('opacity',0);
+						.attr('opacity',.5);
 					gripsViz.select('#grips_btJoinLine')
 						.transition()
 						.duration(100)

@@ -101,6 +101,8 @@ function startEpic(){
 			return epicInnerSmall(d.percentage);
 		});
 
+	var count=0;
+
 	for(var i=0;i<epic_data.length;i++){
 		var startX = epic_data[i].x*epic_w;
 		var startY = epic_data[i].y*epic_h;
@@ -112,8 +114,18 @@ function startEpic(){
 			var halfX = ((endX-startX)/2)+startX;
 			var halfY = ((endY-startY)/2)+startY;
 			var delayTime = ((epic_fadeIn_time/2)/totalPackets)*Math.floor(Math.random()*totalPackets);
+
+			var removeThisThing = (function(){
+				var thisIndex = count;
+				return function(){
+					epic_vis.select('#epic_packet_'+thisIndex).remove();
+				}
+			})();
 			epic_vis.append('circle')
 				.attr('class','epic_packet')
+				.attr('id',function(){
+					return 'epic_packet_'+count;
+				})
 				.attr('fill','white')
 				.attr('cx',endX)
 				.attr('cy',endY)
@@ -134,9 +146,8 @@ function startEpic(){
 				.attr('cy',startY)
 				.attr('opacity',.5)
 				.attr('r',0)
-				.each('end',function(){
-					this.remove();
-				});
+				.each('end',removeThisThing);
+			count++;
 		}
 	}
 }
@@ -231,7 +242,7 @@ epic_vis.selectAll('text.epic_text')
 		.attr('opacity',0)
 		.attr('fill','rgb(125,109,180)')
 		.attr('font-size',function(d){
-			return Math.floor(epicInnerBig(d.percentage)*.9)+'px';
+			return Math.floor(epicInnerBig(d.percentage)*.7)+6+'px';
 		})
 		.attr("text-anchor", "middle")
 		.text(function(d){
@@ -242,7 +253,7 @@ epic_vis.selectAll('text.epic_text')
 		})
 		.attr('y',function(d){
 			var offset = epicInnerBig(d.percentage)*.3;
-			return d.y*epic_h+offset;
+			return d.y*epic_h+offset+1;
 		})
 		.on('mouseover',function(d,i){
 			openEpicCircle(d,i);
@@ -255,14 +266,12 @@ epic_vis.selectAll('text.epic_text')
 epic_vis.append('text')
 	.attr('id','countryDisplay')
 	.attr('opacity',0)
-	.attr('font-size','25px')
-	.attr("text-anchor", "middle")
+	.attr('font-size','16px')
+	.attr("text-anchor", "left")
 	.attr('fill','white')
-	.attr('x',function(){
-		return Math.floor(epic_w/2)+'px';
-	})
+	.attr('x',20)
 	.attr('y',function(){
-		return epic_h-5+'px';
+		return epic_h-20+'px';
 	})
 	.attr('font-family','Helvetica');
 
@@ -338,12 +347,18 @@ function epicInnerSmall(value){
 ////////////////////////////////////
 
 function epicInnerBig(value){
-	return (value+10)*1.5;
+	return (value+10)*1.1;
 }
 
 function epicOuterBig(value){
-	return (value+10)*1.5+10;
+	return (value+10)*1+10;
 }
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+
+endEpic();
 
 ////////////////////////////////////
 ////////////////////////////////////

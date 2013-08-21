@@ -61,20 +61,20 @@
         berkSVG.style.top = '0px';
 
         var berkeley_data = [
-            {"label":"June 6", "value":69612},
-            {"label":"June 7", "value":143726},
-            {"label":"June 8", "value":157271},
-            {"label":"June 9", "value":149027},
-            {"label":"June 10", "value":138174},
-            {"label":"June 11", "value":135456},
-            {"label":"June 12", "value":139275},
-            {"label":"June 13", "value":138613},
-            {"label":"June 14", "value":143478},
-            {"label":"June 15", "value":151220},
-            {"label":"June 16", "value":144100},
-            {"label":"June 17", "value":137351},
-            {"label":"June 18", "value":134479},
-            {"label":"June 19", "value":85173},
+            {"label":"6.6", "value":69612},
+            {"label":"6.7", "value":143726},
+            {"label":"6.8", "value":157271},
+            {"label":"6.9", "value":149027},
+            {"label":"6.10", "value":138174},
+            {"label":"6.11", "value":135456},
+            {"label":"6.12", "value":139275},
+            {"label":"6.13", "value":138613},
+            {"label":"6.14", "value":143478},
+            {"label":"6.15", "value":151220},
+            {"label":"6.16", "value":144100},
+            {"label":"6.17", "value":137351},
+            {"label":"6.18", "value":134479},
+            {"label":"6.19", "value":85173},
         ];
 
         ////////////////////////////////////////////////
@@ -86,12 +86,14 @@
         var berkeley_diff = berkeley_max-berkeley_min;
         var berkeley_smallScale = .5;
 
+        var berkeley_dateHeight = 20;
+
         function berkeley_triangle(d,i,scale){
             var x = berkeley_xScale(i);
-            var y = berkeley_h;
+            var y = berkeley_h-berkeley_dateHeight;
             var w = (berkeley_w/berkeley_data.length)*1.5;
             var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-            var h = scaled*berkeley_h*scale;
+            var h = scaled*(berkeley_h-berkeley_dateHeight)*scale;
             var result = 'M ' + Math.floor(x-(w/2)) +' '+ y + ' l '+w+' 0 l '+-w/2+' '+-h+' z';
             return result;
         }
@@ -141,7 +143,7 @@
                 })
                 .attr('cy',function(d,i){
                     var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-                    return berkeley_h-(scaled*berkeley_h)-3;
+                    return berkeley_h-berkeley_dateHeight-(scaled*(berkeley_h-berkeley_dateHeight))-3;
                 })
                 .attr('r',0);
 
@@ -160,7 +162,7 @@
                 })
                 .attr('cy',function(d,i){
                     var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-                    return berkeley_h-(scaled*berkeley_h)-3;
+                    return berkeley_h-berkeley_dateHeight-(scaled*(berkeley_h-berkeley_dateHeight))-3;
                 })
                 .attr('r',0);
 
@@ -177,7 +179,7 @@
             })
             .attr('y',function(d,i){
                 var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-                return berkeley_h-(scaled*berkeley_h)+1;
+                return berkeley_h-berkeley_dateHeight-(scaled*(berkeley_h-berkeley_dateHeight))+1;
             })
             .attr('fill','white')
             .attr('opacity',0)
@@ -187,6 +189,27 @@
                 return 'berkeley_value'+i
             })
             .attr('font-family','Helvetica');
+
+        berkeley_vis.selectAll('text.berkeley_date')
+            .data(berkeley_data)
+            .enter()
+                .append('text')
+                .attr('class','berkeley_date')
+                .attr('id',function(d,i){
+                    return 'berkeley_date_'+i;
+                })
+                .attr('fill','rgb(140,120,220)')
+                .attr('font-size',10)
+                .attr('text-anchor','middle')
+                .attr('x',function(d,i){
+                    return berkeley_xScale(i);
+                })
+                .attr('y',function(){
+                    return berkeley_h-(berkeley_dateHeight/2);
+                })
+                .text(function(d){
+                    return d.label;
+                });
 
         ////////////////////////////////////////////////
         ////////////////////////////////////////////////
@@ -214,6 +237,10 @@
                 .transition()
                 .duration(500)
                 .attr('opacity',1);
+            d3.select('#berkeley_date_'+place)
+                .transition()
+                .duration(200)
+                .attr('fill','white');
         }
 
         function closeBerkeleyBar(place){
@@ -237,6 +264,10 @@
                 .transition()
                 .duration(100)
                 .attr('r',0);
+            d3.select('#berkeley_date_'+place)
+                .transition()
+                .duration(200)
+                .attr('fill','rgb(140,120,220)');
         }
 
         ////////////////////////////////////////////////
