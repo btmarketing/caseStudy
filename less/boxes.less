@@ -71,10 +71,20 @@
 
 .previous {
   float:left;
-  background: @grayLight;
+  background-color: @grayLight;
   height: (((@boxHeight / 2) - (@padding / 2)) - @borderHeight);
   width: @boxHeight;
   border-bottom: solid @grayDark @borderHeight;
+  color: #606060;
+  .transition-duration(@transitionDuration);
+}
+
+.previous:hover {
+  background-color: @orangeLight;
+  border-bottom: solid @borderHeight @orangeLightBorder;
+  color: #ffffff;
+  //.transition-duration(@transitionDuration);
+  //.transition(~"all 1s ease-in-out");
 }
 
 .next {
@@ -83,7 +93,16 @@
   height: (((@boxHeight / 2) - (@padding / 2)) - @borderHeight);
   width: @boxHeight;
   border-bottom: solid @grayDark @borderHeight;
+  color: #606060;
+  .transition-duration(@transitionDuration);
 }
+
+.next:hover {
+  background-color: @blueLight;
+  border-bottom: solid @borderHeight @blueLightBorder;
+  color: #ffffff;
+}
+
 
 .t_bottom {
   height: ((@boxHeight / 2) - (@padding / 2));
@@ -91,13 +110,22 @@
 }
 
 .u1_top {
-  background-color: @orange;
+  background-color: @purpleLightest;
+  background-position-y: 0;
   height: (@boxHeight - @borderHeight);
   background-image: url('../img/preview-button.png');
+  border-bottom: solid @purpleLight @borderHeight;
+  .transition-duration(@transitionDuration);
+}
+
+.u1_top:hover {
+  background-color: @orangeLight;
+  border-bottom: solid @orangeLightBorder @borderHeight;
+  background-position-y: 96px;
 }
 
 .u1_bottom {
-  background-color: @orangeBorder;
+  background-color: @purpleLight;
   height: @borderHeight;
 }
 
@@ -155,8 +183,27 @@
   p {margin: 0;}
   line-height: 27px;
   font-size: 19px;
-
+  background: url('../img/quote-sprite-all.png') no-repeat;
+  .transition(~"all 600ms ease-in-out");
 }
+
+.r2_top:hover {
+  p {opacity: .3;}
+  span {opacity: 1;}
+}
+
+.r2_top span {
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  background: url('../img/quote-sprite-all.png') no-repeat;
+  height: 176px;
+  opacity: 0;
+  .transition(~"opacity 600ms ease-in-out");
+}
+
 
 .r2_bottom {
   background-color: @purpleLight;
@@ -191,35 +238,47 @@
   height: @largeBotSize;
 }
 
-.r2_top.public_enemy {
-  background-image: url('../img/quote-public-enemy.png');
-}
-
-.b_top.public_enemy {
-  background-image: url('../img/graphic-public_enemy.png');
-}
+// QUOTE BACKGROUNDS
 
 .r2_top.death_grips {
-  background-image: url('../img/quote-death-grips.png');
-}
-
-.r2_top.berklee {
-  background-image: url('../img/quote-berklee.png');
-}
-
-.r2_top.EMT {
-  background-image: url('../img/quote-EMT.png');
+  background-position: 0 0px; // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 1);} // on hover over
 }
 
 .r2_top.bones_brigade{
-  background-image: url('../img/quote-bones-brigade.png');
-}
-
-.r2_top.kaskade {
-  background-image: url('../img/quote-kaskade.png');
+  background-position: 0 (-1 * @quotePhotoSize * 2); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 3);} // on hover over
 }
 
 .r2_top.tim_ferriss {
-  background-image: url('../img/quote-tim-ferriss.png');
+  background-position: 0 (-1 * @quotePhotoSize * 4); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 5);} // on hover over
 }
+
+.r2_top.EMT {
+  background-position: 0 (-1 * @quotePhotoSize * 6); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 7);} // on hover over
+}
+
+.r2_top.kaskade {
+  background-position: 0 (-1 * @quotePhotoSize * 8); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 9);} // on hover over
+}
+
+.r2_top.berklee {
+  background-position: 0 (-1 * @quotePhotoSize * 10); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 11);} // on hover over
+}
+
+.r2_top.public_enemy {
+  background-position: 0 (-1 * @quotePhotoSize * 12); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 13);} // on hover over
+}
+
+.r2_top.pixies {
+  background-position: 0 (-1 * @quotePhotoSize * 14); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 15);} // on hover over
+}
+
+
 

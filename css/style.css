@@ -878,10 +878,20 @@ footer a:hover {
 }
 .previous {
   float: left;
-  background: #cccccc;
+  background-color: #cccccc;
   height: 40px;
   width: 96px;
   border-bottom: solid #b4b4b4 6px;
+  color: #606060;
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.previous:hover {
+  background-color: #e47976;
+  border-bottom: solid 6px #db4c47;
+  color: #ffffff;
 }
 .next {
   float: right;
@@ -889,18 +899,39 @@ footer a:hover {
   height: 40px;
   width: 96px;
   border-bottom: solid #b4b4b4 6px;
+  color: #606060;
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.next:hover {
+  background-color: #66b3ff;
+  border-bottom: solid 6px #3399ff;
+  color: #ffffff;
 }
 .t_bottom {
   height: 46px;
   font-size: 13px;
 }
 .u1_top {
-  background-color: #db4e49;
+  background-color: #bfb9d3;
+  background-position-y: 0;
   height: 90px;
   background-image: url('../img/preview-button.png');
+  border-bottom: solid #9184bd 6px;
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.u1_top:hover {
+  background-color: #e47976;
+  border-bottom: solid #db4c47 6px;
+  background-position-y: 96px;
 }
 .u1_bottom {
-  background-color: #ad2521;
+  background-color: #9184bd;
   height: 6px;
 }
 .u2_top {
@@ -952,9 +983,36 @@ footer a:hover {
   padding: 20px;
   line-height: 27px;
   font-size: 19px;
+  background: url('../img/quote-sprite-all.png') no-repeat;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
 }
 .r2_top p {
   margin: 0;
+}
+.r2_top:hover p {
+  opacity: .3;
+}
+.r2_top:hover span {
+  opacity: 1;
+}
+.r2_top span {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: url('../img/quote-sprite-all.png') no-repeat;
+  height: 176px;
+  opacity: 0;
+  -webkit-transition: opacity 600ms ease-in-out;
+  -moz-transition: opacity 600ms ease-in-out;
+  -o-transition: opacity 600ms ease-in-out;
+  -ms-transition: opacity 600ms ease-in-out;
+  transition: opacity 600ms ease-in-out;
 }
 .r2_bottom {
   background-color: #9184bd;
@@ -987,29 +1045,53 @@ footer a:hover {
   background-color: #e6e6e6;
   height: 100px;
 }
-.r2_top.public_enemy {
-  background-image: url('../img/quote-public-enemy.png');
-}
-.b_top.public_enemy {
-  background-image: url('../img/graphic-public_enemy.png');
-}
 .r2_top.death_grips {
-  background-image: url('../img/quote-death-grips.png');
+  background-position: 0 0px;
 }
-.r2_top.berklee {
-  background-image: url('../img/quote-berklee.png');
-}
-.r2_top.EMT {
-  background-image: url('../img/quote-EMT.png');
+.r2_top.death_grips span {
+  background-position: 0 -176px;
 }
 .r2_top.bones_brigade {
-  background-image: url('../img/quote-bones-brigade.png');
+  background-position: 0 -352px;
 }
-.r2_top.kaskade {
-  background-image: url('../img/quote-kaskade.png');
+.r2_top.bones_brigade span {
+  background-position: 0 -528px;
 }
 .r2_top.tim_ferriss {
-  background-image: url('../img/quote-tim-ferriss.png');
+  background-position: 0 -704px;
+}
+.r2_top.tim_ferriss span {
+  background-position: 0 -880px;
+}
+.r2_top.EMT {
+  background-position: 0 -1056px;
+}
+.r2_top.EMT span {
+  background-position: 0 -1232px;
+}
+.r2_top.kaskade {
+  background-position: 0 -1408px;
+}
+.r2_top.kaskade span {
+  background-position: 0 -1584px;
+}
+.r2_top.berklee {
+  background-position: 0 -1760px;
+}
+.r2_top.berklee span {
+  background-position: 0 -1936px;
+}
+.r2_top.public_enemy {
+  background-position: 0 -2112px;
+}
+.r2_top.public_enemy span {
+  background-position: 0 -2288px;
+}
+.r2_top.pixies {
+  background-position: 0 -2464px;
+}
+.r2_top.pixies span {
+  background-position: 0 -2640px;
 }
 .ferrisWrap {
   width: 390px;
