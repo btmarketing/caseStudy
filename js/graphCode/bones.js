@@ -8,7 +8,7 @@ setInterval(function(){
     if(document.getElementById('bonesGraph').offsetWidth){
         if(!bonesDisplay){
             bonesDisplay=true;
-            startBones();
+            setTimeout(startBones,500);
         }
     }
     else if (bonesDisplay){
@@ -91,6 +91,18 @@ var bones_pie = d3.layout.pie()
         return d.value;
     });
 
+var bones_bt_line = [
+    [70,bones_h*.2],
+    [bones_w/3,bones_h*.2],
+    [bones_w*.4,bones_h*.4]
+];
+
+var bones_other_line = [
+    [bones_w-70,bones_h*.2],
+    [bones_w*.66,bones_h*.2],
+    [bones_w*.6,bones_h*.4]
+];
+
 var bones_arcs = bones_vis.selectAll("g.slice")
     .data(bones_pie)
     .enter()
@@ -108,52 +120,59 @@ bones_arcs.append("svg:path")
         .attr("fill", function(d){
             return d.data.color;
         })
-        .attr("d", bones_arcStart);
+        .attr("d", bones_arc)
+        .on('mouseover',function(d){
+            d3.select(this)
+                .transition()
+                .duration(200)
+                .attr('d',bones_arcBig);
+            d3.select('#bones_text_'+d.data.label)
+                .transition()
+                .duration(300)
+                .attr('opacity',1);
+        })
+        .on('mouseout',function(d){
+            d3.select(this)
+                .transition()
+                .duration(200)
+                .attr('d',bones_arc);
+            d3.select('#bones_text_'+d.data.label)
+                .transition()
+                .duration(300)
+                .attr('opacity',0);
+        });
 
 d3.select('#bonesSVG').selectAll('text.bones_label')
     .data(bones_data)
     .enter(0)
         .append('svg:text')
         .attr('class','bones_label')
+        .attr('id',function(d){
+            return 'bones_text_'+d.label;
+        })
         .attr('fill','white')
-        .attr('opacity',1)
-        .attr("text-anchor", "end")
-        .attr('font-size','13px')
-        .attr('font-family','Helvetica')
-        .attr('y',function(d){
-            if(d.value===36){
-                return 15;
+        .attr('opacity',0)
+        .attr("text-anchor",function(d){
+            if(d.label==='BitTorrent'){
+                return 'start';
             }
             else{
-                return 40;
+                return 'end';
             }
         })
-        .attr('x',function(){
-            return bones_w-30;
+        .attr('font-size','16px')
+        .attr('y',function(){
+            return bones_h-bones_bt_line[0][1];
+        })
+        .attr('x',function(d){
+            if(d.label==='BitTorrent'){
+                return bones_bt_line[0][0]-45;
+            }
+            else{
+                return bones_other_line[0][0]+45;
+            }
         })
         .text(function(d, i) {return bones_data[i].label; });
-
-d3.select('#bonesSVG').selectAll('rect.bones_rectLabel')
-    .data(bones_data)
-    .enter()
-        .append('rect')
-        .attr('class','bones_rectLabel')
-        .attr('fill',function(d){
-            return d.color;
-        })
-        .attr('x',function(){
-            return bones_w-30+7;
-        })
-        .attr('y',function(d){
-            if(d.value===36){
-                return 15-14;
-            }
-            else{
-                return 40-14;
-            }
-        })
-        .attr('width',20)
-        .attr('height',20)
 
 d3.select('#bonesSVG').selectAll('circle.bones_circleOuter')
     .data(bones_data)
@@ -165,13 +184,20 @@ d3.select('#bonesSVG').selectAll('circle.bones_circleOuter')
         .attr('r',0)
         .attr('cy',function(d){
             if(d.label==='BitTorrent'){
-                return bones_h*.2;
+                return bones_bt_line[0][1];
             }
             else{
-                return bones_h*.8;
+                return bones_other_line[0][1];
             }
         })
-        .attr('cx',50);
+        .attr('cx',function(d){
+            if(d.label==='BitTorrent'){
+                return bones_bt_line[0][0]-20;
+            }
+            else{
+                return bones_other_line[0][0]+20;
+            }
+        });
 
 d3.select('#bonesSVG').selectAll('circle.bones_circleInner')
     .data(bones_data)
@@ -183,13 +209,20 @@ d3.select('#bonesSVG').selectAll('circle.bones_circleInner')
         .attr('r',0)
         .attr('cy',function(d){
             if(d.label==='BitTorrent'){
-                return bones_h*.2;
+                return bones_bt_line[0][1];
             }
             else{
-                return bones_h*.8;
+                return bones_other_line[0][1];
             }
         })
-        .attr('cx',50);
+        .attr('cx',function(d){
+            if(d.label==='BitTorrent'){
+                return bones_bt_line[0][0]-20;
+            }
+            else{
+                return bones_other_line[0][0]+20;
+            }
+        });
 
 d3.select('#bonesSVG').selectAll('text.bones_percentage')
     .data(bones_data)
@@ -200,13 +233,20 @@ d3.select('#bonesSVG').selectAll('text.bones_percentage')
         .attr('text-anchor','middle')
         .attr('font-size',13)
         .attr('opacity',0)
-        .attr('x',50)
-        .attr('y',function(d){
+        .attr('x',function(d){
             if(d.label==='BitTorrent'){
-                return bones_h*.2+5;
+                return bones_bt_line[0][0]-20;
             }
             else{
-                return bones_h*.8+5;
+                return bones_other_line[0][0]+20;
+            }
+        })
+        .attr('y',function(d){
+            if(d.label==='BitTorrent'){
+                return bones_bt_line[0][1]+4;
+            }
+            else{
+                return bones_other_line[0][1]+4;
             }
         })
         .text(function(d){
@@ -221,29 +261,36 @@ d3.select('#bonesSVG').selectAll('line.bones_lineOne')
         .attr('stroke','white')
         .attr('opacity',0)
         .attr('stroke-width',2)
-        .attr('x1',70)
-        .attr('x2',function(d){
+        .attr('x1',function(d){
             if(d.label==='BitTorrent'){
-                return bones_w/3;
+                return bones_bt_line[0][0];
             }
             else{
-                return bones_w*.5;
+                return bones_other_line[0][0];
+            }
+        })
+        .attr('x2',function(d){
+            if(d.label==='BitTorrent'){
+                return bones_bt_line[0][0];
+            }
+            else{
+                return bones_other_line[0][0];
             }
         })
         .attr('y1',function(d){
             if(d.label==='BitTorrent'){
-                return bones_h*.2;
+                return bones_bt_line[0][1];
             }
             else{
-                return bones_h*.8;
+                return bones_other_line[0][1];
             }
         })
         .attr('y2',function(d){
             if(d.label==='BitTorrent'){
-                return bones_h*.2;
+                return bones_bt_line[0][1];
             }
             else{
-                return bones_h*.8;
+                return bones_other_line[0][1];
             }
         });
 
@@ -257,46 +304,36 @@ d3.select('#bonesSVG').selectAll('line.bones_lineTwo')
         .attr('stroke-width',2)
         .attr('x1',function(d){
             if(d.label==='BitTorrent'){
-                return bones_w/3;
+                return bones_bt_line[1][0];
             }
             else{
-                return bones_w*.5;
+                return bones_other_line[1][0];
             }
         })
         .attr('x2',function(d){
             if(d.label==='BitTorrent'){
-                return bones_w*.4;
+                return bones_bt_line[2][0];
             }
             else{
-                return bones_w*.6;
+                return bones_other_line[2][0];
             }
         })
         .attr('y1',function(d){
             if(d.label==='BitTorrent'){
-                return bones_h*.2;
+                return bones_bt_line[1][1];
             }
             else{
-                return bones_h*.8;
+                return bones_other_line[1][1];
             }
         })
         .attr('y2',function(d){
             if(d.label==='BitTorrent'){
-                return bones_h*.4;
+                return bones_bt_line[2][1];
             }
             else{
-                return bones_h*.6;
+                return bones_other_line[2][1];
             }
         });
-
-d3.select('#bonesSVG').append('rect')
-    .attr('id','bones_overlay')
-    .attr('opacity',0)
-    .attr('x',0)
-    .attr('y',0)
-    .attr('width',bones_w)
-    .attr('height',bones_h)
-    .on('mouseover',bones_mouseover)
-    .on('mouseout',bones_mouseout)
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -316,17 +353,8 @@ function bones_cancelAllTransitions(type){
 
 var bones_mouseOn = false;
 
-function bones_mouseover(){
+function startBones(){
     bones_mouseOn = true;
-    bones_cancelAllTransitions('path');
-    bones_vis.selectAll('g.bt').select("path")
-        .transition()
-        .duration(300)
-        .attr("d", bones_arcBig);
-    bones_vis.selectAll('g.other').select("path")
-        .transition()
-        .duration(300)
-        .attr("d", bones_arcSmall);
 
     bones_cancelAllTransitions('circle');
     bones_cancelAllTransitions('line');
@@ -347,16 +375,31 @@ function bones_mouseover(){
 
                 d3.selectAll('.bones_lineOne')
                     .attr('opacity',.7)
-                    .attr('x2',70)
+                    .attr('x2',function(d){
+                        if(d.label==='BitTorrent'){
+                            return bones_bt_line[0][0];
+                        }
+                        else{
+                            return bones_other_line[0][0];
+                        }
+                    })
+                    .attr('y2',function(d){
+                        if(d.label==='BitTorrent'){
+                            return bones_bt_line[0][1];
+                        }
+                        else{
+                            return bones_other_line[0][1];
+                        }
+                    })
                     .transition()
                     .duration(200)
                     .ease('linear')
                     .attr('x2',function(d){
                         if(d.label==='BitTorrent'){
-                            return bones_w/3;
+                            return bones_bt_line[1][0];
                         }
                         else{
-                            return bones_w*.5;
+                            return bones_other_line[1][0];
                         }
                     })
                     .each('end',function(){
@@ -365,18 +408,18 @@ function bones_mouseover(){
                                 .attr('opacity',.7)
                                 .attr('x2',function(d){
                                     if(d.label==='BitTorrent'){
-                                        return bones_w/3;
+                                        return bones_bt_line[1][0];
                                     }
                                     else{
-                                        return bones_w*.5;
+                                        return bones_other_line[1][0];
                                     }
                                 })
                                 .attr('y2',function(d){
                                     if(d.label==='BitTorrent'){
-                                        return bones_h*.2;
+                                        return bones_bt_line[1][1];
                                     }
                                     else{
-                                        return bones_h*.8;
+                                        return bones_other_line[1][1];
                                     }
                                 })
                                 .transition()
@@ -384,18 +427,18 @@ function bones_mouseover(){
                                 .ease('linear')
                                 .attr('x2',function(d){
                                     if(d.label==='BitTorrent'){
-                                        return bones_w*.4;
+                                        return bones_bt_line[2][0];
                                     }
                                     else{
-                                        return bones_w*.6;
+                                        return bones_other_line[2][0];
                                     }
                                 })
                                 .attr('y2',function(d){
                                     if(d.label==='BitTorrent'){
-                                        return bones_h*.4;
+                                        return bones_bt_line[2][1];
                                     }
                                     else{
-                                        return bones_h*.6;
+                                        return bones_other_line[2][1];
                                     }
                                 });
                         }
@@ -404,7 +447,7 @@ function bones_mouseover(){
         });
 }
 
-function bones_mouseout(){
+function endBones(){
     bones_mouseOn = false;
     bones_cancelAllTransitions('path');
     bones_vis.selectAll('g.bt').select("path")

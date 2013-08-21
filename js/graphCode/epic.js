@@ -225,6 +225,7 @@ epic_vis.selectAll('text.epic_text')
 	.enter()
 		.append('text')
 		.attr('class','epic_text')
+		.attr('cursor','default')
 		.attr('id',function(d,i){
 			return 'epic_text_'+i;
 		})
