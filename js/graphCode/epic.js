@@ -101,8 +101,6 @@ function startEpic(){
 			return epicInnerSmall(d.percentage);
 		});
 
-	var count=0;
-
 	for(var i=0;i<epic_data.length;i++){
 		var startX = epic_data[i].x*epic_w;
 		var startY = epic_data[i].y*epic_h;
@@ -114,18 +112,8 @@ function startEpic(){
 			var halfX = ((endX-startX)/2)+startX;
 			var halfY = ((endY-startY)/2)+startY;
 			var delayTime = ((epic_fadeIn_time/2)/totalPackets)*Math.floor(Math.random()*totalPackets);
-
-			var removeThisThing = (function(){
-				var thisIndex = count;
-				return function(){
-					epic_vis.select('#epic_packet_'+thisIndex).remove();
-				}
-			})();
 			epic_vis.append('circle')
 				.attr('class','epic_packet')
-				.attr('id',function(){
-					return 'epic_packet_'+count;
-				})
 				.attr('fill','white')
 				.attr('cx',endX)
 				.attr('cy',endY)
@@ -146,8 +134,9 @@ function startEpic(){
 				.attr('cy',startY)
 				.attr('opacity',.5)
 				.attr('r',0)
-				.each('end',removeThisThing);
-			count++;
+				.each('end',function(){
+					this.remove();
+				});
 		}
 	}
 }

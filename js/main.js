@@ -80,22 +80,6 @@ function createBuckets(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function prev(){
-    var newIndex = currentNavigation-1;
-    if(newIndex<0) newIndex = buckets.length-1;
-    changeNavigation(newIndex);
-}
-
-function next(){
-    var newIndex = currentNavigation+1;
-    if(newIndex>=buckets.length) newIndex = 0;
-    changeNavigation(newIndex);
-}
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
 function masterLoop(){
     resizeTest();
     updateCheckers();
@@ -113,7 +97,7 @@ var currentCoords = 0;
 function changeNavigation(index){
     if(currentNavigation!==index){
 
-        //updateAllCheckerPositions();
+        updateAllCheckerPositions();
 
         document.getElementById('checkerBoard').style.display = 'inline';
         currentCoords = (currentCoords+1)%coordinates.length;
