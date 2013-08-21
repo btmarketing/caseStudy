@@ -80,13 +80,14 @@ function createBuckets(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function prev(){
+function prev(e){
+    console.log(e);
     var newIndex = currentNavigation-1;
     if(newIndex<0) newIndex = buckets.length-1;
     changeNavigation(newIndex);
 }
 
-function next(){
+function next(e){
     var newIndex = currentNavigation+1;
     if(newIndex>=buckets.length) newIndex = 0;
     changeNavigation(newIndex);

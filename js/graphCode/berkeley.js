@@ -84,9 +84,9 @@
         var berkeley_max = 200000;
         var berkeley_min = 0;
         var berkeley_diff = berkeley_max-berkeley_min;
-        var berkeley_smallScale = .5;
+        var berkeley_smallScale = .75;
 
-        var berkeley_dateHeight = 20;
+        var berkeley_dateHeight = 30;
 
         function berkeley_triangle(d,i,scale){
             var x = berkeley_xScale(i);
@@ -205,7 +205,7 @@
                     return berkeley_xScale(i);
                 })
                 .attr('y',function(){
-                    return berkeley_h-(berkeley_dateHeight/2);
+                    return berkeley_h-(berkeley_dateHeight/2)+2;
                 })
                 .text(function(d){
                     return d.label;

@@ -519,26 +519,26 @@ function makeCheckerBoard(){
 		}
 	}
 
-	//array for randomly pulling start indexes for each checker
-	var availableIndexes = [];
-	for(var i=0;i<xDim*yDim;i++){
-		availableIndexes[i] = i;
-	}
+	// //array for randomly pulling start indexes for each checker
+	// var availableIndexes = [];
+	// for(var i=0;i<xDim*yDim;i++){
+	// 	availableIndexes[i] = i;
+	// }
 
 	//for each slot, make a checker
 	for(var i=0;i<xDim*yDim;i++){
 
 		//with a random starting point
-		var rIndex = Math.floor(Math.random()*availableIndexes.length);
-		var thisIndex = availableIndexes[rIndex];
-		//var thisIndex = i;
-		availableIndexes.splice(rIndex,1);
+		// var rIndex = Math.floor(Math.random()*availableIndexes.length);
+		// var thisIndex = availableIndexes[rIndex];
+		// //var thisIndex = i;
+		// availableIndexes.splice(rIndex,1);
 
 		//if we've already made all our full checkers, make empty ones
 		var isFull = true;
 		if(i>=totalCheckers) isFull = false;
 
-		checkers[i] = new Checker(thisIndex,isFull);
+		checkers[i] = new Checker(i,isFull);
 	}
 
 	document.body.onmousemove = function(e){
