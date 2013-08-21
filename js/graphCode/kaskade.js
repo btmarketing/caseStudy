@@ -128,7 +128,8 @@ kaskade_vis.selectAll('rect.kaskade_fadeInY')
 
 kaskade_vis.append('rect')
 	.attr('class','kaskade_overlay')
-	.attr('opacity',0)
+	.attr('opacity',.3)
+	.attr('fill','white')
 	.attr('x',0)
 	.attr('y',0)
 	.attr('width',kaskade_w)
@@ -182,8 +183,6 @@ function kaskade_mouseout(){
 ////////////////////////////////////////
 
 function kaskade_powerOn(){
-	kaskade_vis.select('rect.kaskade_overlay')
-		.attr('opacity',0);
 
 	kaskade_vis.selectAll('rect.kaskade_fadeInX')
 		.transition()
