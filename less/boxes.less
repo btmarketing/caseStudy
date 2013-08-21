@@ -141,13 +141,14 @@
 }
 
 .d_top {
-  background-color: @grayDark;
+  background: @grayDark;
   height: (@boxHeight - @grayBotSize);
-  color: #ffffff;
+  color: #eeeeee;
   text-align: center;
   font-size: 52px;
   font-weight: 400;
   line-height: 88px;
+  .transition-duration(@transitionDuration);
 }
 
 .d_bottom {
@@ -158,6 +159,7 @@
   font-size: @bodyFontSize;
   text-align: center;
   line-height: 20px;
+  .transition-duration(@transitionDuration);
 }
 
 .r1_top {
@@ -236,10 +238,30 @@
 }
 
 .b_bottom {
-  background-color: #e6e6e6;
+  background-color: @purpleGraphInfo;
   height: @largeBotSize;
 }
 
+
+// EXTRA FADE ANIMATIONS
+
+.double:hover .d_top {
+  background-color: @orangeLight;
+  color: #ffffff;
+}
+
+.double:hover .d_bottom {
+  background-color: @orangeLightBorder;
+  color: #ffffff;
+}
+
+.fadeOrange:hover {
+  background: @orangeLight;
+}
+
+.fadeOrange:hover .d_bottom {
+    background: @orangeLightBorder;
+  };
 // QUOTE BACKGROUNDS
 
 .r2_top.death_grips {

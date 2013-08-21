@@ -944,13 +944,17 @@ footer a:hover {
   height: 6px;
 }
 .d_top {
-  background-color: #b4b4b4;
+  background: #b4b4b4;
   height: 76px;
-  color: #ffffff;
+  color: #eeeeee;
   text-align: center;
   font-size: 52px;
   font-weight: 400;
   line-height: 88px;
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
 }
 .d_bottom {
   background-color: #cccccc;
@@ -960,6 +964,10 @@ footer a:hover {
   font-size: 13px;
   text-align: center;
   line-height: 20px;
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
 }
 .r1_top {
   background-color: #7665ac;
@@ -1047,8 +1055,22 @@ footer a:hover {
   line-height: 20px;
 }
 .b_bottom {
-  background-color: #e6e6e6;
+  background-color: #aca2cc;
   height: 100px;
+}
+.double:hover .d_top {
+  background-color: #e47976;
+  color: #ffffff;
+}
+.double:hover .d_bottom {
+  background-color: #db4c47;
+  color: #ffffff;
+}
+.fadeOrange:hover {
+  background: #e47976;
+}
+.fadeOrange:hover .d_bottom {
+  background: #db4c47;
 }
 .r2_top.death_grips {
   background-position: 0 0px;
