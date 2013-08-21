@@ -126,7 +126,7 @@
 .u1_top:hover {
   background-color: @orangeLight;
   border-bottom: solid @orangeLightBorder @borderHeight;
-  background-position-y: 96px;
+  background-position: 0 96px;
 }
 
 .u1_bottom {
@@ -277,10 +277,19 @@
     .transition(~"all 600ms ease-in-out");
     position: absolute;
     top: -80px;
-    left: 0;
+    left: 45px;
     bottom: 0;
     right: 0;
-    margin: 27px 0;
+    margin: 30px 0;
+  }
+  img {
+    display: inline;
+    .transition(~"all 600ms ease-in-out");
+    position: absolute;
+    top: -80px;
+    left: 63px;
+    right: 0;
+    bottom: 0;
   }
 }
 
@@ -296,12 +305,16 @@ div.long_2:hover .d_top.download,
 div.double:hover .d_top.download, {
   background-color: @blue;
   height: 90px;
-  line-height: 200px;  
+  line-height: 200px;
 }
 
-.long_2:hover h1 , .double:hover h1{
+.long_2:hover h1, 
+.double:hover h1, 
+.long_2:hover img, 
+.double:hover img {
     top: 0;
 }
+
 
 div.long_2:hover .d_bottom.download, 
 div.double:hover .d_bottom.download {

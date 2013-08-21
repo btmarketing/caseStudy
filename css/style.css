@@ -935,7 +935,7 @@ footer a:hover {
 .u1_top:hover {
   background-color: #e47976;
   border-bottom: solid #db4c47 6px;
-  background-position-y: 96px;
+  background-position: 0 96px;
 }
 .u1_bottom {
   background-color: #9184bd;
@@ -1114,10 +1114,24 @@ footer a:hover {
   transition: all 600ms ease-in-out;
   position: absolute;
   top: -80px;
-  left: 0;
+  left: 45px;
   bottom: 0;
   right: 0;
-  margin: 27px 0;
+  margin: 30px 0;
+}
+.long_2 img,
+.double img {
+  display: inline;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
+  position: absolute;
+  top: -80px;
+  left: 63px;
+  right: 0;
+  bottom: 0;
 }
 .d_top.download,
 .d_top.double {
@@ -1135,7 +1149,9 @@ div.double:hover .d_top.download {
   line-height: 200px;
 }
 .long_2:hover h1,
-.double:hover h1 {
+.double:hover h1,
+.long_2:hover img,
+.double:hover img {
   top: 0;
 }
 div.long_2:hover .d_bottom.download,
