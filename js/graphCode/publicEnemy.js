@@ -203,6 +203,9 @@ function publicEnemy_close(){
 		pe_viz.select('#publicEnemy_path_'+type)
 			.datum(publicEnemy_empty)
 			.attr('d',pe_area);
+		pe_viz.select('#publicEnemy_line_'+type)
+			.datum(publicEnemy_empty)
+			.attr('d',pe_line);
 	}
 }
 
