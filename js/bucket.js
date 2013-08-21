@@ -44,7 +44,7 @@ Bucket.prototype.fadeContents = function(){
 		shrinkCheckers();
 	}
 
-	var opacityAmount = Math.pow(this.opacity,.5);
+	var opacityAmount = Math.pow(this.opacity,3);
 
 	this.titleBox.el.style.opacity = opacityAmount;
 	for(var i=0;i<this.contentBoxes.length;i++){
