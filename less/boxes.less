@@ -180,28 +180,30 @@
   height: ( ( (@boxHeight * 2) - (@grayBotSize + (@boxPadding * 2)))+ @padding);
   color: #ffffff;
   padding: @boxPadding;
-  p {margin: 0;}
   line-height: 27px;
   font-size: 19px;
   background: url('../img/quote-sprite-all.png') no-repeat;
   .transition(~"all 600ms ease-in-out");
+  p {
+    margin: 0;
+    .transition(~"all 600ms ease-in-out");
+  }
+  span {
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background: url('../img/quote-sprite-all.png') no-repeat;
+    height: 176px;
+    opacity: 0;
+    .transition(~"opacity 600ms ease-in-out");
+  }
 }
 
 .r2_top:hover {
   p {opacity: .3;}
   span {opacity: 1;}
-}
-
-.r2_top span {
-  position: absolute;
-  top:0px;
-  left:0px;
-  right:0px;
-  bottom:0px;
-  background: url('../img/quote-sprite-all.png') no-repeat;
-  height: 176px;
-  opacity: 0;
-  .transition(~"opacity 600ms ease-in-out");
 }
 
 

@@ -992,12 +992,11 @@ footer a:hover {
 }
 .r2_top p {
   margin: 0;
-}
-.r2_top:hover p {
-  opacity: .3;
-}
-.r2_top:hover span {
-  opacity: 1;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
 }
 .r2_top span {
   position: absolute;
@@ -1013,6 +1012,12 @@ footer a:hover {
   -o-transition: opacity 600ms ease-in-out;
   -ms-transition: opacity 600ms ease-in-out;
   transition: opacity 600ms ease-in-out;
+}
+.r2_top:hover p {
+  opacity: .3;
+}
+.r2_top:hover span {
+  opacity: 1;
 }
 .r2_bottom {
   background-color: #9184bd;
