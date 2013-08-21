@@ -186,22 +186,19 @@ function makeChart(index){
 		.attr('opacity',.3)
 		.attr('stroke','white');
 
-	pe_viz.selectAll('text')
-		.data(publicEnemby_types)
-		.enter()
-			.append('text')
-			.attr('id',function(d){
-				return 'publicEnemy_text_'+d;
-			})
-			.attr('text-anchor','left')
-			.attr('fill','white')
-			.attr('opacity',0)
-			.attr('font-size',20)
-			.text(function(d){
-				return d+' Conversations';
-			})
-			.attr('x',10)
-			.attr('y',20);
+	pe_viz.append('text')
+		.attr('id',function(){
+			return 'publicEnemy_text_'+type;
+		})
+		.attr('text-anchor','left')
+		.attr('fill','white')
+		.attr('opacity',0)
+		.attr('font-size',20)
+		.text(function(){
+			return type+' Conversations';
+		})
+		.attr('x',10)
+		.attr('y',20);
 
 	var newIndex = index+1;
 	if(newIndex<publicEnemby_types.length){
