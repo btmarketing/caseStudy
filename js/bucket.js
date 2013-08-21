@@ -13,7 +13,7 @@ function Bucket(bucket,_index,isLast){
 	this.totalShrunk = 0;
 
 	this.fading = false;
-	this.fadeStep = 1/20;
+	this.fadeStep = 1/10;
 	this.fadeDirection = 1;
 	this.opacity = 0;
 
@@ -44,7 +44,7 @@ Bucket.prototype.fadeContents = function(){
 		shrinkCheckers();
 	}
 
-	var opacityAmount = Math.pow(this.opacity,.5);
+	var opacityAmount = Math.pow(this.opacity,.8);
 
 	this.titleBox.el.style.opacity = opacityAmount;
 	for(var i=0;i<this.contentBoxes.length;i++){
