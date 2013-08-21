@@ -15,7 +15,7 @@ function Checker(startIndex,isFull){
 	this.stepCount = 0;
 	this.stepAmount = 2.5;
 
-	this.seemStep = gutter/3;
+	this.seemStep = gutter/4;
 
 	this.shrunk = true;
 	this.grown = false;
@@ -427,7 +427,7 @@ function selectCurrentChecker(){
 			buckets[currentNavigation].show();
 		}
 		else{
-			triggerRandomSorting();
+			//changeNavigation(0,true);
 		}
 	}
 }
@@ -496,6 +496,37 @@ function updateCheckers(){
 	}
 }
 
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+var checkerGrayscale = 1;
+var puzzleSolved = false
+
+function updateCheckerGrayscale(goDown){
+	if(goDown){
+		checkerGrayscale-=.1;
+	}
+	if(checkerGrayscale>=0){
+		var tempAmount = Math.floor(checkerGrayscale*100)+'%';
+		var board = document.getElementById('checkerBoard');
+		if(board.style['-webkit-filter']!==undefined){
+			board.style['-webkit-filter'] = 'grayscale('+tempAmount+')';
+		}
+		else if(board.style['-moz-filter']!==undefined){
+			board.style['-moz-filter'] = 'grayscale('+tempAmount+')';
+		}
+		else if(board.style['-o-filter']!==undefined){
+			board.style['-o-filter'] = 'grayscale('+tempAmount+')';
+		}
+		else if(board.style['filter']!==undefined){
+			board.style['filter'] = 'grayscale('+tempAmount+')';
+		}
+	}
+	else if(goDown){
+		changeNavigation(0,true);
+	}
+}
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -506,6 +537,8 @@ var yDim = 5;
 var checkers = [];
 
 function makeCheckerBoard(){
+
+	updateCheckerGrayscale(false);
 
 	//count how many full checkers we need
 	var totalCheckers = 0;
@@ -541,6 +574,29 @@ function makeCheckerBoard(){
 		checkers[i] = new Checker(i,isFull);
 	}
 
+	var logoCheckers = [11,12,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38];
+	var availableEmptyCheckers = [41,42,43,44,45,46,47,48,49];
+
+	for(var y=0;y<3;y++){
+
+		var tempIndex = Math.floor(Math.random()*logoCheckers.length);
+		var logoCheckerIndex = logoCheckers[tempIndex];
+		logoCheckers.splice(tempIndex,1);
+
+		var direction = Math.floor(Math.random()*4);
+		if(direction===0) tempIndex = logoCheckerIndex+xDim;
+		else if(direction===1) tempIndex = logoCheckerIndex+1;
+		else if(direction===2) tempIndex = logoCheckerIndex-1;
+		else if(direction===3) tempIndex = logoCheckerIndex+xDim;
+
+		var emptyCheckerIndex = tempIndex;
+
+		checkers[logoCheckerIndex].index = checkers[emptyCheckerIndex].targetIndex;
+		checkers[emptyCheckerIndex].index = checkers[logoCheckerIndex].targetIndex;
+		checkers[logoCheckerIndex].targetIndex = checkers[logoCheckerIndex].index;
+		checkers[emptyCheckerIndex].targetIndex = checkers[emptyCheckerIndex].index;
+	}
+
 	document.body.onmousemove = function(e){
 		for(var i=0;i<checkers.length;i++){
 			if(checkers[i].touched){
@@ -570,7 +626,7 @@ function makeCheckerBoard(){
 				checkers[i].el.style.opacity = 1;
 			}
 		}
-		checkCheckerPositions();
+		setTimeout(checkCheckerPositions,200);;
 	};
 }
 
@@ -579,20 +635,19 @@ function makeCheckerBoard(){
 ////////////////////////////////////////////////
 
 function checkCheckerPositions(){
+	var logoCheckers = [11,12,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38];
 	var count = 0;
 	var offset = undefined;
-	for(var i=0;i<checkers.length;i++){
-		if(checkers[i].full){
-			if(offset===undefined){
-				offset = checkers[i].index;
-			}
-			if(checkers[i].index!==i+offset){
-				count++;
-			}
+	for(var i=0;i<logoCheckers.length;i++){
+		if(offset===undefined){
+			offset = checkers[logoCheckers[i]].index-logoCheckers[i];
+		}
+		if(checkers[logoCheckers[i]].index!==logoCheckers[i]+offset){
+			count++;
 		}
 	}
-	if(count===0){
-		console.log('YOU WON!!!!!');
+	if(count===0 && checkers[logoCheckers[0]].index%xDim<3){
+		puzzleSolved=true;
 	}
 }
 
