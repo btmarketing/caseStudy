@@ -538,7 +538,7 @@ function makeCheckerBoard(){
 		var isFull = true;
 		if(i>=totalCheckers) isFull = false;
 
-		checkers[i] = new Checker(thisIndex,isFull);
+		checkers[i] = new Checker(i,isFull);
 	}
 
 	document.body.onmousemove = function(e){
