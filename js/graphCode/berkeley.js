@@ -50,8 +50,8 @@ function endBerkeley(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var berkeley_w = unitSize*4-gutter*2;
-var berkeley_h = unitSize*2-gutter*2;
+var berkeley_w = unitSize*4-gutter*2-40;
+var berkeley_h = unitSize*2-gutter*2-40;
 var berkeley_r = 80;
 
 var berkeley_vis = d3.select("#berkeleyGraph")
@@ -59,6 +59,12 @@ var berkeley_vis = d3.select("#berkeleyGraph")
     .attr('id','berkeleySVG')
     .attr("width", berkeley_w)
     .attr("height", berkeley_h);
+
+
+var berkSVG = document.getElementById('berkeleyGraph');
+berkSVG.style.position = 'absolute';
+berkSVG.style.left = '20px';
+berkSVG.style.top = '20px';
 
 var berkeley_data = [
     {"label":"June 6", "value":69612},
@@ -96,7 +102,7 @@ var berkeley_rects = berkeley_vis.selectAll("rect")
                 return ((berkeley_w/berkeley_data.length)*i)+((berkeley_w/berkeley_data.length)/4);
             })
             .attr('y',berkeley_h)
-            .attr("fill", 'rgb(85,69,140)')
+            .attr("fill", 'rgb(165,149,220)')
             .on('mouseover',function(d,i){
                 var data = d;
                 var place = i;
@@ -107,7 +113,7 @@ var berkeley_rects = berkeley_vis.selectAll("rect")
                 closeBerkeleyBar(place);
             });
 
-berkeley_vis.selectAll('.date')
+berkeley_vis.selectAll('.berkeley_date_label')
     .data(berkeley_data)
     .enter()
     .append('text')
@@ -122,13 +128,13 @@ berkeley_vis.selectAll('.date')
         return 'translate('+tempX+','+tempY+') rotate(-90)'
     })
     .attr('x',-5)
-    .attr('y',5)
-    .attr('fill','rgb(85,69,140)')
+    .attr('y',4)
+    .attr('fill','rgb(135,119,190)')
     .attr('opacity',0)
-    .attr('font-size','18px')
-    .attr('class','date')
+    .attr('font-size','14px')
+    .attr('class','berkeley_date_label')
     .attr('id',function(d,i){
-        return 'berkeley_date'+i
+        return 'berkeley_date'+i;
     })
     .attr('font-family','Helvetica')
     .on('mouseover',function(d,i){
@@ -141,25 +147,25 @@ berkeley_vis.selectAll('.date')
         closeBerkeleyBar(place);
     });
 
-berkeley_vis.selectAll('.value')
+berkeley_vis.selectAll('.berkeley_value_graph')
     .data(berkeley_data)
     .enter()
     .append('text')
     .attr("text-anchor", "middle")
     .text(function(d,i){
-        return Math.floor(d.value/1000)+'';
+        return Math.floor(d.value/1000)+'k';
     })
     .attr('x',function(d,i){
-        return ((berkeley_w/berkeley_data.length)*i)+((berkeley_w/berkeley_data.length)/4)+6;
+        return ((berkeley_w/berkeley_data.length)*i)+((berkeley_w/berkeley_data.length)/4)+5;
     })
     .attr('y',function(d,i){
         var scaled = (d.value-berkeley_min)/berkeley_diff*1;
         return berkeley_h-(scaled*berkeley_h)-3;
     })
-    .attr('fill','rgb(85,69,140)')
+    .attr('fill','rgb(165,149,220)')
     .attr('opacity',0)
-    .attr('font-size','22px')
-    .attr('class','value')
+    .attr('font-size','14px')
+    .attr('class','berkeley_value_graph')
     .attr('id',function(d,i){
         return 'berkeley_value'+i
     })
@@ -180,8 +186,9 @@ function openBerkeleyBar(data,place){
             return berkeley_h-(scaled*berkeley_h);
         })
         .transition()
+        .ease('bounce')
         .duration(100)
-        .attr('fill','rgb(165,149,220)')
+        .attr('fill','rgb(200,184,255)')
         .attr('width',function(){
             return (berkeley_w/berkeley_data.length)*1.1;
         })
@@ -190,19 +197,21 @@ function openBerkeleyBar(data,place){
         });
     d3.select('#berkeley_date'+place)
         .transition()
-        .duration(500)
+        .duration(100)
         .attr('opacity',1);
 
     d3.select('#berkeley_value'+place)
         .transition()
-        .duration(500)
+        .duration(100)
         .attr('opacity',1);
 }
 
 function closeBerkeleyBar(place){
-    d3.select('#berkeley_rect_'+place).transition()
-        .duration(300)
-        .attr('fill','rgb(85,69,140)')
+    d3.select('#berkeley_rect_'+place)
+        .transition()
+        .duration(1000)
+        .ease('bounce')
+        .attr('fill','rgb(165,149,220)')
         .attr('width',function(){
             return (berkeley_w/berkeley_data.length)/2;
         })
