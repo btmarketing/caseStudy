@@ -869,12 +869,19 @@ footer a:hover {
   margin-bottom: 4px;
   text-align: center;
   padding-top: 65px;
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
 }
 .t_top h2 {
   font-size: 20px;
   color: #ffffff;
   margin: 0;
   font-weight: 300;
+}
+.t_top:hover {
+  background: #ac9cdf;
 }
 .previous {
   float: left;
@@ -951,10 +958,12 @@ footer a:hover {
   font-size: 52px;
   font-weight: 400;
   line-height: 88px;
-  -webkit-transition-duration: 500ms;
-  -moz-transition-duration: 500ms;
-  -o-transition-duration: 500ms;
-  transition-duration: 500ms;
+  overflow: hidden;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
 }
 .d_bottom {
   background-color: #cccccc;
@@ -964,10 +973,20 @@ footer a:hover {
   font-size: 13px;
   text-align: center;
   line-height: 20px;
-  -webkit-transition-duration: 500ms;
-  -moz-transition-duration: 500ms;
-  -o-transition-duration: 500ms;
-  transition-duration: 500ms;
+  overflow: hidden;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
+}
+.d_bottom p {
+  margin: 0;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
 }
 .r1_top {
   background-color: #7665ac;
@@ -976,9 +995,16 @@ footer a:hover {
   padding: 20px 10px 20px 20px;
   font-size: 13px;
   line-height: 17px;
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
 }
 .r1_top p {
   margin: 2px 0;
+}
+.r1_top:hover {
+  background-color: #887daa;
 }
 .r1_bottom {
   background-color: #594c81;
@@ -1058,19 +1084,102 @@ footer a:hover {
   background-color: #aca2cc;
   height: 100px;
 }
-.double:hover .d_top {
+.long_2 span,
+.double span {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #66b3ff;
+  height: 90px;
+  opacity: 0;
+  -webkit-transition: opacity 600ms ease-in-out;
+  -moz-transition: opacity 600ms ease-in-out;
+  -o-transition: opacity 600ms ease-in-out;
+  -ms-transition: opacity 600ms ease-in-out;
+  transition: opacity 600ms ease-in-out;
+  text-align: center;
+  overflow: hidden;
+}
+.long_2 h1,
+.double h1 {
+  font-weight: 300;
+  color: #ffffff;
+  display: inline;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
+  position: absolute;
+  top: -80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 27px 0;
+}
+.d_top.download,
+.d_top.double {
+  line-height: 88px;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
+}
+div.long_2:hover .d_top.download,
+div.double:hover .d_top.download {
+  background-color: #66b3ff;
+  height: 90px;
+  line-height: 200px;
+}
+.long_2:hover h1,
+.double:hover h1 {
+  top: 0;
+}
+div.long_2:hover .d_bottom.download,
+div.double:hover .d_bottom.download {
+  background-color: #1a8dff;
+  height: 6px;
+}
+div.long_2:hover .d_bottom.download p,
+div.double:hover .d_bottom.download p {
+  opacity: 0;
+  line-height: 55px;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -ms-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
+}
+.long_2:hover span,
+.double:hover span {
+  opacity: 1;
+}
+div.long_1:hover .d_top.orange,
+div.long_2:hover .d_top.orange,
+div.double:hover .d_top.orange {
   background-color: #e47976;
   color: #ffffff;
 }
-.double:hover .d_bottom {
+div.long_1:hover .d_bottom.orange,
+div.long_2:hover .d_bottom.orange,
+div.double:hover .d_bottom.orange {
   background-color: #db4c47;
   color: #ffffff;
 }
-.fadeOrange:hover {
-  background: #e47976;
+div.long_1:hover .d_top.blue,
+div.long_2:hover .d_top.blue,
+div.double:hover .d_top.blue {
+  background-color: #66b3ff;
+  color: #ffffff;
 }
-.fadeOrange:hover .d_bottom {
-  background: #db4c47;
+div.long_1:hover .d_bottom.blue,
+div.long_2:hover .d_bottom.blue,
+div.double:hover .d_bottom.blue {
+  background-color: #3399ff;
+  color: #ffffff;
 }
 .r2_top.death_grips {
   background-position: 0 0px;

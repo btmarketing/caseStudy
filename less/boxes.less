@@ -61,12 +61,17 @@
   margin-bottom: @padding;
   text-align: center;
   padding-top: @titlePadding;
+  .transition-duration(@transitionDuration);
   h2 {
     font-size: 20px;
     color: #ffffff;
     margin: 0;
     font-weight: 300;
   }
+}
+
+.t_top:hover {
+  background: #AC9CDF
 }
 
 .previous {
@@ -148,7 +153,8 @@
   font-size: 52px;
   font-weight: 400;
   line-height: 88px;
-  .transition-duration(@transitionDuration);
+  overflow: hidden;
+  .transition(~"all 600ms ease-in-out");
 }
 
 .d_bottom {
@@ -159,7 +165,10 @@
   font-size: @bodyFontSize;
   text-align: center;
   line-height: 20px;
-  .transition-duration(@transitionDuration);
+  p {margin:0;
+  .transition(~"all 600ms ease-in-out");}
+  overflow: hidden;
+  .transition(~"all 600ms ease-in-out");
 }
 
 .r1_top {
@@ -169,9 +178,13 @@
   padding: @boxPadding 10px @boxPadding @boxPadding;
   font-size: 13px;
   line-height: 17px;
+  .transition-duration(@transitionDuration);
   p {margin:2px 0;}
 }
 
+.r1_top:hover {
+  background-color: #887daa;
+}
 .r1_bottom {
   background-color: @purpleDark;
   height: @borderHeight;
@@ -243,25 +256,99 @@
 }
 
 
-// EXTRA FADE ANIMATIONS
+.long_2, .double{
+  span {
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background: @blue;
+    height: 90px;
+    opacity: 0;
+    .transition(~"opacity 600ms ease-in-out");
+    text-align: center;
+    overflow: hidden;
+  }
+  h1 {
+    font-weight: 300;
+    color: #ffffff;
+    display:inline;
+    .transition(~"all 600ms ease-in-out");
+    position: absolute;
+    top: -80px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 27px 0;
+  }
+}
 
-.double:hover .d_top {
+.d_top.download, .d_top.double {
+  line-height: 88px;
+  .transition(~"all 600ms ease-in-out");
+}
+
+
+
+
+div.long_2:hover .d_top.download, 
+div.double:hover .d_top.download, {
+  background-color: @blue;
+  height: 90px;
+  line-height: 200px;  
+}
+
+.long_2:hover h1 , .double:hover h1{
+    top: 0;
+}
+
+div.long_2:hover .d_bottom.download, 
+div.double:hover .d_bottom.download {
+  background-color: @blueBorder;
+  height: 6px;
+  p {
+    opacity: 0;
+    line-height: 55px;
+    .transition(~"all 600ms ease-in-out");
+  }
+}
+
+.long_2:hover, 
+.double:hover{
+  span {opacity: 1;}
+}
+
+// FADE ANIMATION FOR 2 GRAY INFO BOXES (NOT DOWNLOAD BOX)
+
+div.long_1:hover .d_top.orange, 
+div.long_2:hover .d_top.orange, 
+div.double:hover .d_top.orange {
   background-color: @orangeLight;
   color: #ffffff;
 }
 
-.double:hover .d_bottom {
+div.long_1:hover .d_bottom.orange, 
+div.long_2:hover .d_bottom.orange, 
+div.double:hover .d_bottom.orange {
   background-color: @orangeLightBorder;
   color: #ffffff;
 }
 
-.fadeOrange:hover {
-  background: @orangeLight;
+div.long_1:hover .d_top.blue, 
+div.long_2:hover .d_top.blue, 
+div.double:hover .d_top.blue {
+  background-color: @blueLight;
+  color: #ffffff;
 }
 
-.fadeOrange:hover .d_bottom {
-    background: @orangeLightBorder;
-  };
+div.long_1:hover .d_bottom.blue, 
+div.long_2:hover .d_bottom.blue, 
+div.double:hover .d_bottom.blue {
+  background-color: @blueLightBorder;
+  color: #ffffff;
+}
+
 // QUOTE BACKGROUNDS
 
 .r2_top.death_grips {
