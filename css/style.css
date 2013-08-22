@@ -843,11 +843,12 @@ footer a:hover {
 /*  ### INDIVIDUAL BOX CSS ### */
 .title {
   text-align: center;
-  background-color: #9184bd;
-  -webkit-transition-duration: 500ms;
-  -moz-transition-duration: 500ms;
-  -o-transition-duration: 500ms;
-  transition-duration: 500ms;
+  background: #9184bd;
+  -webkit-transition: backgbround 600ms ease-in-out;
+  -moz-transition: backgbround 600ms ease-in-out;
+  -o-transition: backgbround 600ms ease-in-out;
+  -ms-transition: backgbround 600ms ease-in-out;
+  transition: backgbround 600ms ease-in-out;
 }
 .title h2 {
   font-size: 20px;
@@ -856,7 +857,7 @@ footer a:hover {
   font-weight: 300;
 }
 .title:hover {
-  background: #AC9CDF;
+  background: #ac9cdf;
 }
 .previous {
   float: left;
