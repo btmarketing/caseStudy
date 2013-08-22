@@ -2,15 +2,16 @@
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+var caseStudy_loadingPercentage = 0;
+
 function initCaseStudy(img){
+
+    document.getElementById('whiteScreen').innerHTML = '<h1>Loading - '+caseStudy_loadingPercentage+'%</h1>';
     resized();
-    console.log('loading - one');
     makeCheckerBoard();
-    console.log('loading - two');
     splitImage(img);
-    console.log('loading - three');
     createBuckets();
-    console.log('loading - four');
+
     loadCoverPhotos(0);
 }
 
@@ -46,6 +47,10 @@ function splitImage(image,ordered){
 var coverPhotos = [];
 
 function loadCoverPhotos(i){
+
+    caseStudy_loadingPercentage+=Math.floor(100/buckets.length);
+    document.getElementById('whiteScreen').innerHTML = '<h1>Loading - '+caseStudy_loadingPercentage+'%</h1>';
+
     var temp = document.createElement('img');
     temp.src = 'img/coverPhotos/'+i+'.png';
     temp.onload = function(){
