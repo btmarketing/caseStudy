@@ -15,7 +15,7 @@ function Checker(startIndex,isFull){
 	this.stepCount = 0;
 	this.stepAmount = 2.5;
 
-	this.seemStep = gutter/4;
+	this.seemStep = gutter/2;
 
 	this.shrunk = true;
 	this.grown = false;

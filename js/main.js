@@ -114,7 +114,13 @@ var currentCoords = 0;
 function changeNavigation(index,dontSplitImage){
     if(currentNavigation!==index){
 
-        //updateAllCheckerPositions();
+        if(currentNavigation===-1){
+            puzzleSolved=true;
+            checkerGrayscale=0;
+            updateCheckerGrayscale(false);
+        }
+
+        updateAllCheckerPositions();
 
         document.getElementById('checkerBoard').style.display = 'inline';
         currentCoords = (currentCoords+1)%coordinates.length;

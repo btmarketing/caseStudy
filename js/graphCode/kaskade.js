@@ -5,6 +5,14 @@
 var kaskade_w = unitSize*4-gutter*2;
 var kaskade_h = unitSize*2-gutter*2;
 
+var kaskadeDiv = document.getElementById('kaskadeGraph_div');
+var kaskadeGif = document.createElement('img')
+kaskadeGif.src = 'img/static.gif';
+kaskadeGif.style.position = 'absolute';
+kaskadeGif.style.left = '0px';
+kaskadeGif.style.top = '0px';
+kaskadeDiv.appendChild(kaskadeGif);
+
 var kaskade_vis = d3.select('#kaskadeGraph_div')
 	.append('svg')
 	.attr('width',kaskade_w)
