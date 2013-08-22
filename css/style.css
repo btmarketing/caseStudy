@@ -843,28 +843,20 @@ footer a:hover {
 /*  ### INDIVIDUAL BOX CSS ### */
 .title {
   text-align: center;
-  background: #efefef;
   background-color: #9184bd;
-}
-.t_top {
-  background-color: #9184bd;
-  height: 81px;
-  margin-bottom: 4px;
-  text-align: center;
-  padding-top: 65px;
   -webkit-transition-duration: 500ms;
   -moz-transition-duration: 500ms;
   -o-transition-duration: 500ms;
   transition-duration: 500ms;
 }
-.t_top h2 {
+.title h2 {
   font-size: 20px;
   color: #ffffff;
-  margin: 0;
+  margin: 39px 0;
   font-weight: 300;
 }
-.t_top:hover {
-  background: #ac9cdf;
+.title:hover {
+  background: #AC9CDF;
 }
 .previous {
   float: left;
