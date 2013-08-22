@@ -41,46 +41,6 @@
   .transition(~"backgbround 600ms ease-in-out");
 }
 
-.previous {
-  float:left;
-  background-color: @grayLight;
-  height: (((@boxHeight / 2) - (@padding / 2)) - @borderHeight);
-  width: @boxHeight;
-  border-bottom: solid @grayDark @borderHeight;
-  color: #606060;
-  .transition-duration(@transitionDuration);
-}
-
-.previous:hover {
-  background-color: @orangeLight;
-  border-bottom: solid @borderHeight @orangeLightBorder;
-  color: #ffffff;
-  //.transition-duration(@transitionDuration);
-  //.transition(~"all 1s ease-in-out");
-}
-
-.next {
-  float:right;
-  background: @grayLight;
-  height: (((@boxHeight / 2) - (@padding / 2)) - @borderHeight);
-  width: @boxHeight;
-  border-bottom: solid @grayDark @borderHeight;
-  color: #606060;
-  .transition-duration(@transitionDuration);
-}
-
-.next:hover {
-  background-color: @blueLight;
-  border-bottom: solid @borderHeight @blueLightBorder;
-  color: #ffffff;
-}
-
-
-.t_bottom {
-  height: ((@boxHeight / 2) - (@padding / 2));
-  font-size: @bodyFontSize;
-}
-
 .u1_top {
   background-color: @purpleLightest;
   background-position-y: 0;

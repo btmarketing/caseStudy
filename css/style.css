@@ -864,44 +864,6 @@ footer a:hover {
   -ms-transition: backgbround 600ms ease-in-out;
   transition: backgbround 600ms ease-in-out;
 }
-.previous {
-  float: left;
-  background-color: #cccccc;
-  height: 40px;
-  width: 96px;
-  border-bottom: solid #b4b4b4 6px;
-  color: #606060;
-  -webkit-transition-duration: 500ms;
-  -moz-transition-duration: 500ms;
-  -o-transition-duration: 500ms;
-  transition-duration: 500ms;
-}
-.previous:hover {
-  background-color: #e47976;
-  border-bottom: solid 6px #db4c47;
-  color: #ffffff;
-}
-.next {
-  float: right;
-  background: #cccccc;
-  height: 40px;
-  width: 96px;
-  border-bottom: solid #b4b4b4 6px;
-  color: #606060;
-  -webkit-transition-duration: 500ms;
-  -moz-transition-duration: 500ms;
-  -o-transition-duration: 500ms;
-  transition-duration: 500ms;
-}
-.next:hover {
-  background-color: #66b3ff;
-  border-bottom: solid 6px #3399ff;
-  color: #ffffff;
-}
-.t_bottom {
-  height: 46px;
-  font-size: 13px;
-}
 .u1_top {
   background-color: #bfb9d3;
   background-position-y: 0;
