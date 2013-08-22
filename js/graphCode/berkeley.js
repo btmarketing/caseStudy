@@ -118,7 +118,6 @@ berkeley_vis.selectAll('line.berkeley_coordLine')
         .attr('x1',52)
         .attr('x2',berkeley_w-20)
         .attr('y1',function(d){
-            console.log(d);
             return berkeley_h*d;
         })
         .attr('y2',function(d){

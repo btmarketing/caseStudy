@@ -4,9 +4,13 @@
 
 function initCaseStudy(img){
     resized();
+    console.log('loading - one');
     makeCheckerBoard();
+    console.log('loading - two');
     splitImage(img);
+    console.log('loading - three');
     createBuckets();
+    console.log('loading - four');
     loadCoverPhotos(0);
 }
 
