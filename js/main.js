@@ -80,9 +80,24 @@ function createBuckets(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+function prev(){
+    var newIndex = currentNavigation-1;
+    if(newIndex<0) newIndex = buckets.length-1;
+    changeNavigation(newIndex);
+}
+
+function next(){
+    var newIndex = currentNavigation+1;
+    if(newIndex>=buckets.length) newIndex = 0;
+    changeNavigation(newIndex);
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
 function masterLoop(){
     resizeTest();
-    if(checkerGrayscale>0 && puzzleSolved) updateCheckerGrayscale(true);
     updateCheckers();
     updateBuckets();
     requestAnimFrame(masterLoop);
@@ -92,35 +107,13 @@ function masterLoop(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-function prev(){
-    var i = currentNavigation-1;
-    if(i<0) i=buckets.length-1;
-    changeNavigation(i);
-}
-
-function next(){
-    var i = currentNavigation+1;
-    if(i>=buckets.length) i=0;
-    changeNavigation(i);
-}
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
 var currentNavigation = -1;
 var currentCoords = 0;
 
-function changeNavigation(index,dontSplitImage){
+function changeNavigation(index){
     if(currentNavigation!==index){
 
-        if(currentNavigation===-1){
-            puzzleSolved=true;
-            checkerGrayscale=0;
-            updateCheckerGrayscale(false);
-        }
-
-        updateAllCheckerPositions();
+        //updateAllCheckerPositions();
 
         document.getElementById('checkerBoard').style.display = 'inline';
         currentCoords = (currentCoords+1)%coordinates.length;
@@ -135,7 +128,7 @@ function changeNavigation(index,dontSplitImage){
 
         currentNavigation=index;
 
-        if(!dontSplitImage) splitImage(coverPhotos[currentNavigation],true);
+        splitImage(coverPhotos[currentNavigation],true);
 
         buckets[currentNavigation].select();
     }
