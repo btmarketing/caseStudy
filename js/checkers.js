@@ -46,9 +46,9 @@ function Checker(startIndex,isFull){
 		this.el.style.backgroundColor = 'rgb(150,150,150)';
 		//this.el.style.overflow = 'auto';
 		this.el.onmousedown = function(e){
-			if(that.shrunk && !that.grown){
+			if(that.shrunk && !that.grown && !buckets[currentNavigation]){
 				that.el.style.opacity = .75;
-				endRandomSorting();
+				//endRandomSorting();
 				var tempX = e.x;
 				var tempY = e.y;
 				if(!tempX){
@@ -618,7 +618,7 @@ function checkCheckerPositions(){
 			count++;
 		}
 	}
-	if(count===0 && checkers[logoCheckers[0]].index%xDim<3){
+	if(count===0 && checkers[logoCheckers[0]].index%xDim<3 && !buckets[currentNavigation]){
 		puzzleSolved=true;
 		console.log('yay');
 	}
