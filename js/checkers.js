@@ -553,48 +553,20 @@ function makeCheckerBoard(){
 	}
 
 	//array for randomly pulling start indexes for each checker
-	var availableIndexes = [];
-	for(var i=0;i<xDim*yDim;i++){
-		availableIndexes[i] = i;
-	}
+	var scrambleIndexes = [0,1,49,3,4,45,6,7,8,9,10,11,12,13,14,15,16,17,44,19,41,20,22,23,24,25,26,27,18,29,30,31,42,33,34,35,36,37,38,39,40,21,32,43,28,5,46,47,48,2];
 
 	//for each slot, make a checker
 	for(var i=0;i<xDim*yDim;i++){
 
 		//with a random starting point
-		var rIndex = Math.floor(Math.random()*availableIndexes.length);
-		var thisIndex = availableIndexes[rIndex];
+		var thisIndex = scrambleIndexes[i];
 		//var thisIndex = i;
-		availableIndexes.splice(rIndex,1);
 
 		//if we've already made all our full checkers, make empty ones
 		var isFull = true;
 		if(i>=totalCheckers) isFull = false;
 
-		checkers[i] = new Checker(i,isFull);
-	}
-
-	var logoCheckers = [11,12,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38];
-	var availableEmptyCheckers = [41,42,43,44,45,46,47,48,49];
-
-	for(var y=0;y<3;y++){
-
-		var tempIndex = Math.floor(Math.random()*logoCheckers.length);
-		var logoCheckerIndex = logoCheckers[tempIndex];
-		logoCheckers.splice(tempIndex,1);
-
-		var direction = Math.floor(Math.random()*4);
-		if(direction===0) tempIndex = logoCheckerIndex+xDim;
-		else if(direction===1) tempIndex = logoCheckerIndex+1;
-		else if(direction===2) tempIndex = logoCheckerIndex-1;
-		else if(direction===3) tempIndex = logoCheckerIndex+xDim;
-
-		var emptyCheckerIndex = tempIndex;
-
-		checkers[logoCheckerIndex].index = checkers[emptyCheckerIndex].targetIndex;
-		checkers[emptyCheckerIndex].index = checkers[logoCheckerIndex].targetIndex;
-		checkers[logoCheckerIndex].targetIndex = checkers[logoCheckerIndex].index;
-		checkers[emptyCheckerIndex].targetIndex = checkers[emptyCheckerIndex].index;
+		checkers[i] = new Checker(thisIndex,isFull);
 	}
 
 	document.body.onmousemove = function(e){
@@ -635,7 +607,7 @@ function makeCheckerBoard(){
 ////////////////////////////////////////////////
 
 function checkCheckerPositions(){
-	var logoCheckers = [11,12,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38];
+	var logoCheckers = [11,12,13,14,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38];
 	var count = 0;
 	var offset = undefined;
 	for(var i=0;i<logoCheckers.length;i++){

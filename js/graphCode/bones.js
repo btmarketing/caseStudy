@@ -180,7 +180,7 @@ d3.select('#bonesSVG').selectAll('circle.bones_circleOuter')
         .append('circle')
         .attr('class','bones_circleOuter')
         .attr('fill','white')
-        .attr('opacity',.1)
+        .attr('opacity',.2)
         .attr('r',0)
         .attr('cy',function(d){
             if(d.label==='BitTorrent'){
@@ -205,7 +205,7 @@ d3.select('#bonesSVG').selectAll('circle.bones_circleInner')
         .append('circle')
         .attr('class','bones_circleInner')
         .attr('fill','white')
-        .attr('opacity',.1)
+        .attr('opacity',.2)
         .attr('r',0)
         .attr('cy',function(d){
             if(d.label==='BitTorrent'){

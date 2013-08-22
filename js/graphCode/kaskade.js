@@ -84,7 +84,7 @@ kaskade_vis.selectAll('text.kaskade_text')
 		})
 		.text(function(d){
 			if(d.label==='BitTorrent'){
-				return d.value/1000000+' million';
+				return d.value/1000000+'mm';
 			}
 			else{
 				return d.value/1000+'k';

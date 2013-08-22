@@ -627,7 +627,7 @@ function initGripsGraph(){
 			.attr('y',0)
 			.attr('width',grips_w)
 			.attr('height',grips_h)
-			.attr('opacity',.8)
+			.attr('opacity',.7)
 			.attr('fill','rgb(90,76,134)')
 			.on('mouseover',function(){
 				if(grips_animating){
@@ -664,7 +664,7 @@ function initGripsGraph(){
 					gripsViz.selectAll('rect')
 						.transition()
 						.duration(1000)
-						.attr('opacity',.8);
+						.attr('opacity',.7);
 					gripsViz.selectAll('line.grips_coordLine')
 						.transition()
 						.duration(500)

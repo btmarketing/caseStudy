@@ -105,9 +105,9 @@ function makeChart(index){
 			.attr('class','publicEnemy_coord')
 			.attr('x1',40)
 			.attr('x2',publicEnemy_w-40)
-			.attr('stroke','white')
+			.attr('stroke','#9184bd')
 			.attr('stroke-width',1)
-			.attr('opacity',.4)
+			.attr('opacity',.7)
 			.attr('y1',function(d){
 				return publicEnemy_h-publicEnemy_h*d;
 			})
@@ -120,11 +120,9 @@ function makeChart(index){
 		.enter()
 			.append('text')
 			.attr('class','publicEnemy_coord_text')
-			.attr('x',function(){
-				return 15;
-			})
-			.attr('fill','white')
-			.attr('opacity',.4)
+			.attr('x',20)
+			.attr('fill','#9184bd')
+			.attr('opacity',.7)
 			.attr('font-size',13)
 			.attr('y',function(d){
 				return publicEnemy_h-publicEnemy_h*d+3;
@@ -146,22 +144,19 @@ function makeChart(index){
 				if(publicEnemy_ready){
 					pe_viz.selectAll('.publicEnemy_path')
 						.transition()
-						.duration(function(){
+						.duration(100)
+						.attr('fill',function(){
 							if(this!==that){
-								return 80;
+								return '#3b3356';
 							}
 							else{
-								return 200;
-							}
-						})
-						.attr('opacity',function(){
-							if(this!==that){
-								return 0.2;
-							}
-							else{
-								return 1;
+								return '#bfb9d3';
 							}
 						});
+					pe_viz.selectAll('.publicEnemy_line')
+						.transition()
+						.duration(100)
+						.attr('opacity',0)
 					pe_viz.select('#publicEnemy_text_'+type)
 						.transition()
 						.duration(100)
@@ -172,8 +167,12 @@ function makeChart(index){
 				if(publicEnemy_ready){
 					pe_viz.selectAll('.publicEnemy_path')
 						.transition()
-						.duration(700)
-						.attr('opacity',.5);
+						.duration(400)
+						.attr('fill','#3b3356');
+					pe_viz.selectAll('.publicEnemy_line')
+						.transition()
+						.duration(300)
+						.attr('opacity',.5)
 					pe_viz.select('#publicEnemy_text_'+type)
 						.transition()
 						.duration(100)
@@ -181,14 +180,14 @@ function makeChart(index){
 				}
 			});
 
-	pe_viz.select('#publicEnemy_group_'+type)
-		.append('path')
-			.attr('id','publicEnemy_line_'+type)
-			.attr('class','publicEnemy_line')
-			.datum(publicEnemy_empty)
-			.attr('d',pe_line)
-			.attr('opacity',1)
-			.attr('fill','white');
+	pe_viz.append('path')
+		.attr('id','publicEnemy_line_'+type)
+		.attr('class','publicEnemy_line')
+		.datum(publicEnemy_empty)
+		.attr('d',pe_line)
+		.attr('stroke-width',1)
+		.attr('opacity',.5)
+		.attr('stroke','#594c81');
 
 	pe_viz.append('text')
 		.attr('id',function(){
@@ -197,12 +196,12 @@ function makeChart(index){
 		.attr('text-anchor','start')
 		.attr('fill','white')
 		.attr('opacity',0)
-		.attr('font-size',20)
+		.attr('font-size',13)
 		.text(function(){
 			return type+' Conversations';
 		})
-		.attr('x',0)
-		.attr('y',20);
+		.attr('x',20)
+		.attr('y',30);
 
 	var newIndex = index+1;
 	if(newIndex<publicEnemby_types.length){
@@ -240,6 +239,9 @@ function publicEnemy_close(){
 		pe_viz.select('#publicEnemy_path_'+type)
 			.datum(publicEnemy_empty)
 			.attr('d',pe_area);
+		pe_viz.select('#publicEnemy_line_'+type)
+			.datum(publicEnemy_empty)
+			.attr('d',pe_line);
 	}
 }
 
