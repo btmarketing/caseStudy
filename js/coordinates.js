@@ -6,7 +6,7 @@ var dimensions = {
 	'title': {
 		'name':'title',
 		'width':2,
-		'height':2
+		'height':1
 	},
 	'big': {
 		'name':'big',

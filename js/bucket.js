@@ -6,7 +6,7 @@ function Bucket(bucket,_index,isLast){
 	this.el = bucket;
 	//find the title div
 	var tempDiv = this.el.getElementsByClassName('title')[0].children[0];
-	this.title = tempDiv.children[0].innerHTML;
+	this.title = tempDiv.innerHTML;
 	this.index = _index;
 
 	this.totalGrown = 0;
