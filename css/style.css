@@ -844,11 +844,11 @@ footer a:hover {
 .title {
   text-align: center;
   background: #9184bd;
-  -webkit-transition: backgbround 600ms ease-in-out;
-  -moz-transition: backgbround 600ms ease-in-out;
-  -o-transition: backgbround 600ms ease-in-out;
-  -ms-transition: backgbround 600ms ease-in-out;
-  transition: backgbround 600ms ease-in-out;
+  -webkit-transition: background 600ms ease-in-out;
+  -moz-transition: background 600ms ease-in-out;
+  -o-transition: background 600ms ease-in-out;
+  -ms-transition: background 600ms ease-in-out;
+  transition: background 600ms ease-in-out;
 }
 .title h2 {
   font-size: 20px;
@@ -857,7 +857,12 @@ footer a:hover {
   font-weight: 300;
 }
 .title:hover {
-  background: #ac9cdf;
+  background: #AC9CDF;
+  -webkit-transition: backgbround 600ms ease-in-out;
+  -moz-transition: backgbround 600ms ease-in-out;
+  -o-transition: backgbround 600ms ease-in-out;
+  -ms-transition: backgbround 600ms ease-in-out;
+  transition: backgbround 600ms ease-in-out;
 }
 .previous {
   float: left;
