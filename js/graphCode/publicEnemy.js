@@ -72,12 +72,12 @@ var pe_area = d3.svg.area()
 	.x(function(d,i) { return ((publicEnemy_w)/(publicEnemy_data.Total.array.length-1))*i; })
 	.y0(publicEnemy_h)
 	.y1(function(d,i) { return publicEnemy_h-d/publicEnemy_divider; })
-	.interpolate("basis");
+	//.interpolate("basis");
 
 var pe_line = d3.svg.area()
 	.x(function(d,i) { return (publicEnemy_w/(publicEnemy_data.Total.array.length-1))*i; })
-	.y(function(d,i) { return publicEnemy_h-d/publicEnemy_divider; })
-	.interpolate("basis");
+	.y(function(d,i) { return publicEnemy_h-d/publicEnemy_divider; });
+	//.interpolate("basis");
 
 var publicEnemby_types = ['Total','Twitter','News','Blog','Forums'];
 for(var i=0;i<publicEnemby_types.length;i++){
@@ -133,28 +133,35 @@ function makeChart(index){
 				return Math.floor((d*publicEnemy_h*publicEnemy_divider)/1000)+'k';
 			});
 
-	pe_viz.append('g')
-		.attr('id','publicEnemy_group_dynamic')
-		.append('path')
-			.attr('id','publicEnemy_path_dynamic');
-
 	pe_viz.select('#publicEnemy_group_'+type)
 		.append('path')
 			.attr('id','publicEnemy_path_'+type)
+			.attr('class','publicEnemy_path')
 			.datum(publicEnemy_empty)
 			.attr('d',pe_area)
-			.attr('opacity',0)
+			.attr('opacity',.5)
 			.attr('fill','#3b3356')
 			.on('mouseover',function(d){
+				var that=this;
 				if(publicEnemy_ready){
-					pe_viz.select('#publicEnemy_line_'+type)
+					pe_viz.selectAll('.publicEnemy_path')
 						.transition()
-						.duration(100)
-						.attr('opacity',1);
-					pe_viz.select('#publicEnemy_path_'+type)
-						.transition()
-						.duration(100)
-						.attr('opacity',1);
+						.duration(function(){
+							if(this!==that){
+								return 80;
+							}
+							else{
+								return 200;
+							}
+						})
+						.attr('opacity',function(){
+							if(this!==that){
+								return 0.2;
+							}
+							else{
+								return 1;
+							}
+						});
 					pe_viz.select('#publicEnemy_text_'+type)
 						.transition()
 						.duration(100)
@@ -163,14 +170,10 @@ function makeChart(index){
 			})
 			.on('mouseout',function(d){
 				if(publicEnemy_ready){
-					pe_viz.select('#publicEnemy_line_'+type)
+					pe_viz.selectAll('.publicEnemy_path')
 						.transition()
-						.duration(100)
-						.attr('opacity',.3);
-					pe_viz.select('#publicEnemy_path_'+type)
-						.transition()
-						.duration(100)
-						.attr('opacity',0);
+						.duration(700)
+						.attr('opacity',.5);
 					pe_viz.select('#publicEnemy_text_'+type)
 						.transition()
 						.duration(100)
@@ -178,26 +181,27 @@ function makeChart(index){
 				}
 			});
 
-	pe_viz.append('path')
-		.attr('id','publicEnemy_line_'+type)
-		.datum(publicEnemy_empty)
-		.attr('d',pe_line)
-		.attr('stroke-width',2)
-		.attr('opacity',.3)
-		.attr('stroke','white');
+	pe_viz.select('#publicEnemy_group_'+type)
+		.append('path')
+			.attr('id','publicEnemy_line_'+type)
+			.attr('class','publicEnemy_line')
+			.datum(publicEnemy_empty)
+			.attr('d',pe_line)
+			.attr('opacity',1)
+			.attr('fill','white');
 
 	pe_viz.append('text')
 		.attr('id',function(){
 			return 'publicEnemy_text_'+type;
 		})
-		.attr('text-anchor','left')
+		.attr('text-anchor','start')
 		.attr('fill','white')
 		.attr('opacity',0)
 		.attr('font-size',20)
 		.text(function(){
 			return type+' Conversations';
 		})
-		.attr('x',10)
+		.attr('x',0)
 		.attr('y',20);
 
 	var newIndex = index+1;
@@ -236,9 +240,6 @@ function publicEnemy_close(){
 		pe_viz.select('#publicEnemy_path_'+type)
 			.datum(publicEnemy_empty)
 			.attr('d',pe_area);
-		pe_viz.select('#publicEnemy_line_'+type)
-			.datum(publicEnemy_empty)
-			.attr('d',pe_line);
 	}
 }
 

@@ -50,10 +50,15 @@ kaskade_vis.selectAll('rect.kaskade_rect')
 		.attr('y',kaskade_h)
 		.attr('height',0)
 		.attr('x',function(d,i){
-			return kaskade_w*.5*i+20;
+			if(i===0){
+				return kaskade_w*.5*i+20;
+			}
+			else{
+				return kaskade_w/2+2;
+			}
 		})
 		.attr('width',function(){
-			return kaskade_w/2-40;
+			return kaskade_w/2-22;
 		})
 		.attr('fill',function(d){
 			return d.color;
@@ -275,10 +280,10 @@ function kaskade_revealData(){
 				.duration(200)
 				.attr('x',function(d){
 					if(d.label==='BitTorrent'){
-						return kaskade_w*.25;
+						return kaskade_w*.27;
 					}
 					else{
-						return kaskade_w*.75;
+						return kaskade_w*.73;
 					}
 				});
 		});

@@ -553,7 +553,7 @@ function initGripsGraph(){
 			.attr('class','grips_coordLine_data')
 			.attr('text-anchor','left')
 			.attr('x',0)
-			.attr('font-size',14)
+			.attr('font-size',13)
 			.attr('fill','white')
 			.attr('y',function(d){
 				if(d>0){

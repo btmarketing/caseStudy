@@ -92,15 +92,15 @@ var bones_pie = d3.layout.pie()
     });
 
 var bones_bt_line = [
-    [70,bones_h*.2],
-    [bones_w/3,bones_h*.2],
+    [50,bones_h*.2],
+    [bones_w*.25,bones_h*.2],
     [bones_w*.4,bones_h*.4]
 ];
 
 var bones_other_line = [
-    [bones_w-70,bones_h*.2],
-    [bones_w*.66,bones_h*.2],
-    [bones_w*.6,bones_h*.4]
+    [bones_w-50,bones_h*.2],
+    [bones_w*.8,bones_h*.2],
+    [bones_w*.55,bones_h*.6]
 ];
 
 var bones_arcs = bones_vis.selectAll("g.slice")
@@ -160,16 +160,16 @@ d3.select('#bonesSVG').selectAll('text.bones_label')
                 return 'end';
             }
         })
-        .attr('font-size','16px')
+        .attr('font-size','13px')
         .attr('y',function(){
-            return bones_h-bones_bt_line[0][1];
+            return bones_h-1;
         })
         .attr('x',function(d){
             if(d.label==='BitTorrent'){
-                return bones_bt_line[0][0]-45;
+                return 0;
             }
             else{
-                return bones_other_line[0][0]+45;
+                return bones_w;
             }
         })
         .text(function(d, i) {return bones_data[i].label; });
@@ -335,6 +335,30 @@ d3.select('#bonesSVG').selectAll('line.bones_lineTwo')
             }
         });
 
+d3.select('#bonesSVG').selectAll('circle.bones_lineCircle')
+    .data(bones_data)
+    .enter()
+        .append('circle')
+        .attr('class','bones_lineCircle')
+        .attr('fill','white')
+        .attr('cx',function(d){
+            if(d.label==='BitTorrent'){
+                return bones_bt_line[2][0];
+            }
+            else{
+                return bones_other_line[2][0];
+            }
+        })
+        .attr('cy',function(d){
+            if(d.label==='BitTorrent'){
+                return bones_bt_line[2][1];
+            }
+            else{
+                return bones_other_line[2][1];
+            }
+        })
+        .attr('r',0);
+
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -440,6 +464,14 @@ function startBones(){
                                     else{
                                         return bones_other_line[2][1];
                                     }
+                                })
+                                .each('end',function(){
+                                    if(bones_mouseOn){
+                                        d3.selectAll('.bones_lineCircle')
+                                            .transition()
+                                            .duration(100)
+                                            .attr('r',2);
+                                    }
                                 });
                         }
                     });
@@ -480,6 +512,8 @@ function endBones(){
         .transition()
         .duration(100)
         .attr('opacity',0);
+    d3.selectAll('.bones_lineCircle')
+        .attr('r',0);
 }
 
 ////////////////////////////////////////////////

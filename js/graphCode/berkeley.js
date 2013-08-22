@@ -84,9 +84,9 @@ var berkeley_data = [
 var berkeley_max = 200000;
 var berkeley_min = 0;
 var berkeley_diff = berkeley_max-berkeley_min;
-var berkeley_smallScale = .75;
+var berkeley_smallScale = .86;
 
-var berkeley_dateHeight = 30;
+var berkeley_dateHeight = 20;
 
 function berkeley_triangle(d,i,scale){
     var x = berkeley_xScale(i);
@@ -99,7 +99,7 @@ function berkeley_triangle(d,i,scale){
 }
 
 function berkeley_xScale(index){
-    return (((berkeley_w-40)/berkeley_data.length)*index)+((berkeley_w/berkeley_data.length)/4)+26;
+    return (((berkeley_w-20)/berkeley_data.length)*index)+((berkeley_w/berkeley_data.length)/4)+16;
 }
 
 ////////////////////////////////////////////////
@@ -116,7 +116,7 @@ var berkeley_paths = berkeley_vis.selectAll("path")
             .attr('id',function(d,i){
                 return 'berkeley_path_'+i;
             })
-            .attr("fill", 'rgb(115,99,170)')
+            .attr("fill", '#3b3356')
             .attr('opacity',.6)
             .on('mouseover',function(d,i){
                 var data = d;
@@ -183,12 +183,11 @@ berkeley_vis.selectAll('text.berkeley_value_graph')
     })
     .attr('fill','white')
     .attr('opacity',0)
-    .attr('font-size','13px')
+    .attr('font-size',13)
     .attr('class','berkeley_value_graph')
     .attr('id',function(d,i){
         return 'berkeley_value'+i
-    })
-    .attr('font-family','Helvetica');
+    });
 
 berkeley_vis.selectAll('text.berkeley_date')
     .data(berkeley_data)
@@ -198,7 +197,7 @@ berkeley_vis.selectAll('text.berkeley_date')
         .attr('id',function(d,i){
             return 'berkeley_date_'+i;
         })
-        .attr('fill','rgb(140,120,220)')
+        .attr('fill','#9184bd')
         .attr('font-size',10)
         .attr('text-anchor','middle')
         .attr('x',function(d,i){
@@ -228,11 +227,11 @@ function openBerkeleyBar(data,place){
     d3.select('#berkeley_inner_'+place)
         .transition()
         .duration(200)
-        .attr('r',18);
+        .attr('r',20);
     d3.select('#berkeley_outer_'+place)
         .transition()
         .duration(300)
-        .attr('r',25);
+        .attr('r',30);
     d3.select('#berkeley_value'+place)
         .transition()
         .duration(500)
@@ -267,7 +266,7 @@ function closeBerkeleyBar(place){
     d3.select('#berkeley_date_'+place)
         .transition()
         .duration(200)
-        .attr('fill','rgb(140,120,220)');
+        .attr('fill','#9184bd');
 }
 
 ////////////////////////////////////////////////

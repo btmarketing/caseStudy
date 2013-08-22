@@ -230,7 +230,7 @@ epic_vis.selectAll('text.epic_text')
 			return 'epic_text_'+i;
 		})
 		.attr('opacity',0)
-		.attr('fill','rgb(125,109,180)')
+		.attr('fill','#594c81')
 		.attr('font-size',function(d){
 			return Math.floor(epicInnerBig(d.percentage)*.7)+6+'px';
 		})
@@ -250,20 +250,18 @@ epic_vis.selectAll('text.epic_text')
 		})
 		.on('mouseout',function(d,i){
 			closeEpicCircle(d,i);
-		})
-		.attr('font-family','Helvetica');
+		});
 
 epic_vis.append('text')
 	.attr('id','countryDisplay')
 	.attr('opacity',0)
-	.attr('font-size','16px')
+	.attr('font-size','13px')
 	.attr("text-anchor", "left")
 	.attr('fill','white')
 	.attr('x',20)
 	.attr('y',function(){
 		return epic_h-20+'px';
-	})
-	.attr('font-family','Helvetica');
+	});
 
 ////////////////////////////////////
 ////////////////////////////////////
@@ -341,7 +339,7 @@ function epicInnerBig(value){
 }
 
 function epicOuterBig(value){
-	return (value+10)*1+10;
+	return (value+10)*1.6;
 }
 
 ////////////////////////////////////
