@@ -826,20 +826,6 @@ footer a:hover {
 #header {
   position: absolute;
 }
-.navLink {
-  margin-left: 0px;
-  margin-right: 10px;
-  padding: 5px 10px 5px 10px;
-  border-radius: 5px;
-}
-.navSelected {
-  font-weight: bold;
-  text-decoration: underline;
-}
-.navLink:hover {
-  cursor: pointer;
-  background-color: #dddddd;
-}
 .contentBox {
   position: absolute;
   margin: 0px 0px 0px 0px;
@@ -854,14 +840,11 @@ footer a:hover {
   width: 100%;
   height: 100%;
 }
-.fillBox {
-  width: 100%;
-  height: 100%;
-}
 /*  ### INDIVIDUAL BOX CSS ### */
 .title {
   text-align: center;
   background: #efefef;
+  background-color: #9184bd;
 }
 .t_top {
   background-color: #9184bd;
@@ -1259,10 +1242,10 @@ div.double:hover .d_bottom.blue {
   height: 960px;
   position: absolute;
   left: 0px;
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
   -webkit-animation-name: original;
   -moz-animation-name: original;
   -o-animation-name: original;
