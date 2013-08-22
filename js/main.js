@@ -98,6 +98,7 @@ function next(){
 
 function masterLoop(){
     resizeTest();
+    if(checkerGrayscale>0 && puzzleSolved) updateCheckerGrayscale(true);
     updateCheckers();
     updateBuckets();
     requestAnimFrame(masterLoop);
@@ -110,7 +111,7 @@ function masterLoop(){
 var currentNavigation = -1;
 var currentCoords = 0;
 
-function changeNavigation(index){
+function changeNavigation(index,dontSplitImage){
     if(currentNavigation!==index){
 
         //updateAllCheckerPositions();
@@ -128,7 +129,7 @@ function changeNavigation(index){
 
         currentNavigation=index;
 
-        splitImage(coverPhotos[currentNavigation],true);
+        if(!dontSplitImage) splitImage(coverPhotos[currentNavigation],true);
 
         buckets[currentNavigation].select();
     }

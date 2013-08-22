@@ -620,6 +620,7 @@ function checkCheckerPositions(){
 	}
 	if(count===0 && checkers[logoCheckers[0]].index%xDim<3){
 		puzzleSolved=true;
+		console.log('yay');
 	}
 }
 
