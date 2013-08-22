@@ -5,8 +5,8 @@
 function Bucket(bucket,_index,isLast){
 	this.el = bucket;
 	//find the title div
-	var tempDiv = this.el.getElementsByClassName('title')[0].children[0];
-	this.title = tempDiv.innerHTML;
+	var tempDiv = this.el.getElementsByClassName('title')[0];
+	this.title = tempDiv.getElementsByTagName('h2')[0].innerHTML;
 	this.index = _index;
 
 	this.totalGrown = 0;
@@ -172,6 +172,15 @@ function updateBuckets(){
 			buckets[i].fadeContents();
 		}
 	}
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function findTitle(div){
+	var kids = div.children;
+	console.log(div.getElementsByTagName('h2'));
 }
 
 ////////////////////////////////////////////////
