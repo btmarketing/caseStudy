@@ -6,7 +6,7 @@ var dimensions = {
 	'title': {
 		'name':'title',
 		'width':2,
-		'height':2
+		'height':1
 	},
 	'big': {
 		'name':'big',
@@ -25,11 +25,6 @@ var dimensions = {
 	},
 	'unit_1': {
 		'name':'unit_1',
-		'width':1,
-		'height':1
-	},
-	'unit_2': {
-		'name':'unit_2',
 		'width':1,
 		'height':1
 	},
@@ -87,10 +82,6 @@ var coordinates = [
 		'unit_1':{
 			'l':6,
 			't':0
-		},
-		'unit_2':{
-			'l':6,
-			't':4
 		}
 	},
 	{
@@ -125,10 +116,6 @@ var coordinates = [
 		'unit_1':{
 			'l':2,
 			't':4
-		},
-		'unit_2':{
-			'l':9,
-			't':1
 		}
 	},
 	{
@@ -162,10 +149,6 @@ var coordinates = [
 		},
 		'unit_1':{
 			'l':5,
-			't':0
-		},
-		'unit_2':{
-			'l':2,
 			't':0
 		}
 	}

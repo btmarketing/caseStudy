@@ -22,27 +22,21 @@ setInterval(function(){
 ////////////////////////////////////////////////
 
 function startBerkeley(){
-    berkeley_vis.selectAll('rect')
+    berkeley_vis.selectAll('path')
         .transition()
         .duration(function(d,i){
             return (100*i)+300;
         })
-        .attr('height',function(d){
-            var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-            return scaled*berkeley_h;
-        })
-        .attr('y',function(d,i){
-            var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-            return berkeley_h-(scaled*berkeley_h);
+        .attr('d', function(d,i) { 
+            return berkeley_triangle(d,i,berkeley_smallScale);
         });
 }
 
 
 function endBerkeley(){
-    berkeley_vis.selectAll('rect')
-        .attr('height',0)
-        .attr('y',function(d,i){
-            return berkeley_h;
+    berkeley_vis.selectAll('path')
+        .attr('d', function(d,i) { 
+            return berkeley_triangle(d,i,0);
         });
 }
 
@@ -50,8 +44,8 @@ function endBerkeley(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var berkeley_w = unitSize*4-gutter*2-40;
-var berkeley_h = unitSize*2-gutter*2-40;
+var berkeley_w = unitSize*4-gutter*2;
+var berkeley_h = unitSize*2-gutter*2;
 var berkeley_r = 80;
 
 var berkeley_vis = d3.select("#berkeleyGraph")
@@ -63,46 +57,67 @@ var berkeley_vis = d3.select("#berkeleyGraph")
 
 var berkSVG = document.getElementById('berkeleyGraph');
 berkSVG.style.position = 'absolute';
-berkSVG.style.left = '20px';
-berkSVG.style.top = '20px';
+berkSVG.style.left = '0px';
+berkSVG.style.top = '0px';
 
 var berkeley_data = [
-    {"label":"June 6", "value":69612},
-    {"label":"June 7", "value":143726},
-    {"label":"June 8", "value":157271},
-    {"label":"June 9", "value":149027},
-    {"label":"June 10", "value":138174},
-    {"label":"June 11", "value":135456},
-    {"label":"June 12", "value":139275},
-    {"label":"June 13", "value":138613},
-    {"label":"June 14", "value":143478},
-    {"label":"June 15", "value":151220},
-    {"label":"June 16", "value":144100},
-    {"label":"June 17", "value":137351},
-    {"label":"June 18", "value":134479},
-    {"label":"June 19", "value":85173},
+    {"label":"6.06", "value":69612},
+    {"label":"6.07", "value":143726},
+    {"label":"6.08", "value":157271},
+    {"label":"6.09", "value":149027},
+    {"label":"6.10", "value":138174},
+    {"label":"6.11", "value":135456},
+    {"label":"6.12", "value":139275},
+    {"label":"6.13", "value":138613},
+    {"label":"6.14", "value":143478},
+    {"label":"6.15", "value":151220},
+    {"label":"6.16", "value":144100},
+    {"label":"6.17", "value":137351},
+    {"label":"6.18", "value":134479},
+    {"label":"6.19", "value":85173},
 ];
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
 
 var berkeley_max = 200000;
 var berkeley_min = 0;
 var berkeley_diff = berkeley_max-berkeley_min;
+var berkeley_smallScale = .86;
 
-var berkeley_rects = berkeley_vis.selectAll("rect")
+var berkeley_dateHeight = 20;
+
+function berkeley_triangle(d,i,scale){
+    var x = berkeley_xScale(i);
+    var y = berkeley_h-berkeley_dateHeight;
+    var w = (berkeley_w/berkeley_data.length)*1.5;
+    var scaled = (d.value-berkeley_min)/berkeley_diff*1;
+    var h = scaled*(berkeley_h-berkeley_dateHeight)*scale;
+    var result = 'M ' + Math.floor(x-(w/2)) +' '+ y + ' l '+w+' 0 l '+-w/2+' '+-h+' z';
+    return result;
+}
+
+function berkeley_xScale(index){
+    return (((berkeley_w-20)/berkeley_data.length)*index)+((berkeley_w/berkeley_data.length)/4)+16;
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+var berkeley_paths = berkeley_vis.selectAll("path")
     .data(berkeley_data)
     .enter()
-        .append("rect")
+        .append("path")
+            .attr('d', function(d,i) { 
+                return berkeley_triangle(d,i,0);
+            })
             .attr('id',function(d,i){
-                return 'berkeley_rect_'+i;
+                return 'berkeley_path_'+i;
             })
-            .attr('width',function(){
-                return (berkeley_w/berkeley_data.length)/2;
-            })
-            .attr('height',0)
-            .attr('x',function(d,i){
-                return ((berkeley_w/berkeley_data.length)*i)+((berkeley_w/berkeley_data.length)/4);
-            })
-            .attr('y',berkeley_h)
-            .attr("fill", 'rgb(165,149,220)')
+            .attr("fill", '#3b3356')
+            .attr('opacity',.6)
             .on('mouseover',function(d,i){
                 var data = d;
                 var place = i;
@@ -113,41 +128,45 @@ var berkeley_rects = berkeley_vis.selectAll("rect")
                 closeBerkeleyBar(place);
             });
 
-berkeley_vis.selectAll('.berkeley_date_label')
+berkeley_vis.selectAll('circle.berkeley_inner')
     .data(berkeley_data)
     .enter()
-    .append('text')
-    .attr("text-anchor", "left")
-    .text(function(d,i){
-        //return Math.floor(d.value/1000)+'';
-        return d.label;
-    })
-    .attr('transform',function(d,i){
-        var tempX = ((berkeley_w/berkeley_data.length)*i)+((berkeley_w/berkeley_data.length)/2);
-        var tempY = berkeley_h-10;
-        return 'translate('+tempX+','+tempY+') rotate(-90)'
-    })
-    .attr('x',-5)
-    .attr('y',4)
-    .attr('fill','rgb(135,119,190)')
-    .attr('opacity',0)
-    .attr('font-size','14px')
-    .attr('class','berkeley_date_label')
-    .attr('id',function(d,i){
-        return 'berkeley_date'+i;
-    })
-    .attr('font-family','Helvetica')
-    .on('mouseover',function(d,i){
-        var data = d;
-        var place = i;
-        openBerkeleyBar(data,place);
-    })
-    .on('mouseout',function(d,i){
-        var place = i;
-        closeBerkeleyBar(place);
-    });
+        .append('circle')
+        .attr('class','berkeley_inner')
+        .attr('id',function(d,i){
+            return'berkeley_inner_'+i;
+        })
+        .attr('fill','white')
+        .attr('opacity',.2)
+        .attr('cx', function(d,i){
+            return berkeley_xScale(i);
+        })
+        .attr('cy',function(d,i){
+            var scaled = (d.value-berkeley_min)/berkeley_diff*1;
+            return berkeley_h-berkeley_dateHeight-(scaled*(berkeley_h-berkeley_dateHeight))-3;
+        })
+        .attr('r',0);
 
-berkeley_vis.selectAll('.berkeley_value_graph')
+berkeley_vis.selectAll('circle.berkeley_outer')
+    .data(berkeley_data)
+    .enter()
+        .append('circle')
+        .attr('class','berkeley_outer')
+        .attr('id',function(d,i){
+            return'berkeley_outer_'+i;
+        })
+        .attr('fill','white')
+        .attr('opacity',.1)
+        .attr('cx', function(d,i){
+            return berkeley_xScale(i);
+        })
+        .attr('cy',function(d,i){
+            var scaled = (d.value-berkeley_min)/berkeley_diff*1;
+            return berkeley_h-berkeley_dateHeight-(scaled*(berkeley_h-berkeley_dateHeight))-3;
+        })
+        .attr('r',0);
+
+berkeley_vis.selectAll('text.berkeley_value_graph')
     .data(berkeley_data)
     .enter()
     .append('text')
@@ -156,76 +175,98 @@ berkeley_vis.selectAll('.berkeley_value_graph')
         return Math.floor(d.value/1000)+'k';
     })
     .attr('x',function(d,i){
-        return ((berkeley_w/berkeley_data.length)*i)+((berkeley_w/berkeley_data.length)/4)+5;
+        return berkeley_xScale(i);
     })
     .attr('y',function(d,i){
         var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-        return berkeley_h-(scaled*berkeley_h)-3;
+        return berkeley_h-berkeley_dateHeight-(scaled*(berkeley_h-berkeley_dateHeight))+1;
     })
-    .attr('fill','rgb(165,149,220)')
+    .attr('fill','white')
     .attr('opacity',0)
-    .attr('font-size','14px')
+    .attr('font-size',13)
     .attr('class','berkeley_value_graph')
     .attr('id',function(d,i){
         return 'berkeley_value'+i
-    })
-    .attr('font-family','Helvetica');
+    });
+
+berkeley_vis.selectAll('text.berkeley_date')
+    .data(berkeley_data)
+    .enter()
+        .append('text')
+        .attr('class','berkeley_date')
+        .attr('id',function(d,i){
+            return 'berkeley_date_'+i;
+        })
+        .attr('fill','#9184bd')
+        .attr('font-size',10)
+        .attr('text-anchor','middle')
+        .attr('x',function(d,i){
+            return berkeley_xScale(i);
+        })
+        .attr('y',function(){
+            return berkeley_h-(berkeley_dateHeight/2)+2;
+        })
+        .text(function(d){
+            return d.label;
+        });
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
 function openBerkeleyBar(data,place){
-    d3.select('#berkeley_rect_'+place)
-         .attr('height',function(d){
-            var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-            return scaled*berkeley_h;
-        })
-        .attr('y',function(d,i){
-            var scaled = (d.value-berkeley_min)/berkeley_diff*1;
-            return berkeley_h-(scaled*berkeley_h);
-        })
+    d3.select('#berkeley_path_'+place)
         .transition()
         .ease('bounce')
         .duration(100)
-        .attr('fill','rgb(200,184,255)')
-        .attr('width',function(){
-            return (berkeley_w/berkeley_data.length)*1.1;
-        })
-        .attr('x',function(d,i){
-            return ((berkeley_w/berkeley_data.length)*place)-((berkeley_w/berkeley_data.length)*.066);
+        .attr('opacity',1)
+        .attr('d', function(d,i) { 
+            return berkeley_triangle(d,place,1);
         });
-    d3.select('#berkeley_date'+place)
-        .transition()
-        .duration(100)
-        .attr('opacity',1);
 
+    d3.select('#berkeley_inner_'+place)
+        .transition()
+        .duration(200)
+        .attr('r',20);
+    d3.select('#berkeley_outer_'+place)
+        .transition()
+        .duration(300)
+        .attr('r',30);
     d3.select('#berkeley_value'+place)
         .transition()
-        .duration(100)
+        .duration(500)
         .attr('opacity',1);
+    d3.select('#berkeley_date_'+place)
+        .transition()
+        .duration(200)
+        .attr('fill','white');
 }
 
 function closeBerkeleyBar(place){
-    d3.select('#berkeley_rect_'+place)
+    d3.select('#berkeley_path_'+place)
         .transition()
         .duration(1000)
         .ease('bounce')
-        .attr('fill','rgb(165,149,220)')
-        .attr('width',function(){
-            return (berkeley_w/berkeley_data.length)/2;
-        })
-        .attr('x',function(d,i){
-            return ((berkeley_w/berkeley_data.length)*place)+((berkeley_w/berkeley_data.length)/4);
+        .attr('opacity',.6)
+        .attr('d', function(d,i) { 
+            return berkeley_triangle(d,place,berkeley_smallScale);
         });
-    d3.select('#berkeley_date'+place)
-        .transition()
-        .duration(100)
-        .attr('opacity',0);
     d3.select('#berkeley_value'+place)
         .transition()
         .duration(100)
         .attr('opacity',0);
+    d3.select('#berkeley_inner_'+place)
+        .transition()
+        .duration(200)
+        .attr('r',0);
+    d3.select('#berkeley_outer_'+place)
+        .transition()
+        .duration(100)
+        .attr('r',0);
+    d3.select('#berkeley_date_'+place)
+        .transition()
+        .duration(200)
+        .attr('fill','#9184bd');
 }
 
 ////////////////////////////////////////////////

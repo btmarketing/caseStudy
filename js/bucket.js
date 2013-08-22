@@ -5,14 +5,15 @@
 function Bucket(bucket,_index,isLast){
 	this.el = bucket;
 	//find the title div
-	this.title = this.el.getElementsByClassName('title')[0].children[0].innerHTML;
+	var tempDiv = this.el.getElementsByClassName('title')[0];
+	this.title = tempDiv.getElementsByTagName('h2')[0].innerHTML;
 	this.index = _index;
 
 	this.totalGrown = 0;
 	this.totalShrunk = 0;
 
 	this.fading = false;
-	this.fadeStep = 1/20;
+	this.fadeStep = 1/10;
 	this.fadeDirection = 1;
 	this.opacity = 0;
 
@@ -43,7 +44,7 @@ Bucket.prototype.fadeContents = function(){
 		shrinkCheckers();
 	}
 
-	var opacityAmount = Math.pow(this.opacity,3);
+	var opacityAmount = Math.pow(this.opacity,.8);
 
 	this.titleBox.el.style.opacity = opacityAmount;
 	for(var i=0;i<this.contentBoxes.length;i++){
@@ -149,6 +150,19 @@ Bucket.prototype.hide = function(){
 }
 
 ////////////////////////////////////////////////
+
+Bucket.prototype.updateContentBoxPositions = function(){
+
+	this.titleBox.changePosition();
+	this.titleBox.updateDOM();
+
+	for(var i=0;i<this.contentBoxes.length;i++){
+		this.contentBoxes[i].changePosition();
+		this.contentBoxes[i].updateDOM();
+	}
+}
+
+////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
@@ -158,6 +172,15 @@ function updateBuckets(){
 			buckets[i].fadeContents();
 		}
 	}
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function findTitle(div){
+	var kids = div.children;
+	console.log(div.getElementsByTagName('h2'));
 }
 
 ////////////////////////////////////////////////

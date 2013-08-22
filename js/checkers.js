@@ -15,7 +15,7 @@ function Checker(startIndex,isFull){
 	this.stepCount = 0;
 	this.stepAmount = 2.5;
 
-	this.seemStep = gutter/5;
+	this.seemStep = gutter/2;
 
 	this.shrunk = true;
 	this.grown = false;
@@ -46,9 +46,9 @@ function Checker(startIndex,isFull){
 		this.el.style.backgroundColor = 'rgb(150,150,150)';
 		//this.el.style.overflow = 'auto';
 		this.el.onmousedown = function(e){
-			if(that.shrunk && !that.grown){
+			if(that.shrunk && !that.grown && !buckets[currentNavigation]){
 				that.el.style.opacity = .75;
-				endRandomSorting();
+				//endRandomSorting();
 				var tempX = e.x;
 				var tempY = e.y;
 				if(!tempX){
@@ -427,7 +427,7 @@ function selectCurrentChecker(){
 			buckets[currentNavigation].show();
 		}
 		else{
-			triggerRandomSorting();
+			//changeNavigation(0,true);
 		}
 	}
 }
@@ -496,6 +496,37 @@ function updateCheckers(){
 	}
 }
 
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+var checkerGrayscale = 1;
+var puzzleSolved = false
+
+function updateCheckerGrayscale(goDown){
+	if(goDown){
+		checkerGrayscale-=.1;
+	}
+	if(checkerGrayscale>=0){
+		var tempAmount = Math.floor(checkerGrayscale*100)+'%';
+		var board = document.getElementById('checkerBoard');
+		if(board.style['-webkit-filter']!==undefined){
+			board.style['-webkit-filter'] = 'grayscale('+tempAmount+')';
+		}
+		else if(board.style['-moz-filter']!==undefined){
+			board.style['-moz-filter'] = 'grayscale('+tempAmount+')';
+		}
+		else if(board.style['-o-filter']!==undefined){
+			board.style['-o-filter'] = 'grayscale('+tempAmount+')';
+		}
+		else if(board.style['filter']!==undefined){
+			board.style['filter'] = 'grayscale('+tempAmount+')';
+		}
+	}
+	else if(goDown){
+		changeNavigation(0,true);
+	}
+}
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -505,7 +536,14 @@ var xDim = 10;
 var yDim = 5;
 var checkers = [];
 
+var scrambleIndexes = [
+	[0,1,49,3,4,45,6,7,8,9,10,11,12,13,14,15,16,17,44,19,41,20,22,23,24,25,26,27,18,29,30,31,42,33,34,35,36,37,38,39,40,21,32,43,28,5,46,47,48,2],
+	[0,1,41,3,44,5,6,7,8,39,10,11,12,13,4,15,16,17,18,19,40,21,22,23,14,25,26,37,28,29,30,31,32,43,34,35,36,47,38,9,20,2,42,33,24,45,46,27,48,49]
+];
+
 function makeCheckerBoard(){
+
+	updateCheckerGrayscale(false);
 
 	//count how many full checkers we need
 	var totalCheckers = 0;
@@ -520,19 +558,13 @@ function makeCheckerBoard(){
 	}
 
 	//array for randomly pulling start indexes for each checker
-	var availableIndexes = [];
-	for(var i=0;i<xDim*yDim;i++){
-		availableIndexes[i] = i;
-	}
-
+	var rIndex = Math.floor(Math.random()*scrambleIndexes.length);
 	//for each slot, make a checker
 	for(var i=0;i<xDim*yDim;i++){
 
 		//with a random starting point
-		var rIndex = Math.floor(Math.random()*availableIndexes.length);
-		var thisIndex = availableIndexes[rIndex];
+		var thisIndex = scrambleIndexes[rIndex][i];
 		//var thisIndex = i;
-		availableIndexes.splice(rIndex,1);
 
 		//if we've already made all our full checkers, make empty ones
 		var isFull = true;
@@ -570,7 +602,7 @@ function makeCheckerBoard(){
 				checkers[i].el.style.opacity = 1;
 			}
 		}
-		checkCheckerPositions();
+		setTimeout(checkCheckerPositions,200);;
 	};
 }
 
@@ -579,20 +611,20 @@ function makeCheckerBoard(){
 ////////////////////////////////////////////////
 
 function checkCheckerPositions(){
+	var logoCheckers = [11,12,13,14,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38];
 	var count = 0;
 	var offset = undefined;
-	for(var i=0;i<checkers.length;i++){
-		if(checkers[i].full){
-			if(offset===undefined){
-				offset = checkers[i].index;
-			}
-			if(checkers[i].index!==i+offset){
-				count++;
-			}
+	for(var i=0;i<logoCheckers.length;i++){
+		if(offset===undefined){
+			offset = checkers[logoCheckers[i]].index-logoCheckers[i];
+		}
+		if(checkers[logoCheckers[i]].index!==logoCheckers[i]+offset){
+			count++;
 		}
 	}
-	if(count===0){
-		console.log('YOU WON!!!!!');
+	if(count===0 && checkers[logoCheckers[0]].index%xDim<3 && !buckets[currentNavigation]){
+		puzzleSolved=true;
+		console.log('yay');
 	}
 }
 

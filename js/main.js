@@ -51,6 +51,7 @@ function loadCoverPhotos(i){
             loadCoverPhotos(newIndex);
         }
         else{
+            document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
             masterLoop();
         }
     }
@@ -80,8 +81,25 @@ function createBuckets(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+function prev(){
+    var newIndex = currentNavigation-1;
+    if(newIndex<0) newIndex = buckets.length-1;
+    changeNavigation(newIndex);
+}
+
+function next(){
+    var newIndex = currentNavigation+1;
+    if(newIndex>=buckets.length) newIndex = 0;
+    changeNavigation(newIndex);
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
 function masterLoop(){
-    //resizeTest();
+    resizeTest();
+    if(checkerGrayscale>0 && puzzleSolved) updateCheckerGrayscale(true);
     updateCheckers();
     updateBuckets();
     requestAnimFrame(masterLoop);
@@ -94,8 +112,14 @@ function masterLoop(){
 var currentNavigation = -1;
 var currentCoords = 0;
 
-function changeNavigation(index){
+function changeNavigation(index,dontSplitImage){
     if(currentNavigation!==index){
+
+        if(currentNavigation===-1){
+            puzzleSolved=true;
+            checkerGrayscale=0;
+            updateCheckerGrayscale(false);
+        }
 
         updateAllCheckerPositions();
 
@@ -112,7 +136,7 @@ function changeNavigation(index){
 
         currentNavigation=index;
 
-        splitImage(coverPhotos[currentNavigation],true);
+        if(!dontSplitImage) splitImage(coverPhotos[currentNavigation],true);
 
         buckets[currentNavigation].select();
     }
@@ -123,9 +147,10 @@ function changeNavigation(index){
 ////////////////////////////////////////////////
 
 function resizeTest(){
-    var main = document.getElementById('main').getBoundingClientRect();
-    if(center.oldLeft!==main.left || center.oldTop!==main.top){
-        resized(main);
+    var newLeft = document.getElementById('main').offsetLeft;
+    var newTop = document.getElementById('main').offsetTop;
+    if(center.oldLeft!==newLeft || center.oldTop!==newTop){
+        resized();
     }
 }
 
@@ -137,21 +162,27 @@ var gutter = 2; // the space between each box
 var unitSize = 100; // the size each checker box
 var center; // object holding main container div's screen coordinates
 
-function resized(main){
-
-    if(!main) main = document.getElementById('main').getBoundingClientRect();
+function resized(){
 
     var padding = 20;
 
+    var newLeft = document.getElementById('main').offsetLeft;
+    var newTop = document.getElementById('main').offsetTop;
+    var newRight = newLeft+(unitSize*xDim);
+    var newBottom = newTop+(unitSize*yDim);
+
     center = {
-        'l': main.left+padding,
-        't': main.top+padding,
-        'b': main.bottom-padding,
-        'r': main.right-padding,
-        'oldLeft': main.left,
-        'oldTop': main.top
+        'l': newLeft+padding,
+        't': newTop+padding,
+        'b': newBottom-padding,
+        'r': newRight-padding,
+        'oldLeft': newLeft,
+        'oldTop': newTop
     };
     updateAllCheckerPositions();
+    if(buckets[currentNavigation]){
+        buckets[currentNavigation].updateContentBoxPositions();
+    }
 }
 
 ////////////////////////////////////////////////

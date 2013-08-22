@@ -143,11 +143,10 @@ function startEpic(){
 
 
 function endEpic(){
-    epic_vis.selectAll('circle.outerCircle')
-	    .attr('r',0);
-
-	epic_vis.selectAll('circle.innerCircle')
-	    .attr('r',0);
+	for(var i=0;i<epic_data.length;i++){
+		epic_vis.select('#epic_innerCircle_'+i)
+			.attr('r',0);
+	}
 }
 
 ////////////////////////////////////
@@ -226,13 +225,14 @@ epic_vis.selectAll('text.epic_text')
 	.enter()
 		.append('text')
 		.attr('class','epic_text')
+		.attr('cursor','default')
 		.attr('id',function(d,i){
 			return 'epic_text_'+i;
 		})
 		.attr('opacity',0)
-		.attr('fill','rgb(125,109,180)')
+		.attr('fill','#594c81')
 		.attr('font-size',function(d){
-			return Math.floor(epicInnerBig(d.percentage)*.9)+'px';
+			return Math.floor(epicInnerBig(d.percentage)*.7)+6+'px';
 		})
 		.attr("text-anchor", "middle")
 		.text(function(d){
@@ -243,29 +243,25 @@ epic_vis.selectAll('text.epic_text')
 		})
 		.attr('y',function(d){
 			var offset = epicInnerBig(d.percentage)*.3;
-			return d.y*epic_h+offset;
+			return d.y*epic_h+offset+1;
 		})
 		.on('mouseover',function(d,i){
 			openEpicCircle(d,i);
 		})
 		.on('mouseout',function(d,i){
 			closeEpicCircle(d,i);
-		})
-		.attr('font-family','Helvetica');
+		});
 
 epic_vis.append('text')
 	.attr('id','countryDisplay')
 	.attr('opacity',0)
-	.attr('font-size','25px')
-	.attr("text-anchor", "middle")
+	.attr('font-size','13px')
+	.attr("text-anchor", "left")
 	.attr('fill','white')
-	.attr('x',function(){
-		return Math.floor(epic_w/2)+'px';
-	})
+	.attr('x',20)
 	.attr('y',function(){
-		return epic_h-5+'px';
-	})
-	.attr('font-family','Helvetica');
+		return epic_h-20+'px';
+	});
 
 ////////////////////////////////////
 ////////////////////////////////////
@@ -339,12 +335,18 @@ function epicInnerSmall(value){
 ////////////////////////////////////
 
 function epicInnerBig(value){
-	return (value+10)*1.5;
+	return (value+10)*1.1;
 }
 
 function epicOuterBig(value){
-	return (value+10)*1.5+10;
+	return (value+10)*1.6;
 }
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+
+endEpic();
 
 ////////////////////////////////////
 ////////////////////////////////////

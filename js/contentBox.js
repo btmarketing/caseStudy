@@ -16,7 +16,6 @@ function ContentBox(el){
 
 	this.el = el;
 	this.el.className += ' contentBox';
-	this.el.style.backgroundColor = this.color;
 
 	this.hide();
 }
@@ -42,7 +41,7 @@ ContentBox.prototype.show = function(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-ContentBox.prototype.changePosition = function(pos){
+ContentBox.prototype.changePosition = function(){
 	var unitOffsetX = coordinates[currentCoords][this.type.name].l;
 	var unitOffsetY = coordinates[currentCoords][this.type.name].t;
 

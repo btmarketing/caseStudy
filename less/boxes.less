@@ -2,28 +2,8 @@
   position: absolute;
 }
 
-.bucket {
-}
-
 #header {
   position:absolute;
-}
-
-.navLink {
-  margin-left:0px;
-  margin-right:10px;
-  padding:5px 10px 5px 10px;
-  border-radius: 5px;
-}
-
-.navSelected {
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.navLink:hover {
-  cursor:pointer;
-  background-color: #dddddd;
 }
 
 .contentBox {
@@ -42,17 +22,12 @@
   height:100%;
 }
 
-.fillBox {
-  width:100%;
-  height:100%;
-}
-
-
 /*  ### INDIVIDUAL BOX CSS ### */
 
 .title {
   text-align: center;
-  background-color: @purpleLight !important;
+  background: @purpleLight;
+  .transition(~"backgbround 600ms ease-in-out");
   h2 {
     font-size: 20px;
     color: #ffffff;
@@ -61,14 +36,67 @@
   }
 }
 
+.title:hover {
+  background: #AC9CDF
+}
+
+.previous {
+  float:left;
+  background-color: @grayLight;
+  height: (((@boxHeight / 2) - (@padding / 2)) - @borderHeight);
+  width: @boxHeight;
+  border-bottom: solid @grayDark @borderHeight;
+  color: #606060;
+  .transition-duration(@transitionDuration);
+}
+
+.previous:hover {
+  background-color: @orangeLight;
+  border-bottom: solid @borderHeight @orangeLightBorder;
+  color: #ffffff;
+  //.transition-duration(@transitionDuration);
+  //.transition(~"all 1s ease-in-out");
+}
+
+.next {
+  float:right;
+  background: @grayLight;
+  height: (((@boxHeight / 2) - (@padding / 2)) - @borderHeight);
+  width: @boxHeight;
+  border-bottom: solid @grayDark @borderHeight;
+  color: #606060;
+  .transition-duration(@transitionDuration);
+}
+
+.next:hover {
+  background-color: @blueLight;
+  border-bottom: solid @borderHeight @blueLightBorder;
+  color: #ffffff;
+}
+
+
+.t_bottom {
+  height: ((@boxHeight / 2) - (@padding / 2));
+  font-size: @bodyFontSize;
+}
+
 .u1_top {
-  background-color: @orange;
+  background-color: @purpleLightest;
+  background-position-y: 0;
   height: (@boxHeight - @borderHeight);
   background-image: url('../img/preview-button.png');
+  border-bottom: solid @purpleLight @borderHeight;
+  .transition-duration(@transitionDuration);
+}
+
+.u1_top:hover {
+  background-color: @orangeLight;
+  border-bottom: solid @orangeLightBorder @borderHeight;
+  background-position: 0 96px;
 }
 
 .u1_bottom {
-  background-color: @orangeBorder;
+  background-color: @purpleLight;
   height: @borderHeight;
 }
 
@@ -84,13 +112,15 @@
 }
 
 .d_top {
-  background-color: @grayDark;
+  background: @grayDark;
   height: (@boxHeight - @grayBotSize);
-  color: #ffffff;
+  color: #eeeeee;
   text-align: center;
   font-size: 52px;
   font-weight: 400;
   line-height: 88px;
+  overflow: hidden;
+  .transition(~"all 600ms ease-in-out");
 }
 
 .d_bottom {
@@ -101,17 +131,26 @@
   font-size: @bodyFontSize;
   text-align: center;
   line-height: 20px;
+  p {margin:0;
+  .transition(~"all 600ms ease-in-out");}
+  overflow: hidden;
+  .transition(~"all 600ms ease-in-out");
 }
 
 .r1_top {
   background-color: @btpurple;
   height: ( ( (@boxHeight * 2) - (@borderHeight+(@boxPadding * 2)))+ @padding);
   color: #ffffff;
-  padding: @boxPadding;
+  padding: @boxPadding 10px @boxPadding @boxPadding;
   font-size: 13px;
+  line-height: 17px;
+  .transition-duration(@transitionDuration);
   p {margin:2px 0;}
 }
 
+.r1_top:hover {
+  background-color: #887daa;
+}
 .r1_bottom {
   background-color: @purpleDark;
   height: @borderHeight;
@@ -122,18 +161,39 @@
   height: ( ( (@boxHeight * 2) - (@grayBotSize + (@boxPadding * 2)))+ @padding);
   color: #ffffff;
   padding: @boxPadding;
-  p {margin: 0;}
   line-height: 27px;
   font-size: 19px;
-
+  background: url('../img/quote-sprite-all.png') no-repeat;
+  .transition(~"all 600ms ease-in-out");
+  p {
+    margin: 0;
+    .transition(~"all 600ms ease-in-out");
+  }
+  span {
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background: url('../img/quote-sprite-all.png') no-repeat;
+    height: 176px;
+    opacity: 0;
+    .transition(~"opacity 600ms ease-in-out");
+  }
 }
+
+.r2_top:hover {
+  p {opacity: .3;}
+  span {opacity: 1;}
+}
+
 
 .r2_bottom {
   background-color: @purpleLight;
   height: @grayBotSize;
   p {margin: 0;}
   font-size: 13px;
-  line-height: 20px;
+  line-height: 21px;
   color: #ffffff;
   font-weight: 400;
   padding: 0 @boxPadding;
@@ -141,8 +201,9 @@
 
 .b_top {
   background-color: @purpleDark;
-  height: ( ( (@boxHeight * 3) - (@largeBotSize + (@boxPadding * 2)))+ (@padding * 2));;
-  padding: @boxPadding;
+  //height: ( ( (@boxHeight * 3) - (@largeBotSize + (@boxPadding * 2)))+ (@padding * 2));;
+  height: 196px;
+  padding: 0;
   color: #ffffff;
   p {
     font-size: @bodyFontSize;
@@ -156,39 +217,158 @@
 }
 
 .b_bottom {
-  background-color: #e6e6e6;
+  background-color: @purpleGraphInfo;
   height: @largeBotSize;
 }
 
-.r2_top.public_enemy {
-  background-image: url('../img/quote-public-enemy.png');
+
+.long_2, .double{
+  span {
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background: @blue;
+    height: 90px;
+    opacity: 0;
+    .transition(~"opacity 600ms ease-in-out");
+    text-align: center;
+    overflow: hidden;
+  }
+  h1 {
+    font-weight: 300;
+    color: #ffffff;
+    display:inline;
+    .transition(~"all 600ms ease-in-out");
+    position: absolute;
+    top: -80px;
+    left: 45px;
+    bottom: 0;
+    right: 0;
+    margin: 30px 0;
+  }
+  img {
+    display: inline;
+    .transition(~"all 600ms ease-in-out");
+    position: absolute;
+    top: -80px;
+    left: 63px;
+    right: 0;
+    bottom: 0;
+  }
 }
 
-.b_top.public_enemy {
-  background-image: url('../img/graphic-public_enemy.png');
+.d_top.download, .d_top.double {
+  line-height: 88px;
+  .transition(~"all 600ms ease-in-out");
 }
+
+
+
+
+div.long_2:hover .d_top.download, 
+div.double:hover .d_top.download, {
+  background-color: @blue;
+  height: 90px;
+  line-height: 200px;
+}
+
+.long_2:hover h1, 
+.double:hover h1, 
+.long_2:hover img, 
+.double:hover img {
+    top: 0;
+}
+
+
+div.long_2:hover .d_bottom.download, 
+div.double:hover .d_bottom.download {
+  background-color: @blueBorder;
+  height: 6px;
+  p {
+    opacity: 0;
+    line-height: 55px;
+    .transition(~"all 600ms ease-in-out");
+  }
+}
+
+.long_2:hover, 
+.double:hover{
+  span {opacity: 1;}
+}
+
+// FADE ANIMATION FOR 2 GRAY INFO BOXES (NOT DOWNLOAD BOX)
+
+div.long_1:hover .d_top.orange, 
+div.long_2:hover .d_top.orange, 
+div.double:hover .d_top.orange {
+  background-color: @orangeLight;
+  color: #ffffff;
+}
+
+div.long_1:hover .d_bottom.orange, 
+div.long_2:hover .d_bottom.orange, 
+div.double:hover .d_bottom.orange {
+  background-color: @orangeLightBorder;
+  color: #ffffff;
+}
+
+div.long_1:hover .d_top.blue, 
+div.long_2:hover .d_top.blue, 
+div.double:hover .d_top.blue {
+  background-color: @blueLight;
+  color: #ffffff;
+}
+
+div.long_1:hover .d_bottom.blue, 
+div.long_2:hover .d_bottom.blue, 
+div.double:hover .d_bottom.blue {
+  background-color: @blueLightBorder;
+  color: #ffffff;
+}
+
+// QUOTE BACKGROUNDS
 
 .r2_top.death_grips {
-  background-image: url('../img/quote-death-grips.png');
-}
-
-.r2_top.berklee {
-  background-image: url('../img/quote-berklee.png');
-}
-
-.r2_top.EMT {
-  background-image: url('../img/quote-EMT.png');
+  background-position: 0 0px; // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 1);} // on hover over
 }
 
 .r2_top.bones_brigade{
-  background-image: url('../img/quote-bones-brigade.png');
-}
-
-.r2_top.kaskade {
-  background-image: url('../img/quote-kaskade.png');
+  background-position: 0 (-1 * @quotePhotoSize * 2); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 3);} // on hover over
 }
 
 .r2_top.tim_ferriss {
-  background-image: url('../img/quote-tim-ferriss.png');
+  background-position: 0 (-1 * @quotePhotoSize * 4); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 5);} // on hover over
 }
+
+.r2_top.EMT {
+  background-position: 0 (-1 * @quotePhotoSize * 6); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 7);} // on hover over
+}
+
+.r2_top.kaskade {
+  background-position: 0 (-1 * @quotePhotoSize * 8); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 9);} // on hover over
+}
+
+.r2_top.berklee {
+  background-position: 0 (-1 * @quotePhotoSize * 10); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 11);} // on hover over
+}
+
+.r2_top.public_enemy {
+  background-position: 0 (-1 * @quotePhotoSize * 12); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 13);} // on hover over
+}
+
+.r2_top.pixies {
+  background-position: 0 (-1 * @quotePhotoSize * 14); // with quote
+  span {background-position: 0 (-1 * @quotePhotoSize * 15);} // on hover over
+}
+
+
 
