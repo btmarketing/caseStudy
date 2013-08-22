@@ -536,6 +536,11 @@ var xDim = 10;
 var yDim = 5;
 var checkers = [];
 
+var scrambleIndexes = [
+	[0,1,49,3,4,45,6,7,8,9,10,11,12,13,14,15,16,17,44,19,41,20,22,23,24,25,26,27,18,29,30,31,42,33,34,35,36,37,38,39,40,21,32,43,28,5,46,47,48,2],
+	[0,1,41,3,44,5,6,7,8,39,10,11,12,13,4,15,16,17,18,19,40,21,22,23,14,25,26,37,28,29,30,31,32,43,34,35,36,47,38,9,20,2,42,33,24,45,46,27,48,49]
+];
+
 function makeCheckerBoard(){
 
 	updateCheckerGrayscale(false);
@@ -553,13 +558,12 @@ function makeCheckerBoard(){
 	}
 
 	//array for randomly pulling start indexes for each checker
-	var scrambleIndexes = [0,1,49,3,4,45,6,7,8,9,10,11,12,13,14,15,16,17,44,19,41,20,22,23,24,25,26,27,18,29,30,31,42,33,34,35,36,37,38,39,40,21,32,43,28,5,46,47,48,2];
-
+	var rIndex = Math.floor(Math.random()*scrambleIndexes.length);
 	//for each slot, make a checker
 	for(var i=0;i<xDim*yDim;i++){
 
 		//with a random starting point
-		var thisIndex = scrambleIndexes[i];
+		var thisIndex = scrambleIndexes[rIndex][i];
 		//var thisIndex = i;
 
 		//if we've already made all our full checkers, make empty ones
