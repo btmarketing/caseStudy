@@ -6,7 +6,7 @@ var caseStudy_loadingPercentage = 0;
 
 function initCaseStudy(img){
 
-    document.getElementById('whiteScreen').innerHTML = '<h1>Loading - '+caseStudy_loadingPercentage+'%</h1>';
+    document.getElementById('loadingPercentage').innerHTML = caseStudy_loadingPercentage+'%';
     resized();
     makeCheckerBoard();
     splitImage(img);
@@ -49,7 +49,7 @@ var coverPhotos = [];
 function loadCoverPhotos(i){
 
     caseStudy_loadingPercentage+=Math.floor(100/buckets.length);
-    document.getElementById('whiteScreen').innerHTML = '<h1>Loading - '+caseStudy_loadingPercentage+'%</h1>';
+    document.getElementById('loadingPercentage').innerHTML = caseStudy_loadingPercentage+'%';
 
     var temp = document.createElement('img');
     temp.src = 'img/coverPhotos/'+i+'.png';
@@ -60,8 +60,8 @@ function loadCoverPhotos(i){
             loadCoverPhotos(newIndex);
         }
         else{
-            document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
-            masterLoop();
+            // document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
+            // masterLoop();
         }
     }
 }

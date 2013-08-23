@@ -23,6 +23,8 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
+        <link rel="stylesheet" href="css/loadingAnimation.css">
+
         <!-- Add your site or application content here -->
         <div id="wrapper">
             <header>
@@ -538,7 +540,14 @@
             </div><!-- END MAIN -->
 
             <div id="whiteScreen">
-                <h1>Loading...</h1>
+              <div id="loadSquare_wrap">
+                <div class="loadSquare_1"></div>
+                <div class="loadSquare_2"></div>
+                <div class="loadSquare_3"></div>
+                <div class="loadingPercentage_wrap">
+                  <span id="loadingPercentage">0%</span>
+                </div>
+              </div>
             </div>
             <footer>
               <p><a href="http://www.bittorrent.com" target="_blank">BitTorrent®</a> / <a href="#">Facebook</a> / <a href="#">Twitter</a></p>
@@ -563,6 +572,12 @@
             <script type="text/javascript" src="js/graphCode/grips.js"></script>
             <script type="text/javascript" src="js/graphCode/publicEnemy.js"></script>
             <script type="text/javascript" src="js/graphCode/pixies.js"></script>
+
+            <script type="text/javascript">
+                    var loadWrap = document.getElementById('loadSquare_wrap');
+                    loadWrap.style.top = Math.round(window.innerHeight/2)-32+'px';
+                    loadWrap.style.left = Math.round(window.innerWidth/2)-32+'px';
+            </script>
 
             <script type="text/javascript">
 
