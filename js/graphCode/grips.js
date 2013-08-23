@@ -55,47 +55,47 @@ var grips_data = [
 	},
 	{
 		month:3,
-		day:01,
+		day:1,
 		value:13518
 	},
 	{
 		month:3,
-		day:02,
+		day:2,
 		value:10994
 	},
 	{
 		month:3,
-		day:03,
+		day:3,
 		value:18379
 	},
 	{
 		month:3,
-		day:04,
+		day:4,
 		value:13013
 	},
 	{
 		month:3,
-		day:05,
+		day:5,
 		value:9545
 	},
 	{
 		month:3,
-		day:06,
+		day:6,
 		value:7978
 	},
 	{
 		month:3,
-		day:07,
+		day:7,
 		value:10481
 	},
 	{
 		month:3,
-		day:08,
+		day:8,
 		value:25499
 	},
 	{
 		month:3,
-		day:09,
+		day:9,
 		value:13607
 	},
 	{
@@ -210,47 +210,47 @@ var grips_data = [
 	},
 	{
 		month:4,
-		day:01,
+		day:1,
 		value:11026
 	},
 	{
 		month:4,
-		day:02,
+		day:2,
 		value:15965
 	},
 	{
 		month:4,
-		day:03,
+		day:3,
 		value:14875
 	},
 	{
 		month:4,
-		day:04,
+		day:4,
 		value:26314
 	},
 	{
 		month:4,
-		day:05,
+		day:5,
 		value:13036
 	},
 	{
 		month:4,
-		day:06,
+		day:6,
 		value:16785
 	},
 	{
 		month:4,
-		day:07,
+		day:7,
 		value:16410
 	},
 	{
 		month:4,
-		day:08,
+		day:8,
 		value:11683
 	},
 	{
 		month:4,
-		day:09,
+		day:9,
 		value:11778
 	},
 	{
@@ -360,42 +360,42 @@ var grips_data = [
 	},
 	{
 		month:5,
-		day:01,
+		day:1,
 		value:45948
 	},
 	{
 		month:5,
-		day:02,
+		day:2,
 		value:69953
 	},
 	{
 		month:5,
-		day:03,
+		day:3,
 		value:74750
 	},
 	{
 		month:5,
-		day:04,
+		day:4,
 		value:51709
 	},
 	{
 		month:5,
-		day:05,
+		day:5,
 		value:50297
 	},
 	{
 		month:5,
-		day:06,
+		day:6,
 		value:50221
 	},
 	{
 		month:5,
-		day:08,
+		day:8,
 		value:43213
 	},
 	{
 		month:5,
-		day:09,
+		day:9,
 		value:39230
 	},
 	{

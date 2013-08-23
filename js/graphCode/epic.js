@@ -76,7 +76,7 @@ document.getElementById('epicMap').style.top = '20px';
 var epicDisplay = true;
 
 setInterval(function(){
-    if(document.getElementById('epicGraph').offsetWidth){
+    if(document.getElementById('epicMeal_div').offsetWidth){
         if(!epicDisplay){
             epicDisplay=true;
             startEpic();
