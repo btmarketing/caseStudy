@@ -501,7 +501,7 @@ function updateCheckers(){
 ////////////////////////////////////////////////
 
 var checkerGrayscale = 1;
-var puzzleSolved = false
+var puzzleSolved = false;
 
 function updateCheckerGrayscale(goDown){
 	if(goDown){
@@ -512,15 +512,19 @@ function updateCheckerGrayscale(goDown){
 		var board = document.getElementById('checkerBoard');
 		if(board.style['-webkit-filter']!==undefined){
 			board.style['-webkit-filter'] = 'grayscale('+tempAmount+')';
+			console.log('one');
 		}
 		else if(board.style['-moz-filter']!==undefined){
 			board.style['-moz-filter'] = 'grayscale('+tempAmount+')';
+			console.log('two');
 		}
 		else if(board.style['-o-filter']!==undefined){
 			board.style['-o-filter'] = 'grayscale('+tempAmount+')';
+			console.log('three');
 		}
 		else if(board.style['filter']!==undefined){
-			board.style['filter'] = 'grayscale('+tempAmount+')';
+			board.style['filter'] = 'grayscale('+checkerGrayscale+')';
+			console.log('four');
 		}
 	}
 	else if(goDown){
