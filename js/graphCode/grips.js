@@ -481,7 +481,7 @@ var grips_indexOffset = 0;
 var gripsDisplay = false;
 
 setInterval(function(){
-    if(document.getElementById('gripsSVG').offsetWidth){
+    if(document.getElementById('gripsGraph_div').offsetWidth){
         if(!gripsDisplay){
             gripsDisplay=true;
             startGrips();
