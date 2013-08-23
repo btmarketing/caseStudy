@@ -60,8 +60,8 @@ function loadCoverPhotos(i){
             loadCoverPhotos(newIndex);
         }
         else{
-            // document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
-            // masterLoop();
+            document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
+            masterLoop();
         }
     }
 }
