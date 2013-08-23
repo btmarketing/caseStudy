@@ -72,11 +72,9 @@ function loadCoverPhotos(i){
 function fadeLoadingScreen(){
     document.getElementById('loadSquare_wrap').className+='fadeOut';
     setTimeout(function(){
-        document.getElementById('whiteScreen').className+='fadeOut';
-        setTimeout(function(){
-            document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
-            masterLoop();
-        },500);
+        document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
+        document.getElementById('wrapper').className+='fadeIn';
+        masterLoop();
     },500);
 }
 

@@ -745,6 +745,9 @@ header {
   min-height: 100%;
   height: auto !important;
   height: 100%;
+  opacity: 0;
+  margin: 0px auto -100px;
+  padding: 30px 30px 0 30px;
 }
 #content {
   height: 540px;
@@ -799,6 +802,7 @@ header {
   width: 1040px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 25px;
 }
 #checkerBoard {
   height: 540px;
@@ -1398,6 +1402,20 @@ div.double:hover .d_bottom.blue {
     opacity: 1;
   }
 }
+.fadeOut {
+  opacity: 0;
+  -webkit-transition: opacity 500ms;
+  -moz-transition: opacity 500ms;
+  -o-transition: opacity 500ms;
+  transition: opacity 500ms;
+}
+.fadeIn {
+  opacity: 1 !important;
+  -webkit-transition: opacity 700ms;
+  -moz-transition: opacity 700ms;
+  -o-transition: opacity 700ms;
+  transition: opacity 700ms;
+}
 .loadingPercentage_wrap {
   margin-top: 80px;
   width: 70px;
@@ -1420,10 +1438,10 @@ div.double:hover .d_bottom.blue {
   background-color: #594c81;
   position: absolute;
   z-index: 1;
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
   -webkit-animation-name: load_one;
   -moz-animation-name: load_one;
   -o-animation-name: load_one;
@@ -1526,10 +1544,10 @@ div.double:hover .d_bottom.blue {
   height: 30px;
   background-color: #594c81;
   position: absolute;
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
   -webkit-animation-name: load_two;
   -moz-animation-name: load_two;
   -o-animation-name: load_two;
@@ -1633,10 +1651,10 @@ div.double:hover .d_bottom.blue {
   height: 30px;
   background-color: #594c81;
   position: absolute;
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
   -webkit-animation-name: load_three;
   -moz-animation-name: load_three;
   -o-animation-name: load_three;
