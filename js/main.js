@@ -8,9 +8,9 @@ function initCaseStudy(img){
 
     document.getElementById('loadingPercentage').innerHTML = caseStudy_loadingPercentage+'%';
     resized();
-    makeCheckerBoard();
-    splitImage(img);
-    createBuckets();
+    makeCheckerBoard(); // inside checkers.js, creates the checker board and units
+    splitImage(img); // takes the current cover photo, and splits it up between all the checkers
+    createBuckets(); // funs through the DOM, creating buckets for each case study
 
     loadCoverPhotos(0);
 }
@@ -18,6 +18,8 @@ function initCaseStudy(img){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
+
+//each checker has a small Canvas element in it, that we draw a portion of the photo onto
 
 function splitImage(image,ordered){
     var xStep = image.width/xDim;
@@ -35,6 +37,7 @@ function splitImage(image,ordered){
         var tempY = yPos*yStep;
 
         if(checkers[i].full){
+            //if it's not an empty checker, draw onto it's canvas
             checkers[i].context.drawImage(image,tempX,tempY,xStep,yStep,0,0,unitSize,unitSize);
         }
     }
@@ -60,7 +63,7 @@ function loadCoverPhotos(i){
             loadCoverPhotos(newIndex);
         }
         else{
-            fadeLoadingScreen();
+            fadeLoadingScreen(); // when photoes are done loading, start fading the load animation
         }
     }
 }
@@ -70,11 +73,11 @@ function loadCoverPhotos(i){
 ////////////////////////////////////////////////
 
 function fadeLoadingScreen(){
-    document.getElementById('loadSquare_wrap').className+='fadeOut';
+    document.getElementById('loadSquare_wrap').className+='fadeOut'; // class that applies a transition on opacity
     setTimeout(function(){
         document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
-        document.getElementById('wrapper').className+='fadeIn';
-        masterLoop();
+        document.getElementById('wrapper').className+='fadeIn'; // class that applies a transition on opacity
+        masterLoop();  // start the case study frame loop
     },500);
 }
 
@@ -82,10 +85,9 @@ function fadeLoadingScreen(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var buckets = [];
+var buckets = [];  //very important array, holds all the case studies and their contents
 
 //loop through the content divs, creating a new Bucket object for each section
-
 function createBuckets(){
     var domBuckets = document.getElementById('content').children;
     for(var i=0;i<domBuckets.length;i++){
@@ -133,7 +135,7 @@ function masterLoop(){
 var currentNavigation = -1;
 var currentCoords = 0;
 
-function changeNavigation(index,dontSplitImage){
+function changeNavigation(index,dontSplitImage){ //fired when we select a new case study to look at
     if(currentNavigation!==index){
 
         if(currentNavigation===-1){
@@ -179,9 +181,15 @@ function resizeTest(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+//very important variables...
+
 var gutter = 2; // the space between each box
-var unitSize = 100; // the size each checker box
+var unitSize = 100; // the size of each checker box --- (unitSize-(gutter*2))=unit's dimensions
 var center; // object holding main container div's screen coordinates
+//everything is relative to center.l and center.t
+
+var xDim = 10; // how many units across?
+var yDim = 5; // how many units down?
 
 function resized(){
 

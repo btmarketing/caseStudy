@@ -2,17 +2,16 @@
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+//each and every box with content in it is an instance of ContentBox
+
 function ContentBox(el){
-	this.type = dimensions[el.className];
+	this.type = dimensions[el.className]; // looks inside coordinates.js to get it's width/height
 
 	this.l;
 	this.t;
 
 	this.width = this.type.width*unitSize;
 	this.height = this.type.height*unitSize;
-
-	var shade = 200;
-	this.color = 'rgb('+shade+','+shade+','+shade+')';
 
 	this.el = el;
 	this.el.className += ' contentBox';
