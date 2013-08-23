@@ -60,10 +60,24 @@ function loadCoverPhotos(i){
             loadCoverPhotos(newIndex);
         }
         else{
-            document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
-            masterLoop();
+            fadeLoadingScreen();
         }
     }
+}
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+function fadeLoadingScreen(){
+    document.getElementById('loadSquare_wrap').className+='fadeOut';
+    setTimeout(function(){
+        document.getElementById('whiteScreen').className+='fadeOut';
+        setTimeout(function(){
+            document.getElementById('whiteScreen').parentNode.removeChild(document.getElementById('whiteScreen'));
+            masterLoop();
+        },500);
+    },500);
 }
 
 ////////////////////////////////////////////////
