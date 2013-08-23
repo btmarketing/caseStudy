@@ -194,6 +194,8 @@ function resized(){
     var newRight = newLeft+(unitSize*xDim);
     var newBottom = newTop+(unitSize*yDim);
 
+    console.log(newTop);
+
     center = {
         'l': newLeft+padding,
         't': newTop+padding,
