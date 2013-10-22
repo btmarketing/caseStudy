@@ -179,10 +179,52 @@
 
 .b_bottom {
   background-color: @purpleGraphInfo;
-  height: @largeBotSize;
+  height: 80px;
+  p {margin:0;}
 }
 
+.b_bottom.bones {
+  font-size: 17px;
+  padding: 10px 4px 10px 10px;
+}
 
+.b_bottom.tim {
+  font-size: 15px;
+  padding: 10px 4px 10px 10px;
+}
+
+.b_bottom.emt {
+  font-size: 16px;
+  padding: 10px 4px 10px 10px;
+}
+
+.b_bottom.kaskade {
+  font-size: 16px;
+  padding: 10px 4px 10px 10px;
+}
+
+.b_bottom.berklee {
+  font-size: 16px;
+  padding: 10px 4px 10px 10px;
+}
+
+.b_bottom.public {
+  font-size: 16px;
+  padding: 20px 10px 20px 20px;
+  height: 60px;
+}
+
+.b_bottom.pixies {
+  padding: 10px 10px 10px 20px;
+  height: 80px;
+  font-size: 15px;
+}
+
+.b_bottom.death {
+  padding: 20px 10px 20px 20px;
+  font-size: 16px;
+  height: 60px;
+}
 .long_2, .double{
   span {
     position: absolute;
@@ -219,6 +261,10 @@
     bottom: 0;
   }
 }
+
+.emt1 {left: 16px !important;}
+
+.emt2 {left: 30px !important;}
 
 .d_top.download, .d_top.double {
   line-height: 88px;
@@ -309,6 +355,8 @@ div.double:hover .d_bottom.blue {
 .r2_top.EMT {
   background-position: 0 (-1 * @quotePhotoSize * 6); // with quote
   span {background-position: 0 (-1 * @quotePhotoSize * 7);} // on hover over
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .r2_top.kaskade {
@@ -319,11 +367,15 @@ div.double:hover .d_bottom.blue {
 .r2_top.berklee {
   background-position: 0 (-1 * @quotePhotoSize * 10); // with quote
   span {background-position: 0 (-1 * @quotePhotoSize * 11);} // on hover over
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .r2_top.public_enemy {
   background-position: 0 (-1 * @quotePhotoSize * 12); // with quote
   span {background-position: 0 (-1 * @quotePhotoSize * 13);} // on hover over
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .r2_top.pixies {

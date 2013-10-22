@@ -1026,7 +1026,45 @@ footer a:hover {
 }
 .b_bottom {
   background-color: #aca2cc;
-  height: 100px;
+  height: 80px;
+}
+.b_bottom p {
+  margin: 0;
+}
+.b_bottom.bones {
+  font-size: 17px;
+  padding: 10px 4px 10px 10px;
+}
+.b_bottom.tim {
+  font-size: 15px;
+  padding: 10px 4px 10px 10px;
+}
+.b_bottom.emt {
+  font-size: 16px;
+  padding: 10px 4px 10px 10px;
+}
+.b_bottom.kaskade {
+  font-size: 16px;
+  padding: 10px 4px 10px 10px;
+}
+.b_bottom.berklee {
+  font-size: 16px;
+  padding: 10px 4px 10px 10px;
+}
+.b_bottom.public {
+  font-size: 16px;
+  padding: 20px 10px 20px 20px;
+  height: 60px;
+}
+.b_bottom.pixies {
+  padding: 10px 10px 10px 20px;
+  height: 80px;
+  font-size: 15px;
+}
+.b_bottom.death {
+  padding: 20px 10px 20px 20px;
+  font-size: 16px;
+  height: 60px;
 }
 .long_2 span,
 .double span {
@@ -1076,6 +1114,12 @@ footer a:hover {
   left: 63px;
   right: 0;
   bottom: 0;
+}
+.emt1 {
+  left: 16px !important;
+}
+.emt2 {
+  left: 30px !important;
 }
 .d_top.download,
 .d_top.double {
@@ -1161,6 +1205,8 @@ div.double:hover .d_bottom.blue {
 }
 .r2_top.EMT {
   background-position: 0 -1056px;
+  font-size: 14px;
+  line-height: 20px;
 }
 .r2_top.EMT span {
   background-position: 0 -1232px;
@@ -1173,12 +1219,16 @@ div.double:hover .d_bottom.blue {
 }
 .r2_top.berklee {
   background-position: 0 -1760px;
+  font-size: 14px;
+  line-height: 20px;
 }
 .r2_top.berklee span {
   background-position: 0 -1936px;
 }
 .r2_top.public_enemy {
   background-position: 0 -2112px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .r2_top.public_enemy span {
   background-position: 0 -2288px;
