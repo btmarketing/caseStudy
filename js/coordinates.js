@@ -1,6 +1,19 @@
-	////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+// this controls the dimensions and names of the content boxes
+// the naames must be the same as those listed as classes in index.html
+
+// so, if we wanted to change the size of one of the content boxes,
+// you must change it's dimensions here too
+
+// the dimension are referring to multiples of the unitSize variable
+// so a width of 2 would make the box width = 2 * unitSize
+
+// also, if you wanted to get rid of a box entirely from the case study,
+// you would have to erase it entirely from this file
+// from both 'dimensions' and 'coordinates'
 
 var dimensions = {
 	'title': {
@@ -48,6 +61,17 @@ var dimensions = {
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
+
+// these coordinates are where we create our own custom layouts
+// when a new case study is selected, we simply go to the next layout
+// if we have enough layouts, it would seem pseudo-random
+// as of this writing, there are three layouts. more could be cool.
+
+// the top-left corner of the checker board is coordinate (0,0), making the bottom right corner coordinate (9,4)
+
+// these coordinates refer to the position of the top-left corner of each content box
+// so if the big box (which is 4x3 units) should be on the bottom right of the screen, it's
+// coordinates would be (6,2), so that it doesn't overflow off the screen
 
 var coordinates = [
 	{

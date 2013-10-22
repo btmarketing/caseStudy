@@ -77,6 +77,8 @@ var berkeley_data = [
     {"label":"6.19", "value":85173},
 ];
 
+var berkeley_percLines = [.2,.4,.6,.8];
+
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -105,6 +107,40 @@ function berkeley_xScale(index){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
+
+berkeley_vis.selectAll('line.berkeley_coordLine')
+    .data(berkeley_percLines)
+    .enter()
+        .append('line')
+        .attr('class','berkeley_coordLine')
+        .attr('stroke','#9184bd')
+        .attr('opacity',.5)
+        .attr('x1',52)
+        .attr('x2',berkeley_w-20)
+        .attr('y1',function(d){
+            return berkeley_h*d;
+        })
+        .attr('y2',function(d){
+            return berkeley_h*d;
+        });
+
+berkeley_vis.selectAll('text.berkeley_coordText')
+    .data(berkeley_percLines)
+    .enter()
+        .append('text')
+        .attr('font-size',13)
+        .attr('class','berkeley_coordText')
+        .attr('fill','#9184bd')
+        .attr('opacity',.5)
+        .attr('x',20)
+        .attr('y',function(d){
+            return berkeley_h*d+4;
+        })
+        .attr('text-anchor','start')
+        .text(function(d){
+            var val = Math.round(((1-d)*berkeley_diff)+berkeley_min);
+            return Math.round(val/1000)+'k';
+        });
 
 var berkeley_paths = berkeley_vis.selectAll("path")
     .data(berkeley_data)

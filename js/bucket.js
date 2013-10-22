@@ -2,18 +2,20 @@
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+//bucket object holds all information and funcitonality for a case study and it's contents
+
 function Bucket(bucket,_index,isLast){
 	this.el = bucket;
 	//find the title div
 	var tempDiv = this.el.getElementsByClassName('title')[0];
-	this.title = tempDiv.getElementsByTagName('h2')[0].innerHTML;
+	this.title = tempDiv.getElementsByTagName('h2')[0].innerHTML; //pulls it's name from the h2 tag inside 'title' div
 	this.index = _index;
 
 	this.totalGrown = 0;
 	this.totalShrunk = 0;
 
 	this.fading = false;
-	this.fadeStep = 1/10;
+	this.fadeStep = 1/10;  // this changes the speed at which it will fade in/out
 	this.fadeDirection = 1;
 	this.opacity = 0;
 
@@ -172,15 +174,6 @@ function updateBuckets(){
 			buckets[i].fadeContents();
 		}
 	}
-}
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
-function findTitle(div){
-	var kids = div.children;
-	console.log(div.getElementsByTagName('h2'));
 }
 
 ////////////////////////////////////////////////

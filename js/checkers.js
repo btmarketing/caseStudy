@@ -2,20 +2,26 @@
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+//each moving unit is an instance of Checker
+
+//even empty spaces are a Checker, except they just don't have any DOM elements inside them
+//the empty checkers are technically the ones that move
+//empty checkers look for where they need to go for the new layout, and try to get there as fast as they can
+
 function Checker(startIndex,isFull){
 	this.full = isFull;
 	this.index = startIndex;
 	this.corners;
 	this.el;
-	this.canvas;
+	this.canvas; // where we draw the portion of the cover photo
 	this.context;
 	this.targetIndex = this.index;
 	this.prevExchange = undefined;
 
 	this.stepCount = 0;
-	this.stepAmount = 2.5;
+	this.stepAmount = 2.5; // how fast does it shift to a new spot? (higher number = slower speed)
 
-	this.seemStep = gutter/2;
+	this.seemStep = gutter/2; // how fast does it open/close the seems on fade? (higher number = slower speed)
 
 	this.shrunk = true;
 	this.grown = false;
@@ -37,7 +43,7 @@ function Checker(startIndex,isFull){
 
 	this.neighborSpace;
 
-	if(this.full) {
+	if(this.full) {  // only checkers that aren't empty get all this fun stuff...
 		var that = this;
 		this.el = document.createElement('div');
 		this.el.style.overflow = 'hidden';
@@ -357,10 +363,10 @@ Checker.prototype.mouseSlide = function(xShift,yShift,realX,realY){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var shrinking = false;
+var shrinking_checkers = false;
 
 function shrinkCheckers(clicked){
-	shrinking = true;
+	shrinking_checkers = true;
 	var test = false;
 
 	for(var i=0;i<checkers.length;i++){
@@ -371,7 +377,7 @@ function shrinkCheckers(clicked){
 	}
 
 	if(!test){
-		shrinking = false;
+		shrinking_checkers = false;
 		makeTargetCheckerLayout();
 		if(!clicked) selectCurrentChecker();
 	}
@@ -478,17 +484,13 @@ var movingChecker = -1;
 
 function updateCheckers(){
 
-	if(!buckets[currentNavigation] && !checkers[currentEmptyChecker] && !checkers[movingChecker] && !clicked){
-		//triggerRandomSorting();
-	}
-
 	if(checkers[movingChecker]){
 		checkers[movingChecker].slideCorners();
 	}
 	else if(checkers[currentEmptyChecker]){
 		checkers[currentEmptyChecker].slideThisChecker();
 	}
-	else if(shrinking){
+	else if(shrinking_checkers){
 		shrinkCheckers();
 	}
 	else if(growing){
@@ -501,7 +503,7 @@ function updateCheckers(){
 ////////////////////////////////////////////////
 
 var checkerGrayscale = 1;
-var puzzleSolved = false
+var puzzleSolved = false;
 
 function updateCheckerGrayscale(goDown){
 	if(goDown){
@@ -520,7 +522,7 @@ function updateCheckerGrayscale(goDown){
 			board.style['-o-filter'] = 'grayscale('+tempAmount+')';
 		}
 		else if(board.style['filter']!==undefined){
-			board.style['filter'] = 'grayscale('+tempAmount+')';
+			board.style['filter'] = 'grayscale('+checkerGrayscale+')';
 		}
 	}
 	else if(goDown){
@@ -532,13 +534,16 @@ function updateCheckerGrayscale(goDown){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-var xDim = 10;
-var yDim = 5;
-var checkers = [];
+var checkers = [];  // very important array, holds every checker, including empty ones
 
+
+//this are predefined layouts for the cover screen
+//pseudo-random layouts, to make it easy to solve the puzzle
+//they are lookup array, telling the checkers where to start out
 var scrambleIndexes = [
-	[0,1,49,3,4,45,6,7,8,9,10,11,12,13,14,15,16,17,44,19,41,20,22,23,24,25,26,27,18,29,30,31,42,33,34,35,36,37,38,39,40,21,32,43,28,5,46,47,48,2],
-	[0,1,41,3,44,5,6,7,8,39,10,11,12,13,4,15,16,17,18,19,40,21,22,23,14,25,26,37,28,29,30,31,32,43,34,35,36,47,38,9,20,2,42,33,24,45,46,27,48,49]
+	[40,21,42,3,23,45,6,7,47,9,10,1,12,13,14,15,46,17,18,19,20,11,22,33,24,25,16,27,28,39,30,31,32,43,34,35,36,37,38,49,0,41,2,4,44,5,26,8,48,29],
+	[11,1,2,3,42,45,6,7,8,9,10,21,12,13,14,15,47,17,18,19,20,31,22,23,24,25,16,27,28,29,30,41,32,33,34,35,36,37,48,49,40,0,4,43,44,5,46,26,38,39],
+	[0,11,12,3,41,5,49,7,8,9,10,1,2,13,14,15,16,17,18,19,20,21,22,23,24,25,26,37,28,29,30,31,32,33,34,35,46,47,38,39,40,4,42,44,43,45,36,27,48,6]
 ];
 
 function makeCheckerBoard(){
@@ -557,22 +562,28 @@ function makeCheckerBoard(){
 		}
 	}
 
-	//array for randomly pulling start indexes for each checker
+	//pick which scrambleArray we want to use today...
 	var rIndex = Math.floor(Math.random()*scrambleIndexes.length);
 	//for each slot, make a checker
+	var checkerCount = 0;
+	var chckerOffset = 5;
 	for(var i=0;i<xDim*yDim;i++){
 
+		var thisChecker = (i+chckerOffset)%(xDim*yDim);
+
 		//with a random starting point
-		var thisIndex = scrambleIndexes[rIndex][i];
-		//var thisIndex = i;
+		var thisIndex = scrambleIndexes[rIndex][thisChecker]; // tell it to go to a specific spot on the screen
 
 		//if we've already made all our full checkers, make empty ones
 		var isFull = true;
-		if(i>=totalCheckers) isFull = false;
+		if(checkerCount>=totalCheckers) isFull = false;
 
-		checkers[i] = new Checker(thisIndex,isFull);
+		checkers[thisChecker] = new Checker(thisIndex,isFull);
+		checkerCount++;
 	}
 
+	//we use document.body for out mouse movements, so that if the user pulls their mouse off the
+	//checker board, they're still able to manipulate the checker
 	document.body.onmousemove = function(e){
 		for(var i=0;i<checkers.length;i++){
 			if(checkers[i].touched){
@@ -610,8 +621,13 @@ function makeCheckerBoard(){
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+
+//did we win????
 function checkCheckerPositions(){
-	var logoCheckers = [11,12,13,14,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38];
+	//this array hold the checker indexes that have part of the BitTorrent type on it
+	//as far as we're concerned, these are the only checkers that need to be in the right spot
+	//relative to each other, that is...
+	var logoCheckers = [10,11,12,13,14,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39];
 	var count = 0;
 	var offset = undefined;
 	for(var i=0;i<logoCheckers.length;i++){
@@ -622,9 +638,9 @@ function checkCheckerPositions(){
 			count++;
 		}
 	}
+	//only trigger a win if a bucket hasn't been selected yet
 	if(count===0 && checkers[logoCheckers[0]].index%xDim<3 && !buckets[currentNavigation]){
-		puzzleSolved=true;
-		console.log('yay');
+		puzzleSolved=true; // yay, we won!
 	}
 }
 
